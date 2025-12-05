@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaEnvelope, FaLock, FaUser, FaImage, FaMosque, FaEye, FaEyeSlash, FaHeart, FaCheckCircle, FaSparkles } from 'react-icons/fa';
+import { FaEnvelope, FaLock, FaUser, FaImage, FaMosque, FaEye, FaEyeSlash, FaHeart, FaCheckCircle, FaStar } from 'react-icons/fa';
 import { useAuth } from '../../contexts/AuthContext';
 import toast from 'react-hot-toast';
 
@@ -125,7 +125,7 @@ const Register = () => {
                         </div>
                     </Link>
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 rounded-full text-emerald-600 text-sm font-medium mb-4">
-                        <FaSparkles className="text-xs" />
+                        <FaStar className="text-xs" />
                         <span>Join Our Community</span>
                     </div>
                     <h2 className="text-2xl font-bold text-slate-800">Create Your Account</h2>
@@ -276,3 +276,4 @@ const Register = () => {
 };
 
 export default Register;
+

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { FaFilter, FaSearch, FaMale, FaFemale, FaMapMarkerAlt, FaBriefcase, FaTimes, FaChevronLeft, FaChevronRight, FaCrown, FaHeart, FaSparkles } from 'react-icons/fa';
+import { FaFilter, FaSearch, FaMale, FaFemale, FaMapMarkerAlt, FaBriefcase, FaTimes, FaChevronLeft, FaChevronRight, FaCrown, FaHeart, FaStar } from 'react-icons/fa';
 import { biodataAPI } from '../../api/api';
 
 const Biodatas = () => {
@@ -150,7 +150,7 @@ const Biodatas = () => {
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
                     <div>
                         <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 rounded-full text-emerald-600 text-sm font-medium mb-3">
-                            <FaSparkles className="text-xs" />
+                            <FaStar className="text-xs" />
                             <span>Find Your Match</span>
                         </div>
                         <h1 className="text-3xl md:text-4xl font-bold text-slate-800">Browse Biodatas</h1>
@@ -356,3 +356,4 @@ const Biodatas = () => {
 };
 
 export default Biodatas;
+

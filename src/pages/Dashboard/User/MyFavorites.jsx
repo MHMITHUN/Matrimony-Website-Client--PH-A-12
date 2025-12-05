@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
-import { FaHeart, FaTrash, FaEye, FaMapMarkerAlt, FaBriefcase, FaSparkles, FaUser } from 'react-icons/fa';
+import { FaHeart, FaTrash, FaEye, FaMapMarkerAlt, FaBriefcase, FaStar, FaUser } from 'react-icons/fa';
 import { favoritesAPI } from '../../../api/api';
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
@@ -57,7 +57,7 @@ const MyFavorites = () => {
             {/* Header */}
             <div>
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-pink-500/10 rounded-full text-pink-600 text-sm font-medium mb-2">
-                    <FaSparkles className="text-xs" />
+                    <FaStar className="text-xs" />
                     <span>My Favorites</span>
                 </div>
                 <h1 className="text-2xl md:text-3xl font-bold text-slate-800">Favourites Biodata</h1>
@@ -145,3 +145,4 @@ const MyFavorites = () => {
 };
 
 export default MyFavorites;
+

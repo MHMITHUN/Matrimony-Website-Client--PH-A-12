@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { FaCrown, FaCheck, FaUser, FaSparkles, FaEnvelope, FaIdCard } from 'react-icons/fa';
+import { FaCrown, FaCheck, FaUser, FaStar, FaEnvelope, FaIdCard } from 'react-icons/fa';
 import { adminAPI } from '../../../api/api';
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
@@ -56,7 +56,7 @@ const ApprovedPremium = () => {
             {/* Header */}
             <div>
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/10 rounded-full text-amber-600 text-sm font-medium mb-2">
-                    <FaSparkles className="text-xs" />
+                    <FaStar className="text-xs" />
                     <span>Premium Management</span>
                 </div>
                 <h1 className="text-2xl md:text-3xl font-bold text-slate-800 flex items-center gap-3">
@@ -125,3 +125,4 @@ const ApprovedPremium = () => {
 };
 
 export default ApprovedPremium;
+

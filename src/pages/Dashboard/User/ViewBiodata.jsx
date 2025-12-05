@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { FaUser, FaEdit, FaCrown, FaMapMarkerAlt, FaBriefcase, FaCalendar, FaRulerVertical, FaWeight, FaPhone, FaEnvelope, FaSparkles, FaCheckCircle, FaClock, FaHeart } from 'react-icons/fa';
+import { FaUser, FaEdit, FaCrown, FaMapMarkerAlt, FaBriefcase, FaCalendar, FaRulerVertical, FaWeight, FaPhone, FaEnvelope, FaStar, FaCheckCircle, FaClock, FaHeart } from 'react-icons/fa';
 import { biodataAPI } from '../../../api/api';
 import { useAuth } from '../../../contexts/AuthContext';
 import toast from 'react-hot-toast';
@@ -90,7 +90,7 @@ const ViewBiodata = () => {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 rounded-full text-emerald-600 text-sm font-medium mb-2">
-                        <FaSparkles className="text-xs" />
+                        <FaStar className="text-xs" />
                         <span>My Profile</span>
                     </div>
                     <h1 className="text-2xl md:text-3xl font-bold text-slate-800">My Biodata</h1>
@@ -191,7 +191,7 @@ const ViewBiodata = () => {
                     </div>
 
                     <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
-                        <FaSparkles className="text-amber-500" /> Partner Expectations
+                        <FaStar className="text-amber-500" /> Partner Expectations
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
                         <InfoItem icon={<FaUser />} label="Expected Partner Age" value={biodata.expectedPartnerAge} color="from-amber-500 to-orange-500" />
@@ -213,3 +213,4 @@ const ViewBiodata = () => {
 };
 
 export default ViewBiodata;
+

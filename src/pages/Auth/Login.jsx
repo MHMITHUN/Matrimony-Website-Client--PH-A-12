@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { FaEnvelope, FaLock, FaGoogle, FaMosque, FaEye, FaEyeSlash, FaHeart, FaSparkles } from 'react-icons/fa';
+import { FaEnvelope, FaLock, FaGoogle, FaMosque, FaEye, FaEyeSlash, FaHeart, FaStar } from 'react-icons/fa';
 import { useAuth } from '../../contexts/AuthContext';
 import toast from 'react-hot-toast';
 
@@ -103,7 +103,7 @@ const Login = () => {
                         </div>
                     </Link>
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 rounded-full text-emerald-600 text-sm font-medium mb-4">
-                        <FaSparkles className="text-xs" />
+                        <FaStar className="text-xs" />
                         <span>Welcome Back</span>
                     </div>
                     <h2 className="text-2xl font-bold text-slate-800">Sign In to Your Account</h2>
@@ -214,3 +214,4 @@ const Login = () => {
 };
 
 export default Login;
+

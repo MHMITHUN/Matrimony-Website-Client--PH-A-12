@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { FaRing, FaStar, FaImage, FaHeart, FaSparkles, FaCalendar, FaIdCard, FaUser } from 'react-icons/fa';
+import { FaRing, FaStar, FaImage, FaHeart, FaCalendar, FaIdCard, FaUser } from 'react-icons/fa';
 import { successStoryAPI, biodataAPI } from '../../../api/api';
 import toast from 'react-hot-toast';
 
@@ -68,7 +68,7 @@ const GotMarried = () => {
             {/* Header */}
             <div>
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-pink-500/10 rounded-full text-pink-600 text-sm font-medium mb-2">
-                    <FaSparkles className="text-xs" />
+                    <FaStar className="text-xs" />
                     <span>Share Your Joy</span>
                 </div>
                 <h1 className="text-2xl md:text-3xl font-bold text-slate-800 flex items-center gap-3">
@@ -233,3 +233,4 @@ const GotMarried = () => {
 };
 
 export default GotMarried;
+

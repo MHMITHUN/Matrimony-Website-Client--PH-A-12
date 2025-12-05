@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { FaSearch, FaUserShield, FaCrown, FaUser, FaCheck, FaUsers, FaSparkles } from 'react-icons/fa';
+import { FaSearch, FaUserShield, FaCrown, FaUser, FaCheck, FaUsers, FaStar } from 'react-icons/fa';
 import { adminAPI } from '../../../api/api';
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
@@ -77,7 +77,7 @@ const ManageUsers = () => {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 rounded-full text-emerald-600 text-sm font-medium mb-2">
-                        <FaSparkles className="text-xs" />
+                        <FaStar className="text-xs" />
                         <span>User Management</span>
                     </div>
                     <h1 className="text-2xl md:text-3xl font-bold text-slate-800">Manage Users</h1>
@@ -198,3 +198,4 @@ const ManageUsers = () => {
 };
 
 export default ManageUsers;
+

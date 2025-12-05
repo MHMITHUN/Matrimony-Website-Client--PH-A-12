@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { FaSave, FaUser, FaPhone, FaMapMarkerAlt, FaBriefcase, FaCalendar, FaHeart, FaSparkles, FaImage, FaRulerVertical, FaWeight, FaEnvelope } from 'react-icons/fa';
+import { FaSave, FaUser, FaPhone, FaMapMarkerAlt, FaBriefcase, FaCalendar, FaHeart, FaStar, FaImage, FaRulerVertical, FaWeight, FaEnvelope } from 'react-icons/fa';
 import { biodataAPI } from '../../../api/api';
 import { useAuth } from '../../../contexts/AuthContext';
 import toast from 'react-hot-toast';
@@ -140,7 +140,7 @@ const EditBiodata = () => {
             {/* Header */}
             <div>
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 rounded-full text-emerald-600 text-sm font-medium mb-2">
-                    <FaSparkles className="text-xs" />
+                    <FaStar className="text-xs" />
                     <span>{existingBiodata ? 'Edit Profile' : 'Create Profile'}</span>
                 </div>
                 <h1 className="text-2xl md:text-3xl font-bold text-slate-800">
@@ -561,3 +561,4 @@ const EditBiodata = () => {
 };
 
 export default EditBiodata;
+

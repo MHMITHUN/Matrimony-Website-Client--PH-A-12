@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { FaUsers, FaMale, FaFemale, FaCrown, FaDollarSign, FaChartPie, FaArrowUp, FaSparkles } from 'react-icons/fa';
+import { FaUsers, FaMale, FaFemale, FaCrown, FaDollarSign, FaChartPie, FaArrowUp, FaStar } from 'react-icons/fa';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
 import { statsAPI } from '../../../api/api';
 
@@ -79,7 +79,7 @@ const AdminDashboard = () => {
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 rounded-full text-emerald-600 text-sm font-medium mb-2">
-                        <FaSparkles className="text-xs" />
+                        <FaStar className="text-xs" />
                         <span>Overview</span>
                     </div>
                     <h1 className="text-2xl md:text-3xl font-bold text-slate-800 flex items-center gap-3">
@@ -200,3 +200,4 @@ const AdminDashboard = () => {
 };
 
 export default AdminDashboard;
+

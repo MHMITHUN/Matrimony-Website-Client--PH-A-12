@@ -1,4 +1,4 @@
-import { FaMosque, FaHeart, FaShieldAlt, FaUsers, FaCheckCircle, FaStar, FaQuoteLeft, FaSparkles } from 'react-icons/fa';
+import { FaMosque, FaHeart, FaShieldAlt, FaUsers, FaCheckCircle, FaStar, FaQuoteLeft } from 'react-icons/fa';
 
 const About = () => {
     const values = [
@@ -48,7 +48,7 @@ const About = () => {
 
                 <div className="container-custom relative text-center">
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-amber-300 text-sm font-medium mb-6 animate-fade-in-down">
-                        <FaSparkles className="text-xs" />
+                        <FaStar className="text-xs" />
                         <span>Since 2020</span>
                     </div>
                     <div className="w-20 h-20 bg-gradient-to-br from-amber-400 to-amber-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-amber-500/30 animate-float">
@@ -195,3 +195,4 @@ const About = () => {
 };
 
 export default About;
+

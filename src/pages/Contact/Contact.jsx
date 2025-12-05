@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaPaperPlane, FaQuestionCircle, FaChevronDown, FaSparkles } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaPaperPlane, FaQuestionCircle, FaChevronDown, FaStar } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 
 const Contact = () => {
@@ -86,7 +86,7 @@ const Contact = () => {
 
                 <div className="container-custom relative text-center">
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-amber-300 text-sm font-medium mb-6 animate-fade-in-down">
-                        <FaSparkles className="text-xs" />
+                        <FaStar className="text-xs" />
                         <span>Get in Touch</span>
                     </div>
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 animate-fade-in-up">
@@ -272,3 +272,4 @@ const Contact = () => {
 };
 
 export default Contact;
+

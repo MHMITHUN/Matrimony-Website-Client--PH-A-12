@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { FaSearch, FaHeart, FaStar, FaUsers, FaMale, FaFemale, FaRing, FaArrowRight, FaQuoteLeft, FaCrown, FaPlay, FaCheckCircle, FaSparkles } from 'react-icons/fa';
+import { FaSearch, FaHeart, FaStar, FaUsers, FaMale, FaFemale, FaRing, FaArrowRight, FaQuoteLeft, FaCrown, FaPlay, FaCheckCircle } from 'react-icons/fa';
 import { biodataAPI, statsAPI, successStoryAPI } from '../../api/api';
 
 // Hero Section Component with stunning visuals
@@ -76,7 +76,7 @@ const HeroSection = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div className="text-white animate-fade-in-up">
                         <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-emerald-300 text-sm font-medium mb-6">
-                            <FaSparkles className="animate-pulse" />
+                            <FaStar className="animate-pulse" />
                             <span>بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</span>
                         </div>
 
@@ -256,8 +256,8 @@ const BiodataCard = ({ biodata, index }) => (
             </div>
             <div className="absolute top-4 right-4">
                 <span className={`px-3 py-1.5 rounded-full text-xs font-bold ${biodata.biodataType === 'Male'
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-pink-500 text-white'
+                    ? 'bg-blue-500 text-white'
+                    : 'bg-pink-500 text-white'
                     }`}>
                     {biodata.biodataType}
                 </span>

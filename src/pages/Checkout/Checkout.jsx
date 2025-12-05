@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
-import { FaCreditCard, FaLock, FaCheckCircle, FaShieldAlt, FaArrowLeft, FaSparkles } from 'react-icons/fa';
+import { FaCreditCard, FaLock, FaCheckCircle, FaShieldAlt, FaArrowLeft, FaStar } from 'react-icons/fa';
 import { paymentAPI, contactRequestAPI } from '../../api/api';
 import { useAuth } from '../../contexts/AuthContext';
 import toast from 'react-hot-toast';
@@ -101,7 +101,7 @@ const Checkout = () => {
                         {/* Order Summary */}
                         <div className="bg-gradient-to-br from-slate-50 to-slate-100/50 rounded-2xl p-6 mb-8 border border-slate-100">
                             <h3 className="font-bold text-slate-800 mb-4 flex items-center gap-2">
-                                <FaSparkles className="text-amber-500" />
+                                <FaStar className="text-amber-500" />
                                 Order Summary
                             </h3>
                             <div className="space-y-3">
@@ -214,3 +214,4 @@ const Checkout = () => {
 };
 
 export default Checkout;
+

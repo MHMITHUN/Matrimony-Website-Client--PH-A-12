@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { FaHeart, FaPhone, FaEnvelope, FaMapMarkerAlt, FaBriefcase, FaUser, FaCalendar, FaRulerVertical, FaWeight, FaStar, FaLock, FaCrown, FaArrowLeft, FaCheckCircle, FaSparkles } from 'react-icons/fa';
+import { FaHeart, FaPhone, FaEnvelope, FaMapMarkerAlt, FaBriefcase, FaUser, FaCalendar, FaRulerVertical, FaWeight, FaStar, FaLock, FaCrown, FaArrowLeft, FaCheckCircle } from 'react-icons/fa';
 import { biodataAPI, favoritesAPI } from '../../api/api';
 import { useAuth } from '../../contexts/AuthContext';
 import toast from 'react-hot-toast';
@@ -233,7 +233,7 @@ const BiodataDetails = () => {
                         <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 p-6 md:p-8">
                             <h2 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-3">
                                 <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center">
-                                    <FaSparkles className="text-white" />
+                                    <FaStar className="text-white" />
                                 </div>
                                 Expected Partner
                             </h2>
@@ -326,3 +326,4 @@ const BiodataDetails = () => {
 };
 
 export default BiodataDetails;
+

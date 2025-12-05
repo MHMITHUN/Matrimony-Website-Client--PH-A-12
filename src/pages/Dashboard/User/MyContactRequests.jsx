@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { FaEnvelope, FaTrash, FaCheckCircle, FaClock, FaPhone, FaSparkles, FaIdCard, FaUser, FaLock } from 'react-icons/fa';
+import { FaEnvelope, FaTrash, FaCheckCircle, FaClock, FaPhone, FaStar, FaIdCard, FaUser, FaLock } from 'react-icons/fa';
 import { contactRequestAPI } from '../../../api/api';
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
@@ -56,7 +56,7 @@ const MyContactRequests = () => {
             {/* Header */}
             <div>
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 rounded-full text-purple-600 text-sm font-medium mb-2">
-                    <FaSparkles className="text-xs" />
+                    <FaStar className="text-xs" />
                     <span>Contact Requests</span>
                 </div>
                 <h1 className="text-2xl md:text-3xl font-bold text-slate-800">My Contact Requests</h1>
@@ -155,3 +155,4 @@ const MyContactRequests = () => {
 };
 
 export default MyContactRequests;
+
