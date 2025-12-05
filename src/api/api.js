@@ -99,6 +99,15 @@ export const statsAPI = {
     getAdmin: () => api.get('/stats/admin')
 };
 
+// Analytics API
+export const analyticsAPI = {
+    getStats: () => api.get('/analytics/stats'),
+    getUserGrowth: () => api.get('/analytics/user-growth'),
+    getLocationStats: () => api.get('/analytics/location-stats'),
+    getAgeDistribution: () => api.get('/analytics/age-distribution'),
+    getRecentActivity: () => api.get('/analytics/recent-activity')
+};
+
 // Payment API
 export const paymentAPI = {
     createPaymentIntent: (amount) => api.post('/payment/create-payment-intent', { amount }),

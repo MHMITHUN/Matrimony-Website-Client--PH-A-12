@@ -1,203 +1,340 @@
-import { useQuery } from '@tanstack/react-query';
-import { FaUsers, FaMale, FaFemale, FaCrown, FaDollarSign, FaChartPie, FaArrowUp, FaStar } from 'react-icons/fa';
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
-import { statsAPI } from '../../../api/api';
+import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
+import {
+    LineChart, Line, AreaChart, Area, PieChart, Pie, Cell,
+    BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
+} from 'recharts';
+import { FaUsers, FaUserTie, FaHeart, FaChartLine, FaVenus, FaMars, FaTrophy } from 'react-icons/fa';
+import { analyticsAPI } from '../../../api/api';
+import { motion } from 'framer-motion';
+import toast from 'react-hot-toast';
 
 const AdminDashboard = () => {
-    const { data: stats, isLoading } = useQuery({
-        queryKey: ['adminStats'],
-        queryFn: async () => {
-            const response = await statsAPI.getAdmin();
-            return response.data;
+    const [stats, setStats] = useState(null);
+    const [userGrowth, setUserGrowth] = useState([]);
+    const [locationStats, setLocationStats] = useState([]);
+    const [ageDistribution, setAgeDistribution] = useState([]);
+    const [recentActivity, setRecentActivity] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        fetchAnalytics();
+    }, []);
+
+    const fetchAnalytics = async () => {
+        try {
+            const [statsRes, growthRes, locationRes, ageRes, activityRes] = await Promise.all([
+                analyticsAPI.getStats(),
+                analyticsAPI.getUserGrowth(),
+                analyticsAPI.getLocationStats(),
+                analyticsAPI.getAgeDistribution(),
+                analyticsAPI.getRecentActivity()
+            ]);
+
+            setStats(statsRes.data);
+            setUserGrowth(growthRes.data);
+            setLocationStats(locationRes.data.slice(0, 6)); // Top 6 locations
+            setAgeDistribution(ageRes.data);
+            setRecentActivity(activityRes.data);
+        } catch (error) {
+            console.error('Error fetching analytics:', error);
+            toast.error('Failed to load analytics data');
+        } finally {
+            setLoading(false);
         }
-    });
+    };
 
-    const COLORS = ['#10b981', '#3b82f6', '#ec4899', '#f59e0b'];
+    const COLORS = ['#10b981', '#14b8a6', '#06b6d4', '#3b82f6', '#6366f1', '#8b5cf6'];
 
-    const pieData = [
-        { name: 'Total Biodata', value: stats?.totalBiodata || 0 },
-        { name: 'Male Biodata', value: stats?.maleBiodata || 0 },
-        { name: 'Female Biodata', value: stats?.femaleBiodata || 0 },
-        { name: 'Premium Biodata', value: stats?.premiumBiodata || 0 },
-    ];
+    const StatCard = ({ icon, label, value, color, bgColor, trend }) => (
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg shadow-slate-200/50 border border-white/50 p-6 hover:shadow-xl transition-all"
+        >
+            <div className="flex items-start justify-between">
+                <div className="flex-1">
+                    <p className="text-slate-500 text-sm font-medium mb-2">{label}</p>
+                    <h3 className="text-3xl font-bold text-slate-800 mb-1">{value?.toLocaleString() || 0}</h3>
+                    {trend && (
+                        <p className="text-xs text-emerald-600 flex items-center gap-1">
+                            <FaChartLine className="text-[10px]" />
+                            <span>{trend}</span>
+                        </p>
+                    )}
+                </div>
+                <div className={`w-14 h-14 rounded-xl ${bgColor} flex items-center justify-center text-2xl ${color}`}>
+                    {icon}
+                </div>
+            </div>
+        </motion.div>
+    );
 
-    const statCards = [
-        {
-            icon: <FaUsers />,
-            label: 'Total Biodata',
-            value: stats?.totalBiodata || 0,
-            gradient: 'from-emerald-500 to-teal-500',
-            shadow: 'shadow-emerald-500/25',
-            bg: 'bg-emerald-50'
-        },
-        {
-            icon: <FaMale />,
-            label: 'Male Biodata',
-            value: stats?.maleBiodata || 0,
-            gradient: 'from-blue-500 to-indigo-500',
-            shadow: 'shadow-blue-500/25',
-            bg: 'bg-blue-50'
-        },
-        {
-            icon: <FaFemale />,
-            label: 'Female Biodata',
-            value: stats?.femaleBiodata || 0,
-            gradient: 'from-pink-500 to-rose-500',
-            shadow: 'shadow-pink-500/25',
-            bg: 'bg-pink-50'
-        },
-        {
-            icon: <FaCrown />,
-            label: 'Premium Biodata',
-            value: stats?.premiumBiodata || 0,
-            gradient: 'from-amber-500 to-orange-500',
-            shadow: 'shadow-amber-500/25',
-            bg: 'bg-amber-50'
-        },
-        {
-            icon: <FaDollarSign />,
-            label: 'Total Revenue',
-            value: `৳${stats?.totalRevenue || 0}`,
-            gradient: 'from-purple-500 to-violet-500',
-            shadow: 'shadow-purple-500/25',
-            bg: 'bg-purple-50'
-        }
-    ];
-
-    if (isLoading) {
+    if (loading) {
         return (
-            <div className="flex flex-col items-center justify-center py-20">
-                <div className="spinner-lg"></div>
-                <p className="mt-4 text-slate-500">Loading dashboard...</p>
+            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-emerald-50/30 to-teal-50/50">
+                <div className="text-center">
+                    <div className="w-16 h-16 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                    <p className="text-slate-600 font-medium">Loading analytics...</p>
+                </div>
             </div>
         );
     }
 
+    const genderData = [
+        { name: 'Male', value: stats?.maleCount || 0, color: '#3b82f6' },
+        { name: 'Female', value: stats?.femaleCount || 0, color: '#ec4899' }
+    ];
+
     return (
-        <div className="space-y-8">
-            {/* Page Header */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div>
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 rounded-full text-emerald-600 text-sm font-medium mb-2">
-                        <FaStar className="text-xs" />
-                        <span>Overview</span>
-                    </div>
-                    <h1 className="text-2xl md:text-3xl font-bold text-slate-800 flex items-center gap-3">
-                        Admin Dashboard
-                    </h1>
-                    <p className="text-slate-500 mt-1">Platform statistics and analytics</p>
-                </div>
-            </div>
+        <>
+            <Helmet>
+                <title>Admin Dashboard - Analytics & Insights</title>
+            </Helmet>
 
-            {/* Stats Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-                {statCards.map((card, index) => (
-                    <div
-                        key={index}
-                        className="group bg-white rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 animate-fade-in-up"
-                        style={{ animationDelay: `${index * 100}ms` }}
+            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50/30 to-teal-50/50 p-6">
+                <div className="max-w-7xl mx-auto">
+                    {/* Header */}
+                    <div className="mb-8">
+                        <h1 className="text-3xl md:text-4xl font-bold text-slate-800 mb-2">
+                            Analytics Dashboard
+                        </h1>
+                        <p className="text-slate-600">
+                            Real-time insights and comprehensive analytics
+                        </p>
+                    </div>
+
+                    {/* Statistics Cards */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <StatCard
+                            icon={<FaUsers />}
+                            label="Total Users"
+                            value={stats?.totalUsers}
+                            color="text-emerald-600"
+                            bgColor="bg-emerald-500/10"
+                        />
+                        <StatCard
+                            icon={<FaUserTie />}
+                            label="Premium Members"
+                            value={stats?.totalPremiumUsers}
+                            color="text-amber-600"
+                            bgColor="bg-amber-500/10"
+                        />
+                        <StatCard
+                            icon={<FaHeart />}
+                            label="Contact Requests"
+                            value={stats?.totalContactRequests}
+                            color="text-pink-600"
+                            bgColor="bg-pink-500/10"
+                        />
+                        <StatCard
+                            icon={<FaTrophy />}
+                            label="Success Stories"
+                            value={stats?.totalSuccessStories}
+                            color="text-teal-600"
+                            bgColor="bg-teal-500/10"
+                            trend={`${stats?.successRate}% success rate`}
+                        />
+                    </div>
+
+                    {/* Charts Section */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                        {/* User Growth Chart */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg shadow-slate-200/50 border border-white/50 p-6"
+                        >
+                            <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                                <span className="w-1 h-6 bg-gradient-to-b from-emerald-500 to-teal-500 rounded-full"></span>
+                                User Growth Trend
+                            </h3>
+                            <ResponsiveContainer width="100%" height={300}>
+                                <AreaChart data={userGrowth}>
+                                    <defs>
+                                        <linearGradient id="colorTotal" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="5%" stopColor="#10b981" stopOpacity={0.3} />
+                                            <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
+                                        </linearGradient>
+                                        <linearGradient id="colorPremium" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.3} />
+                                            <stop offset="95%" stopColor="#f59e0b" stopOpacity={0} />
+                                        </linearGradient>
+                                    </defs>
+                                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                                    <XAxis dataKey="month" stroke="#64748b" />
+                                    <YAxis stroke="#64748b" />
+                                    <Tooltip
+                                        contentStyle={{
+                                            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                                            border: 'none',
+                                            borderRadius: '12px',
+                                            boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'
+                                        }}
+                                    />
+                                    <Legend />
+                                    <Area
+                                        type="monotone"
+                                        dataKey="total"
+                                        stroke="#10b981"
+                                        strokeWidth={2}
+                                        fillOpacity={1}
+                                        fill="url(#colorTotal)"
+                                        name="Total Users"
+                                    />
+                                    <Area
+                                        type="monotone"
+                                        dataKey="premium"
+                                        stroke="#f59e0b"
+                                        strokeWidth={2}
+                                        fillOpacity={1}
+                                        fill="url(#colorPremium)"
+                                        name="Premium Users"
+                                    />
+                                </AreaChart>
+                            </ResponsiveContainer>
+                        </motion.div>
+
+                        {/* Gender Distribution */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg shadow-slate-200/50 border border-white/50 p-6"
+                        >
+                            <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                                <span className="w-1 h-6 bg-gradient-to-b from-emerald-500 to-teal-500 rounded-full"></span>
+                                Gender Distribution
+                            </h3>
+                            <div className="flex items-center justify-center">
+                                <ResponsiveContainer width="100%" height={300}>
+                                    <PieChart>
+                                        <Pie
+                                            data={genderData}
+                                            cx="50%"
+                                            cy="50%"
+                                            labelLine={false}
+                                            label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                                            outerRadius={100}
+                                            fill="#8884d8"
+                                            dataKey="value"
+                                        >
+                                            {genderData.map((entry, index) => (
+                                                <Cell key={`cell-${index}`} fill={entry.color} />
+                                            ))}
+                                        </Pie>
+                                        <Tooltip />
+                                    </PieChart>
+                                </ResponsiveContainer>
+                            </div>
+                            <div className="flex items-center justify-center gap-6 mt-4">
+                                <div className="flex items-center gap-2">
+                                    <FaMars className="text-blue-500 text-xl" />
+                                    <span className="text-slate-600">{stats?.maleCount} Males</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <FaVenus className="text-pink-500 text-xl" />
+                                    <span className="text-slate-600">{stats?.femaleCount} Females</span>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+
+                    {/* Second Row Charts */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                        {/* Location Distribution */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg shadow-slate-200/50 border border-white/50 p-6"
+                        >
+                            <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                                <span className="w-1 h-6 bg-gradient-to-b from-emerald-500 to-teal-500 rounded-full"></span>
+                                Top Locations
+                            </h3>
+                            <ResponsiveContainer width="100%" height={300}>
+                                <BarChart data={locationStats}>
+                                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                                    <XAxis dataKey="name" stroke="#64748b" />
+                                    <YAxis stroke="#64748b" />
+                                    <Tooltip
+                                        contentStyle={{
+                                            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                                            border: 'none',
+                                            borderRadius: '12px',
+                                            boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'
+                                        }}
+                                    />
+                                    <Bar dataKey="value" fill="#10b981" radius={[8, 8, 0, 0]} />
+                                </BarChart>
+                            </ResponsiveContainer>
+                        </motion.div>
+
+                        {/* Age Distribution */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg shadow-slate-200/50 border border-white/50 p-6"
+                        >
+                            <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                                <span className="w-1 h-6 bg-gradient-to-b from-emerald-500 to-teal-500 rounded-full"></span>
+                                Age Distribution
+                            </h3>
+                            <ResponsiveContainer width="100%" height={300}>
+                                <PieChart>
+                                    <Pie
+                                        data={ageDistribution}
+                                        cx="50%"
+                                        cy="50%"
+                                        labelLine={false}
+                                        label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                                        outerRadius={100}
+                                        fill="#8884d8"
+                                        dataKey="value"
+                                    >
+                                        {ageDistribution.map((entry, index) => (
+                                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                        ))}
+                                    </Pie>
+                                    <Tooltip />
+                                </PieChart>
+                            </ResponsiveContainer>
+                        </motion.div>
+                    </div>
+
+                    {/* Recent Activity Timeline */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg shadow-slate-200/50 border border-white/50 p-6"
                     >
-                        <div className={`w-12 h-12 bg-gradient-to-br ${card.gradient} ${card.shadow} rounded-xl flex items-center justify-center text-white text-xl mb-4 shadow-lg group-hover:scale-110 transition-transform`}>
-                            {card.icon}
-                        </div>
-                        <p className="text-slate-500 text-sm font-medium">{card.label}</p>
-                        <p className="text-2xl md:text-3xl font-bold text-slate-800 mt-1">{card.value}</p>
-                    </div>
-                ))}
-            </div>
-
-            {/* Charts Section */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Pie Chart */}
-                <div className="bg-white rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 p-6">
-                    <div className="flex items-center justify-between mb-6">
-                        <div>
-                            <h2 className="text-lg font-bold text-slate-800">Biodata Distribution</h2>
-                            <p className="text-slate-500 text-sm">Breakdown by category</p>
-                        </div>
-                        <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center">
-                            <FaChartPie className="text-white" />
-                        </div>
-                    </div>
-                    <div className="h-80">
-                        <ResponsiveContainer width="100%" height="100%">
-                            <PieChart>
-                                <Pie
-                                    data={pieData}
-                                    cx="50%"
-                                    cy="50%"
-                                    labelLine={false}
-                                    outerRadius={100}
-                                    fill="#8884d8"
-                                    dataKey="value"
-                                    label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                        <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                            <span className="w-1 h-6 bg-gradient-to-b from-emerald-500 to-teal-500 rounded-full"></span>
+                            Recent Activity
+                        </h3>
+                        <div className="space-y-4 max-h-96 overflow-y-auto">
+                            {recentActivity.map((activity, index) => (
+                                <div
+                                    key={index}
+                                    className="flex items-start gap-4 p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors"
                                 >
-                                    {pieData.map((entry, index) => (
-                                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                                    ))}
-                                </Pie>
-                                <Tooltip
-                                    contentStyle={{
-                                        backgroundColor: 'white',
-                                        border: 'none',
-                                        borderRadius: '12px',
-                                        boxShadow: '0 10px 40px rgba(0,0,0,0.1)'
-                                    }}
-                                />
-                                <Legend />
-                            </PieChart>
-                        </ResponsiveContainer>
-                    </div>
-                </div>
-
-                {/* Revenue Info */}
-                <div className="bg-white rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 p-6">
-                    <div className="flex items-center justify-between mb-6">
-                        <div>
-                            <h2 className="text-lg font-bold text-slate-800">Revenue Summary</h2>
-                            <p className="text-slate-500 text-sm">Financial overview</p>
+                                    <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${activity.type === 'user' ? 'bg-emerald-500' :
+                                            activity.type === 'biodata' ? 'bg-blue-500' :
+                                                'bg-pink-500'
+                                        }`}></div>
+                                    <div className="flex-1">
+                                        <p className="text-slate-700 text-sm">{activity.message}</p>
+                                        <p className="text-slate-400 text-xs mt-1">
+                                            {new Date(activity.time).toLocaleString()}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
-                        <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-violet-500 rounded-xl flex items-center justify-center">
-                            <FaDollarSign className="text-white" />
-                        </div>
-                    </div>
-                    <div className="space-y-4">
-                        <div className="flex items-center justify-between p-5 bg-gradient-to-br from-emerald-50 to-emerald-100/50 rounded-2xl border border-emerald-100 group hover:shadow-md transition-all">
-                            <div>
-                                <p className="text-sm text-slate-500 font-medium">Total Contact Requests</p>
-                                <p className="text-2xl font-bold text-emerald-700 mt-1">{stats?.totalContactRequests || 0}</p>
-                            </div>
-                            <div className="w-14 h-14 bg-emerald-500/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                                <FaUsers className="text-2xl text-emerald-500" />
-                            </div>
-                        </div>
-
-                        <div className="flex items-center justify-between p-5 bg-gradient-to-br from-purple-50 to-purple-100/50 rounded-2xl border border-purple-100 group hover:shadow-md transition-all">
-                            <div>
-                                <p className="text-sm text-slate-500 font-medium">Revenue per Request</p>
-                                <p className="text-2xl font-bold text-purple-700 mt-1">৳500.00</p>
-                            </div>
-                            <div className="w-14 h-14 bg-purple-500/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                                <FaArrowUp className="text-2xl text-purple-500" />
-                            </div>
-                        </div>
-
-                        <div className="relative overflow-hidden flex items-center justify-between p-6 bg-gradient-to-r from-amber-500 via-amber-400 to-orange-400 rounded-2xl shadow-lg shadow-amber-500/25 group">
-                            <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.1%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-30"></div>
-                            <div className="relative">
-                                <p className="text-sm text-white/80 font-medium">Total Revenue</p>
-                                <p className="text-3xl font-bold text-white mt-1">৳{stats?.totalRevenue || 0}</p>
-                            </div>
-                            <div className="relative w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                                <FaDollarSign className="text-2xl text-white" />
-                            </div>
-                        </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 
 export default AdminDashboard;
-

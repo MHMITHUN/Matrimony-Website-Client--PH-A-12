@@ -21,6 +21,8 @@ import Register from './pages/Auth/Register';
 import About from './pages/About/About';
 import Contact from './pages/Contact/Contact';
 import Checkout from './pages/Checkout/Checkout';
+import Privacy from './pages/Privacy/Privacy';
+import Terms from './pages/Terms/Terms';
 import NotFound from './pages/NotFound/NotFound';
 
 // User Dashboard Pages
@@ -60,6 +62,8 @@ const router = createBrowserRouter([
       { path: 'contact', element: <Contact /> },
       { path: 'login', element: <Login /> },
       { path: 'register', element: <Register /> },
+      { path: 'privacy', element: <Privacy /> },
+      { path: 'terms', element: <Terms /> },
       {
         path: 'biodata/:id',
         element: (

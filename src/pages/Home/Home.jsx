@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { FaSearch, FaHeart, FaStar, FaUsers, FaMale, FaFemale, FaRing, FaArrowRight, FaQuoteLeft, FaCrown, FaPlay, FaCheckCircle } from 'react-icons/fa';
-import { biodataAPI, statsAPI, successStoryAPI } from '../../api/api';
+import { biodataAPI, statsAPI, successStoryAPI, analyticsAPI } from '../../api/api';
+import AnimatedCounter from '../../components/AnimatedCounter';
+import FeaturedProfiles from '../../components/FeaturedProfiles';
 
 // Hero Section Component with stunning visuals
 const HeroSection = () => {
@@ -369,26 +371,30 @@ const HowItWorksSection = () => {
     );
 };
 
-// Success Counter Section
+// Success Counter Section with Animated Counters
 const SuccessCounterSection = () => {
     const { data: stats, isLoading } = useQuery({
-        queryKey: ['publicStats'],
+        queryKey: ['analyticsStats'],
         queryFn: async () => {
-            const response = await statsAPI.getPublic();
+            const response = await analyticsAPI.getStats();
             return response.data;
         }
     });
 
     const counters = [
-        { icon: <FaUsers />, value: stats?.totalBiodata || 0, label: 'Total Biodatas', color: 'from-emerald-500 to-teal-500' },
-        { icon: <FaMale />, value: stats?.maleBiodata || 0, label: 'Male Biodatas', color: 'from-blue-500 to-indigo-500' },
-        { icon: <FaFemale />, value: stats?.femaleBiodata || 0, label: 'Female Biodatas', color: 'from-pink-500 to-rose-500' },
-        { icon: <FaRing />, value: stats?.marriagesCompleted || 0, label: 'Marriages Completed', color: 'from-amber-500 to-orange-500' },
+        { icon: <FaUsers />, value: stats?.totalBiodatas || 0, label: 'Total Biodatas', color: 'from-emerald-500 to-teal-500' },
+        { icon: <FaMale />, value: stats?.maleCount || 0, label: 'Male Biodatas', color: 'from-blue-500 to-indigo-500' },
+        { icon: <FaFemale />, value: stats?.femaleCount || 0, label: 'Female Biodatas', color: 'from-pink-500 to-rose-500' },
+        { icon: <FaRing />, value: stats?.totalSuccessStories || 0, label: 'Marriages Completed', color: 'from-amber-500 to-orange-500', suffix: '+' },
     ];
 
     return (
-        <section className="py-24 bg-gradient-to-b from-white to-slate-50">
-            <div className="container-custom">
+        <section className="py-24 bg-gradient-to-b from-white to-slate-50 relative overflow-hidden">
+            {/* Decorative Elements */}
+            <div className="absolute top-0 left-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl"></div>
+
+            <div className="container-custom relative">
                 <div className="text-center mb-16">
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 rounded-full text-emerald-600 text-sm font-medium mb-4">
                         <FaStar /> Our Success
@@ -408,18 +414,37 @@ const SuccessCounterSection = () => {
                     {counters.map((counter, index) => (
                         <div
                             key={index}
-                            className="bg-white rounded-3xl p-8 shadow-lg shadow-black/5 border border-gray-100 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-500 hover:-translate-y-2 text-center group"
+                            className="bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-lg shadow-black/5 border border-gray-100 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-500 hover:-translate-y-2 text-center group"
                         >
-                            <div className={`w-16 h-16 mx-auto mb-6 bg-gradient-to-r ${counter.color} rounded-2xl flex items-center justify-center text-white text-2xl group-hover:scale-110 transition-transform`}>
+                            <div className={`w-16 h-16 mx-auto mb-6 bg-gradient-to-r ${counter.color} rounded-2xl flex items-center justify-center text-white text-2xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
                                 {counter.icon}
                             </div>
-                            <div className="text-4xl md:text-5xl font-bold text-gray-800 mb-2">
-                                {isLoading ? '...' : counter.value.toLocaleString()}
+                            <div className="text-4xl md:text-5xl font-bold text-gray-800 mb-2 tabular-nums">
+                                {isLoading ? (
+                                    <div className="h-12 bg-gray-200 rounded-lg animate-pulse mx-auto w-24"></div>
+                                ) : (
+                                    <AnimatedCounter value={counter.value} suffix={counter.suffix || ''} />
+                                )}
                             </div>
                             <div className="text-gray-600">{counter.label}</div>
                         </div>
                     ))}
                 </div>
+
+                {/* Success Rate Badge */}
+                {stats && stats.successRate > 0 && (
+                    <div className="mt-12 text-center">
+                        <div className="inline-flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 rounded-2xl border border-emerald-500/20">
+                            <FaStar className="text-amber-500 text-2xl" />
+                            <div>
+                                <p className="text-sm text-slate-600 mb-1">Success Rate</p>
+                                <p className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+                                    <AnimatedCounter value={stats.successRate} suffix="%" duration={1.5} />
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         </section>
     );
@@ -555,12 +580,53 @@ const CTASection = () => (
     </section>
 );
 
+// Featured Profiles Section
+const FeaturedProfilesSection = () => {
+    const { data: premiumBiodatas = [] } = useQuery({
+        queryKey: ['featuredPremiumBiodatas'],
+        queryFn: async () => {
+            const response = await biodataAPI.getPremium({ limit: 6 });
+            return response.data;
+        }
+    });
+
+    if (!premiumBiodatas || premiumBiodatas.length === 0) return null;
+
+    return (
+        <section className="py-24 bg-white relative overflow-hidden">
+            {/* Decorative Elements */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl"></div>
+
+            <div className="container-custom relative">
+                <div className="text-center mb-12">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/10 rounded-full text-amber-600 text-sm font-medium mb-4">
+                        <FaHeart /> Featured Profiles
+                    </div>
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                        Handpicked{' '}
+                        <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+                            Special Matches
+                        </span>
+                    </h2>
+                    <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                        Curated selection of verified premium profiles looking for their life partners
+                    </p>
+                </div>
+
+                <FeaturedProfiles biodatas={premiumBiodatas} />
+            </div>
+        </section>
+    );
+};
+
 // Main Home Page Component
 const Home = () => {
     return (
         <div className="pt-16 md:pt-20">
             <HeroSection />
             <PremiumMembersSection />
+            <FeaturedProfilesSection />
             <HowItWorksSection />
             <SuccessCounterSection />
             <SuccessStoriesSection />
