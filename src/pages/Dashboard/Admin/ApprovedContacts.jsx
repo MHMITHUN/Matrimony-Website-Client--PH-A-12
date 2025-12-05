@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { FaCheckCircle, FaEnvelope, FaUser, FaClock } from 'react-icons/fa';
+import { FaCheckCircle, FaEnvelope, FaUser, FaClock, FaSparkles, FaIdCard, FaCalendar } from 'react-icons/fa';
 import { adminAPI } from '../../../api/api';
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
@@ -32,8 +32,8 @@ const ApprovedContacts = () => {
             text: `Approve contact request from ${request.requesterName}?`,
             icon: 'question',
             showCancelButton: true,
-            confirmButtonColor: '#2E7D32',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#10b981',
+            cancelButtonColor: '#ef4444',
             confirmButtonText: 'Yes, Approve!'
         });
 
@@ -44,75 +44,100 @@ const ApprovedContacts = () => {
 
     if (isLoading) {
         return (
-            <div className="flex justify-center py-12">
-                <div className="spinner"></div>
+            <div className="flex flex-col items-center justify-center py-20">
+                <div className="spinner-lg"></div>
+                <p className="mt-4 text-slate-500">Loading requests...</p>
             </div>
         );
     }
 
     return (
-        <div>
-            <div className="mb-6">
-                <h1 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
-                    <FaCheckCircle className="text-green-600" /> Approved Contact Request
+        <div className="space-y-6">
+            {/* Header */}
+            <div>
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 rounded-full text-emerald-600 text-sm font-medium mb-2">
+                    <FaSparkles className="text-xs" />
+                    <span>Contact Management</span>
+                </div>
+                <h1 className="text-2xl md:text-3xl font-bold text-slate-800 flex items-center gap-3">
+                    Contact Requests
                 </h1>
-                <p className="text-gray-600">Manage contact information requests</p>
+                <p className="text-slate-500 mt-1">Manage contact information requests</p>
             </div>
 
             {requests.length === 0 ? (
-                <div className="card p-12 text-center">
-                    <FaEnvelope className="text-6xl text-gray-300 mx-auto mb-4" />
-                    <h2 className="text-xl font-bold text-gray-700 mb-2">No Contact Requests</h2>
-                    <p className="text-gray-500">There are no contact requests to manage.</p>
+                <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 p-12 text-center">
+                    <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <FaEnvelope className="text-4xl text-emerald-300" />
+                    </div>
+                    <h2 className="text-xl font-bold text-slate-700 mb-2">No Contact Requests</h2>
+                    <p className="text-slate-500">There are no contact requests to manage.</p>
                 </div>
             ) : (
-                <div className="table-container">
-                    <table className="custom-table">
-                        <thead>
-                            <tr>
-                                <th>Requester Name</th>
-                                <th>Requester Email</th>
-                                <th>Biodata ID</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {requests.map((request) => (
-                                <tr key={request._id}>
-                                    <td className="font-medium flex items-center gap-2">
-                                        <FaUser className="text-green-600" /> {request.requesterName}
-                                    </td>
-                                    <td>{request.requesterEmail}</td>
-                                    <td>#{request.biodataId}</td>
-                                    <td>
-                                        {request.status === 'approved' ? (
-                                            <span className="badge-approved flex items-center gap-1 w-fit">
-                                                <FaCheckCircle /> Approved
-                                            </span>
-                                        ) : (
-                                            <span className="badge-pending flex items-center gap-1 w-fit">
-                                                <FaClock /> Pending
-                                            </span>
-                                        )}
-                                    </td>
-                                    <td>
-                                        {request.status === 'pending' ? (
-                                            <button
-                                                onClick={() => handleApprove(request)}
-                                                disabled={approveMutation.isLoading}
-                                                className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all flex items-center gap-2"
-                                            >
-                                                <FaCheckCircle /> Approve
-                                            </button>
-                                        ) : (
-                                            <span className="text-gray-400 text-sm">Already Approved</span>
-                                        )}
-                                    </td>
+                <div className="bg-white rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 overflow-hidden">
+                    <div className="overflow-x-auto">
+                        <table className="w-full">
+                            <thead>
+                                <tr className="bg-gradient-to-r from-slate-50 to-slate-100">
+                                    <th className="text-left px-6 py-4 text-sm font-bold text-slate-600 uppercase tracking-wider">Requester</th>
+                                    <th className="text-left px-6 py-4 text-sm font-bold text-slate-600 uppercase tracking-wider">Email</th>
+                                    <th className="text-left px-6 py-4 text-sm font-bold text-slate-600 uppercase tracking-wider">Biodata ID</th>
+                                    <th className="text-left px-6 py-4 text-sm font-bold text-slate-600 uppercase tracking-wider">Status</th>
+                                    <th className="text-left px-6 py-4 text-sm font-bold text-slate-600 uppercase tracking-wider">Action</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody className="divide-y divide-slate-100">
+                                {requests.map((request, index) => (
+                                    <tr
+                                        key={request._id}
+                                        className="hover:bg-slate-50/50 transition-colors animate-fade-in-up"
+                                        style={{ animationDelay: `${index * 50}ms` }}
+                                    >
+                                        <td className="px-6 py-4">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center text-white font-bold">
+                                                    {request.requesterName?.charAt(0)?.toUpperCase() || 'U'}
+                                                </div>
+                                                <span className="font-semibold text-slate-800">{request.requesterName}</span>
+                                            </div>
+                                        </td>
+                                        <td className="px-6 py-4 text-slate-600">{request.requesterEmail}</td>
+                                        <td className="px-6 py-4">
+                                            <span className="inline-flex items-center gap-1 px-3 py-1 bg-slate-100 text-slate-700 text-sm font-medium rounded-full">
+                                                <FaIdCard className="text-xs text-emerald-500" /> #{request.biodataId}
+                                            </span>
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            {request.status === 'approved' ? (
+                                                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-bold rounded-full">
+                                                    <FaCheckCircle className="text-[10px]" /> Approved
+                                                </span>
+                                            ) : (
+                                                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-100 text-amber-700 text-xs font-bold rounded-full">
+                                                    <FaClock className="text-[10px]" /> Pending
+                                                </span>
+                                            )}
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            {request.status === 'pending' ? (
+                                                <button
+                                                    onClick={() => handleApprove(request)}
+                                                    disabled={approveMutation.isLoading}
+                                                    className="inline-flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-sm font-semibold rounded-xl hover:from-emerald-600 hover:to-teal-600 transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 disabled:opacity-50"
+                                                >
+                                                    <FaCheckCircle /> Approve
+                                                </button>
+                                            ) : (
+                                                <span className="text-emerald-600 text-sm font-medium flex items-center gap-1">
+                                                    <FaCheckCircle className="text-xs" /> Completed
+                                                </span>
+                                            )}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             )}
         </div>

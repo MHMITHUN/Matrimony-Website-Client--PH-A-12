@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { FaCrown, FaCheck, FaUser } from 'react-icons/fa';
+import { FaCrown, FaCheck, FaUser, FaSparkles, FaEnvelope, FaIdCard } from 'react-icons/fa';
 import { adminAPI } from '../../../api/api';
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
@@ -32,8 +32,8 @@ const ApprovedPremium = () => {
             text: `Approve premium request for ${request.name}?`,
             icon: 'question',
             showCancelButton: true,
-            confirmButtonColor: '#D4AF37',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#f59e0b',
+            cancelButtonColor: '#ef4444',
             confirmButtonText: 'Yes, Approve!'
         });
 
@@ -44,59 +44,80 @@ const ApprovedPremium = () => {
 
     if (isLoading) {
         return (
-            <div className="flex justify-center py-12">
-                <div className="spinner"></div>
+            <div className="flex flex-col items-center justify-center py-20">
+                <div className="spinner-lg"></div>
+                <p className="mt-4 text-slate-500">Loading requests...</p>
             </div>
         );
     }
 
     return (
-        <div>
-            <div className="mb-6">
-                <h1 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
-                    <FaCrown className="text-amber-500" /> Approved Premium
+        <div className="space-y-6">
+            {/* Header */}
+            <div>
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/10 rounded-full text-amber-600 text-sm font-medium mb-2">
+                    <FaSparkles className="text-xs" />
+                    <span>Premium Management</span>
+                </div>
+                <h1 className="text-2xl md:text-3xl font-bold text-slate-800 flex items-center gap-3">
+                    Premium Requests
                 </h1>
-                <p className="text-gray-600">Manage premium membership requests</p>
+                <p className="text-slate-500 mt-1">Manage premium membership requests</p>
             </div>
 
             {requests.length === 0 ? (
-                <div className="card p-12 text-center">
-                    <FaCrown className="text-6xl text-gray-300 mx-auto mb-4" />
-                    <h2 className="text-xl font-bold text-gray-700 mb-2">No Pending Requests</h2>
-                    <p className="text-gray-500">There are no premium requests waiting for approval.</p>
+                <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 p-12 text-center">
+                    <div className="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <FaCrown className="text-4xl text-amber-300" />
+                    </div>
+                    <h2 className="text-xl font-bold text-slate-700 mb-2">No Pending Requests</h2>
+                    <p className="text-slate-500">There are no premium requests waiting for approval.</p>
                 </div>
             ) : (
-                <div className="table-container">
-                    <table className="custom-table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Biodata Id</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {requests.map((request) => (
-                                <tr key={request._id}>
-                                    <td className="font-medium flex items-center gap-2">
-                                        <FaUser className="text-green-600" /> {request.name}
-                                    </td>
-                                    <td>{request.userEmail}</td>
-                                    <td>#{request.biodataId}</td>
-                                    <td>
-                                        <button
-                                            onClick={() => handleApprove(request)}
-                                            disabled={approveMutation.isLoading}
-                                            className="px-4 py-2 bg-gradient-to-r from-amber-400 to-amber-600 text-white rounded-lg hover:from-amber-500 hover:to-amber-700 transition-all flex items-center gap-2"
-                                        >
-                                            <FaCheck /> Make Premium
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {requests.map((request, index) => (
+                        <div
+                            key={request._id}
+                            className="bg-white rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 p-6 hover:shadow-xl transition-all animate-fade-in-up"
+                            style={{ animationDelay: `${index * 100}ms` }}
+                        >
+                            {/* Header */}
+                            <div className="flex items-start justify-between mb-4">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center text-white font-bold shadow-lg shadow-amber-500/25">
+                                        {request.name?.charAt(0)?.toUpperCase() || 'U'}
+                                    </div>
+                                    <div>
+                                        <h3 className="font-bold text-slate-800">{request.name}</h3>
+                                        <span className="inline-flex items-center gap-1 text-xs text-amber-600 font-medium">
+                                            <FaCrown className="text-[10px]" /> Wants Premium
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Info */}
+                            <div className="space-y-3 mb-6">
+                                <div className="flex items-center gap-2 text-sm">
+                                    <FaEnvelope className="text-slate-400" />
+                                    <span className="text-slate-600 truncate">{request.userEmail}</span>
+                                </div>
+                                <div className="flex items-center gap-2 text-sm">
+                                    <FaIdCard className="text-slate-400" />
+                                    <span className="text-slate-600">Biodata ID: #{request.biodataId}</span>
+                                </div>
+                            </div>
+
+                            {/* Action */}
+                            <button
+                                onClick={() => handleApprove(request)}
+                                disabled={approveMutation.isLoading}
+                                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold rounded-xl hover:from-amber-600 hover:to-orange-600 transition-all shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/30 disabled:opacity-50"
+                            >
+                                <FaCheck /> Approve Premium
+                            </button>
+                        </div>
+                    ))}
                 </div>
             )}
         </div>

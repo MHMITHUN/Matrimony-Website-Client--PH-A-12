@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { FaSave, FaUser, FaPhone, FaMapMarkerAlt, FaBriefcase, FaCalendar, FaHeart } from 'react-icons/fa';
+import { FaSave, FaUser, FaPhone, FaMapMarkerAlt, FaBriefcase, FaCalendar, FaHeart, FaSparkles, FaImage, FaRulerVertical, FaWeight, FaEnvelope } from 'react-icons/fa';
 import { biodataAPI } from '../../../api/api';
 import { useAuth } from '../../../contexts/AuthContext';
 import toast from 'react-hot-toast';
@@ -124,350 +124,436 @@ const EditBiodata = () => {
 
     if (isLoading) {
         return (
-            <div className="flex justify-center py-12">
-                <div className="spinner"></div>
+            <div className="flex flex-col items-center justify-center py-20">
+                <div className="spinner-lg"></div>
+                <p className="mt-4 text-slate-500">Loading biodata...</p>
             </div>
         );
     }
 
+    const inputClass = "w-full px-5 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400";
+    const selectClass = "w-full px-5 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white focus:shadow-lg focus:shadow-emerald-500/10 cursor-pointer appearance-none";
+    const labelClass = "flex items-center gap-2 text-sm font-semibold text-slate-700 mb-2";
+
     return (
-        <div>
-            <div className="mb-6">
-                <h1 className="text-2xl font-bold text-gray-800">
+        <div className="space-y-6">
+            {/* Header */}
+            <div>
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 rounded-full text-emerald-600 text-sm font-medium mb-2">
+                    <FaSparkles className="text-xs" />
+                    <span>{existingBiodata ? 'Edit Profile' : 'Create Profile'}</span>
+                </div>
+                <h1 className="text-2xl md:text-3xl font-bold text-slate-800">
                     {existingBiodata ? 'Edit Your Biodata' : 'Create Your Biodata'}
                 </h1>
-                <p className="text-gray-600">Fill in your details to create or update your biodata</p>
+                <p className="text-slate-500 mt-1">Fill in your details to create or update your biodata</p>
             </div>
 
-            <form onSubmit={handleSubmit} className="card p-6 md:p-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {/* Biodata Type */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Biodata Type <span className="text-red-500">*</span>
-                        </label>
-                        <select
-                            name="biodataType"
-                            value={formData.biodataType}
-                            onChange={handleChange}
-                            className="select-field"
-                            required
-                        >
-                            <option value="">Select Type</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                    </div>
+            <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 overflow-hidden">
+                {/* Section: Basic Information */}
+                <div className="p-6 md:p-8 border-b border-slate-100">
+                    <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2 mb-6">
+                        <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center text-white text-sm">
+                            <FaUser />
+                        </div>
+                        Basic Information
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {/* Biodata Type */}
+                        <div>
+                            <label className={labelClass}>
+                                <FaUser className="text-emerald-500" />
+                                Biodata Type <span className="text-red-500">*</span>
+                            </label>
+                            <select
+                                name="biodataType"
+                                value={formData.biodataType}
+                                onChange={handleChange}
+                                className={selectClass}
+                                required
+                            >
+                                <option value="">Select Type</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
 
-                    {/* Name */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Full Name <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                            type="text"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            className="input-field"
-                            placeholder="Enter your full name"
-                            required
-                        />
-                    </div>
+                        {/* Name */}
+                        <div>
+                            <label className={labelClass}>
+                                <FaUser className="text-blue-500" />
+                                Full Name <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleChange}
+                                className={inputClass}
+                                placeholder="Enter your full name"
+                                required
+                            />
+                        </div>
 
-                    {/* Profile Image */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Profile Image URL <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                            type="url"
-                            name="profileImage"
-                            value={formData.profileImage}
-                            onChange={handleChange}
-                            className="input-field"
-                            placeholder="https://example.com/image.jpg"
-                            required
-                        />
-                    </div>
+                        {/* Profile Image */}
+                        <div>
+                            <label className={labelClass}>
+                                <FaImage className="text-purple-500" />
+                                Profile Image URL <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                                type="url"
+                                name="profileImage"
+                                value={formData.profileImage}
+                                onChange={handleChange}
+                                className={inputClass}
+                                placeholder="https://example.com/image.jpg"
+                                required
+                            />
+                        </div>
 
-                    {/* Date of Birth */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Date of Birth <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                            type="date"
-                            name="dateOfBirth"
-                            value={formData.dateOfBirth}
-                            onChange={handleChange}
-                            className="input-field"
-                            required
-                        />
-                    </div>
+                        {/* Date of Birth */}
+                        <div>
+                            <label className={labelClass}>
+                                <FaCalendar className="text-amber-500" />
+                                Date of Birth <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                                type="date"
+                                name="dateOfBirth"
+                                value={formData.dateOfBirth}
+                                onChange={handleChange}
+                                className={inputClass}
+                                required
+                            />
+                        </div>
 
-                    {/* Height */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Height <span className="text-red-500">*</span>
-                        </label>
-                        <select
-                            name="height"
-                            value={formData.height}
-                            onChange={handleChange}
-                            className="select-field"
-                            required
-                        >
-                            <option value="">Select Height</option>
-                            {heights.map(h => (
-                                <option key={h} value={h}>{h}</option>
-                            ))}
-                        </select>
-                    </div>
+                        {/* Height */}
+                        <div>
+                            <label className={labelClass}>
+                                <FaRulerVertical className="text-teal-500" />
+                                Height <span className="text-red-500">*</span>
+                            </label>
+                            <select
+                                name="height"
+                                value={formData.height}
+                                onChange={handleChange}
+                                className={selectClass}
+                                required
+                            >
+                                <option value="">Select Height</option>
+                                {heights.map(h => (
+                                    <option key={h} value={h}>{h}</option>
+                                ))}
+                            </select>
+                        </div>
 
-                    {/* Weight */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Weight <span className="text-red-500">*</span>
-                        </label>
-                        <select
-                            name="weight"
-                            value={formData.weight}
-                            onChange={handleChange}
-                            className="select-field"
-                            required
-                        >
-                            <option value="">Select Weight</option>
-                            {weights.map(w => (
-                                <option key={w} value={w}>{w}</option>
-                            ))}
-                        </select>
-                    </div>
+                        {/* Weight */}
+                        <div>
+                            <label className={labelClass}>
+                                <FaWeight className="text-rose-500" />
+                                Weight <span className="text-red-500">*</span>
+                            </label>
+                            <select
+                                name="weight"
+                                value={formData.weight}
+                                onChange={handleChange}
+                                className={selectClass}
+                                required
+                            >
+                                <option value="">Select Weight</option>
+                                {weights.map(w => (
+                                    <option key={w} value={w}>{w}</option>
+                                ))}
+                            </select>
+                        </div>
 
-                    {/* Age (Readonly) */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Age
-                        </label>
-                        <input
-                            type="number"
-                            name="age"
-                            value={formData.age}
-                            className="input-field bg-gray-100"
-                            readOnly
-                        />
-                    </div>
+                        {/* Age (Readonly) */}
+                        <div>
+                            <label className={labelClass}>
+                                <FaCalendar className="text-slate-400" />
+                                Age (Auto-calculated)
+                            </label>
+                            <input
+                                type="number"
+                                name="age"
+                                value={formData.age}
+                                className="w-full px-5 py-3.5 bg-slate-100 border-2 border-slate-100 rounded-xl text-slate-700 cursor-not-allowed"
+                                readOnly
+                            />
+                        </div>
 
-                    {/* Occupation */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Occupation <span className="text-red-500">*</span>
-                        </label>
-                        <select
-                            name="occupation"
-                            value={formData.occupation}
-                            onChange={handleChange}
-                            className="select-field"
-                            required
-                        >
-                            <option value="">Select Occupation</option>
-                            {occupations.map(o => (
-                                <option key={o} value={o}>{o}</option>
-                            ))}
-                        </select>
-                    </div>
+                        {/* Occupation */}
+                        <div>
+                            <label className={labelClass}>
+                                <FaBriefcase className="text-indigo-500" />
+                                Occupation <span className="text-red-500">*</span>
+                            </label>
+                            <select
+                                name="occupation"
+                                value={formData.occupation}
+                                onChange={handleChange}
+                                className={selectClass}
+                                required
+                            >
+                                <option value="">Select Occupation</option>
+                                {occupations.map(o => (
+                                    <option key={o} value={o}>{o}</option>
+                                ))}
+                            </select>
+                        </div>
 
-                    {/* Race */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Skin Color <span className="text-red-500">*</span>
-                        </label>
-                        <select
-                            name="race"
-                            value={formData.race}
-                            onChange={handleChange}
-                            className="select-field"
-                            required
-                        >
-                            <option value="">Select</option>
-                            {races.map(r => (
-                                <option key={r} value={r}>{r}</option>
-                            ))}
-                        </select>
+                        {/* Race */}
+                        <div>
+                            <label className={labelClass}>
+                                <FaUser className="text-orange-500" />
+                                Skin Color <span className="text-red-500">*</span>
+                            </label>
+                            <select
+                                name="race"
+                                value={formData.race}
+                                onChange={handleChange}
+                                className={selectClass}
+                                required
+                            >
+                                <option value="">Select</option>
+                                {races.map(r => (
+                                    <option key={r} value={r}>{r}</option>
+                                ))}
+                            </select>
+                        </div>
                     </div>
+                </div>
 
-                    {/* Father's Name */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Father's Name <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                            type="text"
-                            name="fathersName"
-                            value={formData.fathersName}
-                            onChange={handleChange}
-                            className="input-field"
-                            placeholder="Enter father's name"
-                            required
-                        />
+                {/* Section: Family Information */}
+                <div className="p-6 md:p-8 border-b border-slate-100">
+                    <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2 mb-6">
+                        <div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-rose-500 rounded-lg flex items-center justify-center text-white text-sm">
+                            <FaHeart />
+                        </div>
+                        Family Information
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Father's Name */}
+                        <div>
+                            <label className={labelClass}>
+                                <FaUser className="text-blue-600" />
+                                Father's Name <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="fathersName"
+                                value={formData.fathersName}
+                                onChange={handleChange}
+                                className={inputClass}
+                                placeholder="Enter father's name"
+                                required
+                            />
+                        </div>
+
+                        {/* Mother's Name */}
+                        <div>
+                            <label className={labelClass}>
+                                <FaUser className="text-pink-500" />
+                                Mother's Name <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="mothersName"
+                                value={formData.mothersName}
+                                onChange={handleChange}
+                                className={inputClass}
+                                placeholder="Enter mother's name"
+                                required
+                            />
+                        </div>
                     </div>
+                </div>
 
-                    {/* Mother's Name */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Mother's Name <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                            type="text"
-                            name="mothersName"
-                            value={formData.mothersName}
-                            onChange={handleChange}
-                            className="input-field"
-                            placeholder="Enter mother's name"
-                            required
-                        />
+                {/* Section: Location */}
+                <div className="p-6 md:p-8 border-b border-slate-100">
+                    <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2 mb-6">
+                        <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center text-white text-sm">
+                            <FaMapMarkerAlt />
+                        </div>
+                        Location
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Permanent Division */}
+                        <div>
+                            <label className={labelClass}>
+                                <FaMapMarkerAlt className="text-emerald-500" />
+                                Permanent Division <span className="text-red-500">*</span>
+                            </label>
+                            <select
+                                name="permanentDivision"
+                                value={formData.permanentDivision}
+                                onChange={handleChange}
+                                className={selectClass}
+                                required
+                            >
+                                <option value="">Select Division</option>
+                                {divisions.map(d => (
+                                    <option key={d} value={d}>{d}</option>
+                                ))}
+                            </select>
+                        </div>
+
+                        {/* Present Division */}
+                        <div>
+                            <label className={labelClass}>
+                                <FaMapMarkerAlt className="text-blue-500" />
+                                Present Division <span className="text-red-500">*</span>
+                            </label>
+                            <select
+                                name="presentDivision"
+                                value={formData.presentDivision}
+                                onChange={handleChange}
+                                className={selectClass}
+                                required
+                            >
+                                <option value="">Select Division</option>
+                                {divisions.map(d => (
+                                    <option key={d} value={d}>{d}</option>
+                                ))}
+                            </select>
+                        </div>
                     </div>
+                </div>
 
-                    {/* Permanent Division */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Permanent Division <span className="text-red-500">*</span>
-                        </label>
-                        <select
-                            name="permanentDivision"
-                            value={formData.permanentDivision}
-                            onChange={handleChange}
-                            className="select-field"
-                            required
-                        >
-                            <option value="">Select Division</option>
-                            {divisions.map(d => (
-                                <option key={d} value={d}>{d}</option>
-                            ))}
-                        </select>
+                {/* Section: Partner Expectations */}
+                <div className="p-6 md:p-8 border-b border-slate-100">
+                    <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2 mb-6">
+                        <div className="w-8 h-8 bg-gradient-to-br from-amber-500 to-orange-500 rounded-lg flex items-center justify-center text-white text-sm">
+                            <FaHeart />
+                        </div>
+                        Partner Expectations
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {/* Expected Partner Age */}
+                        <div>
+                            <label className={labelClass}>
+                                <FaCalendar className="text-amber-500" />
+                                Expected Partner Age <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="expectedPartnerAge"
+                                value={formData.expectedPartnerAge}
+                                onChange={handleChange}
+                                className={inputClass}
+                                placeholder="e.g., 25-30"
+                                required
+                            />
+                        </div>
+
+                        {/* Expected Partner Height */}
+                        <div>
+                            <label className={labelClass}>
+                                <FaRulerVertical className="text-orange-500" />
+                                Expected Partner Height <span className="text-red-500">*</span>
+                            </label>
+                            <select
+                                name="expectedPartnerHeight"
+                                value={formData.expectedPartnerHeight}
+                                onChange={handleChange}
+                                className={selectClass}
+                                required
+                            >
+                                <option value="">Select Height</option>
+                                {heights.map(h => (
+                                    <option key={h} value={h}>{h}</option>
+                                ))}
+                            </select>
+                        </div>
+
+                        {/* Expected Partner Weight */}
+                        <div>
+                            <label className={labelClass}>
+                                <FaWeight className="text-rose-500" />
+                                Expected Partner Weight <span className="text-red-500">*</span>
+                            </label>
+                            <select
+                                name="expectedPartnerWeight"
+                                value={formData.expectedPartnerWeight}
+                                onChange={handleChange}
+                                className={selectClass}
+                                required
+                            >
+                                <option value="">Select Weight</option>
+                                {weights.map(w => (
+                                    <option key={w} value={w}>{w}</option>
+                                ))}
+                            </select>
+                        </div>
                     </div>
+                </div>
 
-                    {/* Present Division */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Present Division <span className="text-red-500">*</span>
-                        </label>
-                        <select
-                            name="presentDivision"
-                            value={formData.presentDivision}
-                            onChange={handleChange}
-                            className="select-field"
-                            required
-                        >
-                            <option value="">Select Division</option>
-                            {divisions.map(d => (
-                                <option key={d} value={d}>{d}</option>
-                            ))}
-                        </select>
-                    </div>
+                {/* Section: Contact Information */}
+                <div className="p-6 md:p-8 border-b border-slate-100">
+                    <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2 mb-6">
+                        <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-violet-500 rounded-lg flex items-center justify-center text-white text-sm">
+                            <FaPhone />
+                        </div>
+                        Contact Information
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Contact Email (Readonly) */}
+                        <div>
+                            <label className={labelClass}>
+                                <FaEnvelope className="text-slate-400" />
+                                Contact Email (Auto-filled)
+                            </label>
+                            <input
+                                type="email"
+                                value={user?.email || ''}
+                                className="w-full px-5 py-3.5 bg-slate-100 border-2 border-slate-100 rounded-xl text-slate-700 cursor-not-allowed"
+                                readOnly
+                            />
+                        </div>
 
-                    {/* Expected Partner Age */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Expected Partner Age <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                            type="text"
-                            name="expectedPartnerAge"
-                            value={formData.expectedPartnerAge}
-                            onChange={handleChange}
-                            className="input-field"
-                            placeholder="e.g., 25-30"
-                            required
-                        />
-                    </div>
-
-                    {/* Expected Partner Height */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Expected Partner Height <span className="text-red-500">*</span>
-                        </label>
-                        <select
-                            name="expectedPartnerHeight"
-                            value={formData.expectedPartnerHeight}
-                            onChange={handleChange}
-                            className="select-field"
-                            required
-                        >
-                            <option value="">Select Height</option>
-                            {heights.map(h => (
-                                <option key={h} value={h}>{h}</option>
-                            ))}
-                        </select>
-                    </div>
-
-                    {/* Expected Partner Weight */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Expected Partner Weight <span className="text-red-500">*</span>
-                        </label>
-                        <select
-                            name="expectedPartnerWeight"
-                            value={formData.expectedPartnerWeight}
-                            onChange={handleChange}
-                            className="select-field"
-                            required
-                        >
-                            <option value="">Select Weight</option>
-                            {weights.map(w => (
-                                <option key={w} value={w}>{w}</option>
-                            ))}
-                        </select>
-                    </div>
-
-                    {/* Contact Email (Readonly) */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Contact Email
-                        </label>
-                        <input
-                            type="email"
-                            value={user?.email || ''}
-                            className="input-field bg-gray-100"
-                            readOnly
-                        />
-                    </div>
-
-                    {/* Mobile Number */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Mobile Number <span className="text-red-500">*</span>
-                        </label>
-                        <input
-                            type="tel"
-                            name="mobileNumber"
-                            value={formData.mobileNumber}
-                            onChange={handleChange}
-                            className="input-field"
-                            placeholder="e.g., +8801XXXXXXXXX"
-                            required
-                        />
+                        {/* Mobile Number */}
+                        <div>
+                            <label className={labelClass}>
+                                <FaPhone className="text-purple-500" />
+                                Mobile Number <span className="text-red-500">*</span>
+                            </label>
+                            <input
+                                type="tel"
+                                name="mobileNumber"
+                                value={formData.mobileNumber}
+                                onChange={handleChange}
+                                className={inputClass}
+                                placeholder="e.g., +8801XXXXXXXXX"
+                                required
+                            />
+                        </div>
                     </div>
                 </div>
 
                 {/* Submit Button */}
-                <div className="mt-8 flex justify-end">
-                    <button
-                        type="submit"
-                        disabled={saveMutation.isLoading}
-                        className="btn-primary flex items-center gap-2 px-8 py-3"
-                    >
-                        {saveMutation.isLoading ? (
-                            <>
-                                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                                Saving...
-                            </>
-                        ) : (
-                            <>
-                                <FaSave /> Save And Publish Now
-                            </>
-                        )}
-                    </button>
+                <div className="p-6 md:p-8 bg-gradient-to-r from-slate-50 to-slate-100/50">
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <p className="text-slate-500 text-sm">
+                            <span className="text-red-500">*</span> All fields marked with asterisk are required
+                        </p>
+                        <button
+                            type="submit"
+                            disabled={saveMutation.isLoading}
+                            className="w-full sm:w-auto relative overflow-hidden font-semibold py-4 px-8 rounded-xl transition-all duration-300 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white shadow-lg shadow-emerald-500/30 hover:shadow-xl hover:shadow-emerald-500/40 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 flex items-center justify-center gap-2"
+                        >
+                            {saveMutation.isLoading ? (
+                                <>
+                                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                                    Saving...
+                                </>
+                            ) : (
+                                <>
+                                    <FaSave /> Save And Publish Now
+                                </>
+                            )}
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>

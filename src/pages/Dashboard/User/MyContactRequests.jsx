@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { FaEnvelope, FaTrash, FaCheckCircle, FaClock, FaPhone } from 'react-icons/fa';
+import { FaEnvelope, FaTrash, FaCheckCircle, FaClock, FaPhone, FaSparkles, FaIdCard, FaUser, FaLock } from 'react-icons/fa';
 import { contactRequestAPI } from '../../../api/api';
 import toast from 'react-hot-toast';
 import Swal from 'sweetalert2';
@@ -32,8 +32,8 @@ const MyContactRequests = () => {
             text: 'This action cannot be undone.',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
+            confirmButtonColor: '#ef4444',
+            cancelButtonColor: '#64748b',
             confirmButtonText: 'Yes, Delete!'
         });
 
@@ -44,85 +44,110 @@ const MyContactRequests = () => {
 
     if (isLoading) {
         return (
-            <div className="flex justify-center py-12">
-                <div className="spinner"></div>
+            <div className="flex flex-col items-center justify-center py-20">
+                <div className="spinner-lg"></div>
+                <p className="mt-4 text-slate-500">Loading requests...</p>
             </div>
         );
     }
 
     return (
-        <div>
-            <div className="mb-6">
-                <h1 className="text-2xl font-bold text-gray-800">My Contact Requests</h1>
-                <p className="text-gray-600">View all your contact information requests</p>
+        <div className="space-y-6">
+            {/* Header */}
+            <div>
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 rounded-full text-purple-600 text-sm font-medium mb-2">
+                    <FaSparkles className="text-xs" />
+                    <span>Contact Requests</span>
+                </div>
+                <h1 className="text-2xl md:text-3xl font-bold text-slate-800">My Contact Requests</h1>
+                <p className="text-slate-500 mt-1">View all your contact information requests</p>
             </div>
 
             {requests.length === 0 ? (
-                <div className="card p-12 text-center">
-                    <FaEnvelope className="text-6xl text-gray-300 mx-auto mb-4" />
-                    <h2 className="text-xl font-bold text-gray-700 mb-2">No Contact Requests</h2>
-                    <p className="text-gray-500">You haven't requested any contact information yet.</p>
+                <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 p-12 text-center">
+                    <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <FaEnvelope className="text-4xl text-purple-300" />
+                    </div>
+                    <h2 className="text-xl font-bold text-slate-700 mb-2">No Contact Requests</h2>
+                    <p className="text-slate-500">You haven't requested any contact information yet.</p>
                 </div>
             ) : (
-                <div className="table-container">
-                    <table className="custom-table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Biodata ID</th>
-                                <th>Status</th>
-                                <th>Mobile No</th>
-                                <th>Email</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {requests.map((request) => (
-                                <tr key={request._id}>
-                                    <td className="font-medium">{request.name}</td>
-                                    <td>#{request.biodataId}</td>
-                                    <td>
-                                        {request.status === 'approved' ? (
-                                            <span className="badge-approved flex items-center gap-1 w-fit">
-                                                <FaCheckCircle /> Approved
-                                            </span>
-                                        ) : (
-                                            <span className="badge-pending flex items-center gap-1 w-fit">
-                                                <FaClock /> Pending
-                                            </span>
-                                        )}
-                                    </td>
-                                    <td>
-                                        {request.status === 'approved' ? (
-                                            <a href={`tel:${request.mobileNumber}`} className="text-green-600 hover:underline flex items-center gap-1">
-                                                <FaPhone className="text-sm" /> {request.mobileNumber}
-                                            </a>
-                                        ) : (
-                                            <span className="text-gray-400">Hidden</span>
-                                        )}
-                                    </td>
-                                    <td>
-                                        {request.status === 'approved' ? (
-                                            <a href={`mailto:${request.email}`} className="text-green-600 hover:underline flex items-center gap-1">
-                                                <FaEnvelope className="text-sm" /> {request.email}
-                                            </a>
-                                        ) : (
-                                            <span className="text-gray-400">Hidden</span>
-                                        )}
-                                    </td>
-                                    <td>
-                                        <button
-                                            onClick={() => handleDelete(request._id)}
-                                            className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
-                                            title="Delete"
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {requests.map((request, index) => (
+                        <div
+                            key={request._id}
+                            className="bg-white rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 overflow-hidden hover:shadow-xl transition-all animate-fade-in-up"
+                            style={{ animationDelay: `${index * 100}ms` }}
+                        >
+                            {/* Header */}
+                            <div className={`p-4 ${request.status === 'approved' ? 'bg-gradient-to-r from-emerald-500 to-teal-500' : 'bg-gradient-to-r from-amber-500 to-orange-500'}`}>
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
+                                            <FaUser className="text-white" />
+                                        </div>
+                                        <div>
+                                            <h3 className="font-bold text-white">{request.name}</h3>
+                                            <span className="text-white/70 text-sm">ID: #{request.biodataId}</span>
+                                        </div>
+                                    </div>
+                                    <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${request.status === 'approved'
+                                            ? 'bg-white/20 text-white'
+                                            : 'bg-white/20 text-white'
+                                        } flex items-center gap-1`}>
+                                        {request.status === 'approved' ? <FaCheckCircle /> : <FaClock />}
+                                        {request.status === 'approved' ? 'Approved' : 'Pending'}
+                                    </span>
+                                </div>
+                            </div>
+
+                            {/* Content */}
+                            <div className="p-5 space-y-4">
+                                {request.status === 'approved' ? (
+                                    <>
+                                        <a
+                                            href={`tel:${request.mobileNumber}`}
+                                            className="flex items-center gap-3 p-3 bg-emerald-50 rounded-xl hover:bg-emerald-100 transition-colors group"
                                         >
-                                            <FaTrash />
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                                            <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                                                <FaPhone />
+                                            </div>
+                                            <div>
+                                                <p className="text-xs text-slate-500">Mobile Number</p>
+                                                <p className="font-semibold text-emerald-700">{request.mobileNumber}</p>
+                                            </div>
+                                        </a>
+                                        <a
+                                            href={`mailto:${request.email}`}
+                                            className="flex items-center gap-3 p-3 bg-blue-50 rounded-xl hover:bg-blue-100 transition-colors group"
+                                        >
+                                            <div className="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center text-white group-hover:scale-110 transition-transform">
+                                                <FaEnvelope />
+                                            </div>
+                                            <div>
+                                                <p className="text-xs text-slate-500">Email Address</p>
+                                                <p className="font-semibold text-blue-700">{request.email}</p>
+                                            </div>
+                                        </a>
+                                    </>
+                                ) : (
+                                    <div className="flex items-center gap-3 p-4 bg-slate-50 rounded-xl">
+                                        <FaLock className="text-slate-400" />
+                                        <p className="text-slate-500 text-sm">Contact information will be visible once approved by admin.</p>
+                                    </div>
+                                )}
+
+                                {/* Delete Button */}
+                                <button
+                                    onClick={() => handleDelete(request._id)}
+                                    disabled={deleteMutation.isLoading}
+                                    className="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-red-200 text-red-600 font-semibold rounded-xl hover:bg-red-50 hover:border-red-300 transition-all disabled:opacity-50"
+                                >
+                                    <FaTrash /> Remove Request
+                                </button>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             )}
         </div>
