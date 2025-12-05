@@ -21,6 +21,7 @@ import Register from './pages/Auth/Register';
 import About from './pages/About/About';
 import Contact from './pages/Contact/Contact';
 import Checkout from './pages/Checkout/Checkout';
+import NotFound from './pages/NotFound/NotFound';
 
 // User Dashboard Pages
 import EditBiodata from './pages/Dashboard/User/EditBiodata';
@@ -135,6 +136,10 @@ const router = createBrowserRouter([
         )
       }
     ]
+  },
+  {
+    path: '*',
+    element: <NotFound />
   }
 ]);
 
