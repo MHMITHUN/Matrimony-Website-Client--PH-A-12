@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaPaperPlane, FaQuestionCircle, FaChevronDown, FaStar } from 'react-icons/fa';
 import toast from 'react-hot-toast';
+import { contactMessageAPI } from '../../api/api';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -23,12 +24,16 @@ const Contact = () => {
         e.preventDefault();
         setLoading(true);
 
-        // Simulate form submission
-        await new Promise(resolve => setTimeout(resolve, 1500));
-
-        toast.success('Message sent successfully! We will get back to you soon.');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-        setLoading(false);
+        try {
+            await contactMessageAPI.send(formData);
+            toast.success('Message sent successfully! We will get back to you soon.');
+            setFormData({ name: '', email: '', subject: '', message: '' });
+        } catch (error) {
+            console.error('Error sending message:', error);
+            toast.error('Failed to send message. Please try again.');
+        } finally {
+            setLoading(false);
+        }
     };
 
     const contactInfo = [

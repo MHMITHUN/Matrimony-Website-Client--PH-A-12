@@ -1,13 +1,27 @@
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { FaMosque, FaUser, FaEdit, FaEye, FaEnvelope, FaHeart, FaRing, FaSignOutAlt, FaBars, FaTimes, FaCrown, FaUsers, FaCheckCircle, FaChartPie, FaListAlt, FaHome, FaArrowLeft } from 'react-icons/fa';
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { useAuth } from '../contexts/AuthContext';
+import { adminAPI } from '../api/api';
 import toast from 'react-hot-toast';
 
 const DashboardLayout = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const { user, logout, isAdmin, isPremium } = useAuth();
     const navigate = useNavigate();
+
+    // Fetch pending premium requests count for badge
+    const { data: pendingRequests = [] } = useQuery({
+        queryKey: ['premiumRequests'],
+        queryFn: async () => {
+            if (!isAdmin) return [];
+            const response = await adminAPI.getPremiumRequests();
+            return response.data;
+        },
+        enabled: isAdmin,
+        refetchInterval: 30000 // Refetch every 30 seconds
+    });
 
     const handleLogout = async () => {
         try {
@@ -32,6 +46,7 @@ const DashboardLayout = () => {
         { path: '/dashboard/admin/manage-users', icon: <FaUsers />, label: 'Manage Users' },
         { path: '/dashboard/admin/approved-premium', icon: <FaCrown />, label: 'Approved Premium' },
         { path: '/dashboard/admin/approved-contacts', icon: <FaCheckCircle />, label: 'Approved Contacts' },
+        { path: '/dashboard/admin/contact-messages', icon: <FaEnvelope />, label: 'Contact Messages' },
         { path: '/dashboard/admin/success-stories', icon: <FaListAlt />, label: 'Success Stories' },
     ];
 
@@ -100,14 +115,20 @@ const DashboardLayout = () => {
                                 to={link.path}
                                 onClick={() => setSidebarOpen(false)}
                                 className={({ isActive }) =>
-                                    `flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 group ${isActive
+                                    `flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 group relative ${isActive
                                         ? 'bg-white text-emerald-700 font-semibold shadow-lg shadow-white/10'
                                         : 'text-white/70 hover:bg-white/10 hover:text-white'
                                     }`
                                 }
                             >
                                 <span className="text-lg">{link.icon}</span>
-                                <span>{link.label}</span>
+                                <span className="flex-1">{link.label}</span>
+                                {/* Show badge for Approved Premium menu item */}
+                                {isAdmin && link.path === '/dashboard/admin/approved-premium' && pendingRequests.length > 0 && (
+                                    <span className="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 bg-amber-500 text-white text-xs font-bold rounded-full animate-pulse">
+                                        {pendingRequests.length}
+                                    </span>
+                                )}
                             </NavLink>
                         </li>
                     ))}

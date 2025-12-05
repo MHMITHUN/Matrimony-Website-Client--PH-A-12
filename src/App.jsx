@@ -38,6 +38,7 @@ import ManageUsers from './pages/Dashboard/Admin/ManageUsers';
 import ApprovedPremium from './pages/Dashboard/Admin/ApprovedPremium';
 import ApprovedContacts from './pages/Dashboard/Admin/ApprovedContacts';
 import AdminSuccessStories from './pages/Dashboard/Admin/AdminSuccessStories';
+import ContactMessages from './pages/Dashboard/Admin/ContactMessages';
 
 // Create query client
 const queryClient = new QueryClient({
@@ -128,6 +129,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <ApprovedContacts />
+          </AdminRoute>
+        )
+      },
+      {
+        path: 'admin/contact-messages',
+        element: (
+          <AdminRoute>
+            <ContactMessages />
           </AdminRoute>
         )
       },

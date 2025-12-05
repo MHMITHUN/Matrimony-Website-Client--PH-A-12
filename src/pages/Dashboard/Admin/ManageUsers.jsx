@@ -71,6 +71,33 @@ const ManageUsers = () => {
         }
     };
 
+    const removePremiumMutation = useMutation({
+        mutationFn: (id) => adminAPI.removePremium(id),
+        onSuccess: () => {
+            queryClient.invalidateQueries(['adminUsers']);
+            toast.success('Premium status removed!');
+        },
+        onError: (error) => {
+            toast.error(error.response?.data?.message || 'Failed to remove premium');
+        }
+    });
+
+    const handleRemovePremium = async (user) => {
+        const result = await Swal.fire({
+            title: 'Remove Premium?',
+            text: `Are you sure you want to remove premium status from ${user.name}?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#ef4444',
+            cancelButtonColor: '#64748b',
+            confirmButtonText: 'Yes, Remove Premium!'
+        });
+
+        if (result.isConfirmed) {
+            removePremiumMutation.mutate(user._id);
+        }
+    };
+
     return (
         <div className="space-y-6">
             {/* Header */}
@@ -177,6 +204,15 @@ const ManageUsers = () => {
                                                         className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-100 text-amber-700 rounded-lg hover:bg-amber-200 transition-all text-sm font-medium hover:shadow-md disabled:opacity-50"
                                                     >
                                                         <FaCrown className="text-xs" /> Make Premium
+                                                    </button>
+                                                )}
+                                                {user.isPremium && (
+                                                    <button
+                                                        onClick={() => handleRemovePremium(user)}
+                                                        disabled={removePremiumMutation.isLoading}
+                                                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-all text-sm font-medium hover:shadow-md disabled:opacity-50"
+                                                    >
+                                                        <FaCrown className="text-xs" /> Remove Premium
                                                     </button>
                                                 )}
                                                 {user.role === 'admin' && user.isPremium && (

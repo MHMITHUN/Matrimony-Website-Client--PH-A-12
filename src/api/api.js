@@ -86,7 +86,9 @@ export const adminAPI = {
     getUsers: (search) => api.get('/admin/users', { params: { search } }),
     makeAdmin: (id) => api.patch(`/admin/users/${id}/make-admin`),
     makePremium: (id) => api.patch(`/admin/users/${id}/make-premium`),
+    removePremium: (id) => api.patch(`/admin/users/${id}/remove-premium`),
     getPremiumRequests: () => api.get('/admin/premium-requests'),
+    getApprovedPremiumHistory: () => api.get('/admin/approved-premium-history'),
     approvePremium: (biodataId) => api.patch(`/admin/approve-premium/${biodataId}`),
     getContactRequests: () => api.get('/admin/contact-requests'),
     approveContact: (id) => api.patch(`/admin/approve-contact/${id}`),
@@ -97,6 +99,13 @@ export const adminAPI = {
 export const statsAPI = {
     getPublic: () => api.get('/stats/public'),
     getAdmin: () => api.get('/stats/admin')
+};
+
+// Contact Message API (Public & Admin)
+export const contactMessageAPI = {
+    send: (data) => api.post('/contact-messages', data),
+    getAll: () => api.get('/contact-messages'),
+    delete: (id) => api.delete(`/contact-messages/${id}`)
 };
 
 // Analytics API

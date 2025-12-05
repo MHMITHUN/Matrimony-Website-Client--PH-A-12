@@ -282,20 +282,21 @@ const AdminDashboard = () => {
                             <ResponsiveContainer width="100%" height={300}>
                                 <PieChart>
                                     <Pie
-                                        data={ageDistribution}
+                                        data={ageDistribution.filter(item => item.value > 0)}
                                         cx="50%"
                                         cy="50%"
                                         labelLine={false}
-                                        label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                                        label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
                                         outerRadius={100}
                                         fill="#8884d8"
                                         dataKey="value"
                                     >
-                                        {ageDistribution.map((entry, index) => (
+                                        {ageDistribution.filter(item => item.value > 0).map((entry, index) => (
                                             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                         ))}
                                     </Pie>
                                     <Tooltip />
+                                    <Legend />
                                 </PieChart>
                             </ResponsiveContainer>
                         </motion.div>
@@ -318,8 +319,8 @@ const AdminDashboard = () => {
                                     className="flex items-start gap-4 p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors"
                                 >
                                     <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${activity.type === 'user' ? 'bg-emerald-500' :
-                                            activity.type === 'biodata' ? 'bg-blue-500' :
-                                                'bg-pink-500'
+                                        activity.type === 'biodata' ? 'bg-blue-500' :
+                                            'bg-pink-500'
                                         }`}></div>
                                     <div className="flex-1">
                                         <p className="text-slate-700 text-sm">{activity.message}</p>
