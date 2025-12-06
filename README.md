@@ -193,12 +193,25 @@ client/
 
 ## 🔑 Admin Access
 
-For testing admin features, use the following credentials:
+### Test Admin Panel Features
 
+You can explore the complete admin dashboard with full administrative privileges using these credentials:
+
+**Admin Login Credentials:**
 - **Email:** `admin@islamicmatrimony.com`
 - **Password:** `Admin@123`
 
-⚠️ **Note:** These are demo credentials. In production, ensure to change these to secure credentials.
+**Admin Features You Can Test:**
+- 📊 View comprehensive analytics and statistics
+- ✅ Approve/reject user biodatas
+- 👥 Manage user roles and permissions
+- 💰 Monitor revenue and transactions
+- 📖 Review and approve success stories
+- 📧 Oversee all contact requests
+
+✨ **Feel free to test all admin functionalities!** These are demo credentials provided for evaluation purposes.
+
+⚠️ **Note:** In a production environment, these credentials should be secured and changed immediately.
 
 ---
 
