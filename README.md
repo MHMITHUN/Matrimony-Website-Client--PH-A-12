@@ -1,152 +1,288 @@
-# Nikah - Islamic Matrimony Platform
+# 💍 Muslims Nikah - Islamic Matrimony Platform (Frontend)
 
-A comprehensive Islamic Matrimony platform built with the MERN stack, designed to help Muslim singles find their life partners in accordance with Islamic principles.
+<div align="center">
 
-## 🌐 Live Site
+![Muslims Nikah Banner](https://i.postimg.cc/y8Wngdrn/screencapture-localhost-5174-2025-12-06-12-10-13.png)
 
-- **Frontend**: [https://nikah-matrimony.netlify.app](https://nikah-matrimony.netlify.app)
-- **Backend**: [https://nikah-matrimony-api.vercel.app](https://nikah-matrimony-api.vercel.app)
+### A Modern Islamic Matrimony Platform Connecting Muslims Worldwide
 
-## 🔐 Admin Credentials
+[![Live Site](https://img.shields.io/badge/Live%20Site-muslims--nikah--website.netlify.app-00C7B7?style=for-the-badge&logo=netlify)](https://muslims-nikah-website.netlify.app)
+[![Backend](https://img.shields.io/badge/Backend-Vercel-000000?style=for-the-badge&logo=vercel)](https://nikah-website-ph-a-12.vercel.app)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/MHMITHUN/Matrimony-Website-Client--PH-A-12)
 
-- **Email**: admin@islamicmatrimony.com
-- **Password**: Admin@123
+</div>
 
-## ✨ Features
+---
 
-1. **Beautiful Islamic-themed UI** - Green and gold color scheme with Islamic patterns and motifs
-2. **User Authentication** - Secure login/registration with Firebase (Email/Password and Google Sign-in)
-3. **JWT Protected Routes** - All private routes are protected with JWT tokens
-4. **Premium Membership System** - Users can request premium status for enhanced features
-5. **Biodata Management** - Create, edit, and view detailed biodata profiles
-6. **Advanced Filtering** - Filter biodatas by age, gender, and division with pagination
-7. **Favorites System** - Save favorite biodatas for easy access
-8. **Contact Request with Payment** - Request contact information with secure Stripe payment ($5)
-9. **Success Stories** - Share and view marriage success stories from the community
-10. **Admin Dashboard** - Comprehensive admin panel with statistics and management tools
-11. **Responsive Design** - Fully responsive for mobile, tablet, and desktop
-12. **Real-time Notifications** - Toast notifications for all CRUD operations
+## 🌟 Overview
 
-## 🛠️ Technologies Used
+**Muslims Nikah** is a comprehensive Islamic matrimony platform designed to help Muslims find their life partners in accordance with Islamic principles. The platform offers a modern, secure, and user-friendly experience with advanced features including biodata management, contact request systems, premium memberships, and detailed analytics for administrators.
 
-### Frontend
-- React 18 + Vite
-- TailwindCSS (No DaisyUI)
-- React Router DOM
-- TanStack Query
-- Firebase Authentication
-- Axios with Interceptors
-- React Hot Toast / SweetAlert2
-- Recharts (for admin charts)
-- React Icons
+---
 
-### Backend
-- Node.js + Express.js
-- MongoDB + Mongoose
-- JWT Authentication
-- Stripe Payment Integration
-- CORS enabled
+## ✨ Key Features
 
-## 📁 Project Structure
+### 👥 User Features
+- **🔐 Secure Authentication** - Firebase-powered authentication with email/password and social login
+- **📝 Biodata Management** - Create, edit, and manage detailed matrimonial profiles
+- **🔍 Advanced Search & Filters** - Filter biodatas by age, type, division, and more
+- **💖 Favorites System** - Save and manage favorite profiles
+- **📧 Contact Requests** - Request contact information with premium filtering
+- **💳 Premium Membership** - Stripe-integrated payment system for premium features
+- **🌙 Dark Mode** - Complete dark mode support across the entire application
+- **📱 Responsive Design** - Seamless experience across all devices
 
-```
-├── client/
-│   ├── src/
-│   │   ├── api/          # Axios API configuration
-│   │   ├── components/   # Reusable components
-│   │   ├── config/       # Firebase configuration
-│   │   ├── contexts/     # Auth context
-│   │   ├── layouts/      # Main and Dashboard layouts
-│   │   └── pages/        # All page components
-│   └── .env              # Environment variables
-│
-└── server/
-    ├── config/           # Database configuration
-    ├── middleware/       # JWT verification
-    ├── models/           # Mongoose models
-    ├── routes/           # API routes
-    └── .env              # Environment variables
-```
+### 👨‍💼 Admin Features
+- **📊 Comprehensive Dashboard** - Real-time analytics and statistics
+- **✅ Biodata Approval System** - Review and approve user biodatas
+- **💰 Revenue Tracking** - Monitor subscription revenue and transactions
+- **📖 Success Stories Management** - Curate and manage success stories
+- **👥 User Management** - Manage user roles and permissions
+- **🔒 Contact Request Oversight** - Monitor all contact requests
+
+### 🎯 Additional Features
+- **🎉 Success Stories** - Inspiring stories from couples who found their match
+- **📈 Real-time Statistics** - Live counters for biodatas, marriages, and members
+- **🔔 Toast Notifications** - Beautiful, non-intrusive user feedback
+- **⚡ Fast Performance** - Optimized for speed and efficiency
+- **🎨 Modern UI/UX** - Glassmorphism effects, gradients, and smooth animations
+
+---
+
+## 🛠️ Technology Stack
+
+### Core Technologies
+- **⚛️ React 18** - Modern UI library with hooks
+- **⚡ Vite** - Lightning-fast build tool and dev server
+- **🎨 Tailwind CSS** - Utility-first CSS framework
+- **🌼 DaisyUI** - Tailwind CSS component library
+
+### Key Libraries & Tools
+- **🔥 Firebase** - Authentication and user management
+- **🌐 React Router DOM v6** - Client-side routing
+- **🔄 TanStack Query (React Query)** - Server state management
+- **🌍 Axios** - HTTP client for API requests
+- **💳 Stripe** - Payment processing integration
+- **📅 React DatePicker** - Date selection components
+- **🎭 React Icons** - Comprehensive icon library
+- **📊 Recharts** - Data visualization for analytics
+- **🔔 React Hot Toast** - Elegant toast notifications
+- **🎨 React Helmet Async** - Dynamic document head management
+- **🖼️ Swiper** - Modern touch slider
+- **✨ AOS (Animate On Scroll)** - Scroll-based animations
+
+---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js (v18 or higher)
-- MongoDB Atlas account
-- Firebase project
-- Stripe account (for payments)
+- **Node.js** (v18 or higher)
+- **npm** or **yarn**
+- **Firebase Account** (for authentication)
+- **Stripe Account** (for payment processing)
 
 ### Installation
 
-1. Clone the repository
-```bash
-git clone https://github.com/yourusername/islamic-matrimony.git
-cd islamic-matrimony
-```
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/MHMITHUN/Matrimony-Website-Client--PH-A-12.git
+   cd Matrimony-Website-Client--PH-A-12
+   ```
 
-2. Install server dependencies
-```bash
-cd server
-npm install
-```
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-3. Install client dependencies
-```bash
-cd ../client
-npm install
-```
+3. **Set up environment variables**
+   
+   Create a `.env` file in the root directory:
+   ```env
+   VITE_API_URL=http://localhost:5000
+   
+   # Firebase Configuration
+   VITE_FIREBASE_API_KEY=your_firebase_api_key
+   VITE_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
+   VITE_FIREBASE_PROJECT_ID=your_firebase_project_id
+   VITE_FIREBASE_STORAGE_BUCKET=your_firebase_storage_bucket
+   VITE_FIREBASE_MESSAGING_SENDER_ID=your_firebase_messaging_sender_id
+   VITE_FIREBASE_APP_ID=your_firebase_app_id
+   
+   # Stripe
+   VITE_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+   
+   # Image Upload (Optional)
+   VITE_IMGBB_API_KEY=your_imgbb_api_key
+   ```
 
-4. Set up environment variables (see `.env.example` files)
+4. **Start the development server**
+   ```bash
+   npm run dev
+   ```
 
-5. Start the development servers
-```bash
-# Terminal 1 - Server
-cd server
-npm run dev
-
-# Terminal 2 - Client
-cd client
-npm run dev
-```
-
-## 📊 API Endpoints
-
-### Authentication
-- `POST /api/auth/jwt` - Get JWT token
-- `GET /api/auth/me` - Get current user
-
-### Biodata
-- `GET /api/biodata` - Get all biodatas
-- `GET /api/biodata/premium` - Get premium biodatas
-- `POST /api/biodata` - Create/update biodata
-
-### Admin
-- `GET /api/admin/users` - Get all users
-- `PATCH /api/admin/users/:id/make-admin` - Make user admin
-- `PATCH /api/admin/users/:id/make-premium` - Make user premium
-
-## 📝 Environment Variables
-
-### Client (.env)
-```
-VITE_FIREBASE_API_KEY=your_key
-VITE_FIREBASE_AUTH_DOMAIN=your_domain
-VITE_FIREBASE_PROJECT_ID=your_project_id
-VITE_API_URL=http://localhost:5000/api
-```
-
-### Server (.env)
-```
-MONGODB_URI=your_mongodb_uri
-JWT_SECRET=your_jwt_secret
-STRIPE_SECRET_KEY=your_stripe_key
-CLIENT_URL=http://localhost:5173
-```
-
-## 👨‍💻 Developer
-
-**Mahamudul Hasan**
+5. **Build for production**
+   ```bash
+   npm run build
+   ```
 
 ---
 
-*"And among His signs is that He created for you mates from among yourselves, that you may find tranquility in them." - Quran 30:21*
+## 📁 Project Structure
+
+```
+client/
+├── public/               # Static assets
+├── src/
+│   ├── assets/          # Images, fonts, and other assets
+│   ├── components/      # Reusable UI components
+│   │   ├── Dashboard/   # Dashboard-specific components
+│   │   ├── Home/        # Home page components
+│   │   ├── Shared/      # Shared components (Navbar, Footer, etc.)
+│   │   └── ...
+│   ├── contexts/        # React Context providers
+│   ├── hooks/           # Custom React hooks
+│   ├── layouts/         # Layout components
+│   ├── pages/           # Page components
+│   │   ├── Admin/       # Admin dashboard pages
+│   │   ├── Auth/        # Authentication pages
+│   │   ├── Biodatas/    # Biodata listing and details
+│   │   ├── Dashboard/   # User dashboard pages
+│   │   └── ...
+│   ├── routes/          # Route configurations
+│   ├── services/        # API service functions
+│   ├── utils/           # Utility functions
+│   ├── App.jsx          # Main App component
+│   └── main.jsx         # Application entry point
+├── .env                 # Environment variables
+├── index.html           # HTML template
+├── package.json         # Dependencies and scripts
+├── tailwind.config.js   # Tailwind CSS configuration
+└── vite.config.js       # Vite configuration
+```
+
+---
+
+## 🎨 UI/UX Highlights
+
+### Design Philosophy
+- **Modern & Clean** - Minimalist design with focus on content
+- **Islamic Aesthetics** - Color schemes and designs respecting Islamic values
+- **Accessibility First** - WCAG compliant with keyboard navigation
+- **Performance Optimized** - Lazy loading, code splitting, and optimized assets
+
+### Design Features
+- **Glassmorphism Effects** - Modern frosted glass UI elements
+- **Gradient Backgrounds** - Beautiful color transitions
+- **Smooth Animations** - AOS and custom CSS animations
+- **Dark Mode** - Complete dark theme support with smooth transitions
+- **Responsive Grid** - Mobile-first responsive design
+- **Custom Components** - Beautifully crafted reusable components
+
+### Screenshots
+
+#### Home Page
+![Home Page](https://i.postimg.cc/y8Wngdrn/screencapture-localhost-5174-2025-12-06-12-10-13.png)
+
+#### Admin Analytics Dashboard
+![Admin Analytics](https://i.postimg.cc/W1tSF3f0/screencapture-localhost-5174-dashboard-admin-2025-12-06-12-11-06.png)
+
+#### Success Stories Management
+![Success Stories](https://i.postimg.cc/3xW94Rbw/screencapture-localhost-5174-dashboard-admin-success-stories-2025-12-06-12-11-43.png)
+
+---
+
+## 🔑 Admin Access
+
+For testing admin features, use the following credentials:
+
+- **Email:** `admin@islamicmatrimony.com`
+- **Password:** `Admin@123`
+
+⚠️ **Note:** These are demo credentials. In production, ensure to change these to secure credentials.
+
+---
+
+## 🌐 Live Deployment
+
+- **Frontend (Client):** [https://muslims-nikah-website.netlify.app](https://muslims-nikah-website.netlify.app)
+- **Backend (Server):** [https://nikah-website-ph-a-12.vercel.app](https://nikah-website-ph-a-12.vercel.app)
+
+### Deployment Platforms
+- **Frontend:** Netlify (Continuous Deployment from GitHub)
+- **Backend:** Vercel (Serverless Functions)
+
+---
+
+## 📦 Available Scripts
+
+```bash
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+
+# Run ESLint
+npm run lint
+```
+
+---
+
+## 🔒 Security Features
+
+- **Firebase Authentication** - Secure user authentication
+- **JWT Tokens** - Secure API communication
+- **Role-Based Access Control** - Admin, premium, and regular user roles
+- **Input Validation** - Client-side and server-side validation
+- **Secure Payment Processing** - Stripe integration with PCI compliance
+- **Environment Variables** - Sensitive data protection
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+## 👨‍💻 Developer
+
+**Mohammad Mithun**
+
+- GitHub: [@MHMITHUN](https://github.com/MHMITHUN)
+- Repository: [Client](https://github.com/MHMITHUN/Matrimony-Website-Client--PH-A-12) | [Server](https://github.com/MHMITHUN/Matrimony-Website-Server--PH-A-12)
+
+---
+
+## 🙏 Acknowledgments
+
+- **Firebase** - For authentication services
+- **Stripe** - For payment processing
+- **Netlify** - For hosting and deployment
+- **Tailwind CSS & DaisyUI** - For the beautiful UI components
+- All contributors and users of Muslims Nikah
+
+---
+
+<div align="center">
+
+### Made with ❤️ for the Muslim Community
+
+**[Visit Live Site](https://muslims-nikah-website.netlify.app)** | **[View Backend](https://nikah-website-ph-a-12.vercel.app)** | **[Report Bug](https://github.com/MHMITHUN/Matrimony-Website-Client--PH-A-12/issues)**
+
+</div>
