@@ -3,7 +3,7 @@ import { FaHome, FaSearch, FaMosque } from 'react-icons/fa';
 
 const NotFound = () => {
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50 to-slate-50 flex items-center justify-center px-4 pt-20">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50 to-slate-50 dark:from-slate-900 dark:via-emerald-900/20 dark:to-slate-900 flex items-center justify-center px-4 pt-20">
             <div className="max-w-2xl w-full text-center">
                 {/* Animated Icon */}
                 <div className="relative mb-8">
@@ -21,10 +21,10 @@ const NotFound = () => {
                 </h1>
 
                 {/* Error Message */}
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-4">
                     Page Not Found
                 </h2>
-                <p className="text-lg text-gray-600 mb-8 max-w-md mx-auto">
+                <p className="text-lg text-gray-600 dark:text-slate-400 mb-8 max-w-md mx-auto">
                     Sorry, the page you're looking for doesn't exist. Perhaps it was moved or deleted, or maybe you mistyped the URL.
                 </p>
 
@@ -39,7 +39,7 @@ const NotFound = () => {
                     </Link>
                     <Link
                         to="/biodatas"
-                        className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-emerald-500 text-emerald-600 font-semibold rounded-2xl hover:bg-emerald-50 transition-all"
+                        className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-emerald-500 text-emerald-600 dark:text-emerald-400 font-semibold rounded-2xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 transition-all"
                     >
                         <FaSearch />
                         Browse Biodatas
@@ -48,9 +48,9 @@ const NotFound = () => {
 
                 {/* Decorative Elements */}
                 <div className="mt-12 flex items-center justify-center gap-2 text-sm text-gray-500">
-                    <span className="w-12 h-px bg-gradient-to-r from-transparent to-gray-300"></span>
-                    <span>بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</span>
-                    <span className="w-12 h-px bg-gradient-to-l from-transparent to-gray-300"></span>
+                    <span className="w-12 h-px bg-gradient-to-r from-transparent to-gray-300 dark:to-slate-700"></span>
+                    <span className="dark:text-slate-400">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</span>
+                    <span className="w-12 h-px bg-gradient-to-l from-transparent to-gray-300 dark:to-slate-700"></span>
                 </div>
             </div>
         </div>

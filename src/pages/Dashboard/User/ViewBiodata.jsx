@@ -56,12 +56,12 @@ const ViewBiodata = () => {
 
     if (error || !biodata) {
         return (
-            <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 p-12 text-center">
-                <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <FaUser className="text-4xl text-slate-300" />
+            <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 p-12 text-center">
+                <div className="w-20 h-20 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <FaUser className="text-4xl text-slate-300 dark:text-slate-500" />
                 </div>
-                <h2 className="text-xl font-bold text-slate-700 mb-2">No Biodata Found</h2>
-                <p className="text-slate-500 mb-6">You haven't created your biodata yet.</p>
+                <h2 className="text-xl font-bold text-slate-700 dark:text-slate-200 mb-2">No Biodata Found</h2>
+                <p className="text-slate-500 dark:text-slate-400 mb-6">You haven't created your biodata yet.</p>
                 <Link
                     to="/dashboard/edit-biodata"
                     className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-emerald-500/25 transition-all"
@@ -73,13 +73,13 @@ const ViewBiodata = () => {
     }
 
     const InfoItem = ({ icon, label, value, color = 'from-emerald-500 to-teal-500' }) => (
-        <div className="group flex items-start gap-4 p-4 bg-gradient-to-br from-slate-50 to-slate-100/50 rounded-xl border border-slate-100 hover:border-emerald-200 hover:shadow-md transition-all">
+        <div className="group flex items-start gap-4 p-4 bg-gradient-to-br from-slate-50 to-slate-100/50 dark:from-slate-800 dark:to-slate-900/50 rounded-xl border border-slate-100 dark:border-slate-700 hover:border-emerald-200 dark:hover:border-emerald-800 hover:shadow-md transition-all">
             <div className={`w-10 h-10 bg-gradient-to-br ${color} rounded-xl flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition-transform`}>
                 {icon}
             </div>
             <div className="min-w-0 flex-1">
-                <p className="text-xs font-medium text-slate-400 uppercase tracking-wide">{label}</p>
-                <p className="font-semibold text-slate-800 break-words mt-0.5">{value || 'N/A'}</p>
+                <p className="text-xs font-medium text-slate-400 dark:text-slate-500 uppercase tracking-wide">{label}</p>
+                <p className="font-semibold text-slate-800 dark:text-slate-200 break-words mt-0.5">{value || 'N/A'}</p>
             </div>
         </div>
     );
@@ -93,13 +93,13 @@ const ViewBiodata = () => {
                         <FaStar className="text-xs" />
                         <span>My Profile</span>
                     </div>
-                    <h1 className="text-2xl md:text-3xl font-bold text-slate-800">My Biodata</h1>
-                    <p className="text-slate-500 mt-1">View your biodata information</p>
+                    <h1 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-white">My Biodata</h1>
+                    <p className="text-slate-500 dark:text-slate-400 mt-1">View your biodata information</p>
                 </div>
                 <div className="flex flex-wrap gap-3">
                     <Link
                         to="/dashboard/edit-biodata"
-                        className="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-slate-200 text-slate-700 font-semibold rounded-xl hover:border-emerald-500 hover:text-emerald-600 transition-all"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-semibold rounded-xl hover:border-emerald-500 hover:text-emerald-600 dark:hover:text-emerald-400 transition-all"
                     >
                         <FaEdit /> Edit
                     </Link>
@@ -125,7 +125,7 @@ const ViewBiodata = () => {
                 </div>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 overflow-hidden">
+            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 overflow-hidden">
                 {/* Profile Header */}
                 <div className="bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 p-6 md:p-8 relative overflow-hidden">
                     <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.1%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-30"></div>
@@ -145,8 +145,8 @@ const ViewBiodata = () => {
                         <div className="text-center md:text-left">
                             <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 mb-2">
                                 <span className={`px-3 py-1 rounded-full text-xs font-bold ${biodata.biodataType === 'Male'
-                                        ? 'bg-blue-500 text-white'
-                                        : 'bg-pink-500 text-white'
+                                    ? 'bg-blue-500 text-white'
+                                    : 'bg-pink-500 text-white'
                                     }`}>
                                     {biodata.biodataType}
                                 </span>
@@ -162,7 +162,7 @@ const ViewBiodata = () => {
 
                 {/* Information Grid */}
                 <div className="p-6 md:p-8">
-                    <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                    <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
                         <FaUser className="text-emerald-500" /> Personal Information
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
@@ -174,7 +174,7 @@ const ViewBiodata = () => {
                         <InfoItem icon={<FaUser />} label="Skin Color" value={biodata.race} />
                     </div>
 
-                    <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                    <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
                         <FaHeart className="text-pink-500" /> Family Information
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
@@ -182,7 +182,7 @@ const ViewBiodata = () => {
                         <InfoItem icon={<FaUser />} label="Mother's Name" value={biodata.mothersName} color="from-pink-500 to-rose-500" />
                     </div>
 
-                    <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                    <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
                         <FaMapMarkerAlt className="text-blue-500" /> Location
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
@@ -190,7 +190,7 @@ const ViewBiodata = () => {
                         <InfoItem icon={<FaMapMarkerAlt />} label="Present Division" value={biodata.presentDivision} color="from-blue-500 to-indigo-500" />
                     </div>
 
-                    <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                    <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
                         <FaStar className="text-amber-500" /> Partner Expectations
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
@@ -199,7 +199,7 @@ const ViewBiodata = () => {
                         <InfoItem icon={<FaWeight />} label="Expected Partner Weight" value={biodata.expectedPartnerWeight} color="from-amber-500 to-orange-500" />
                     </div>
 
-                    <h3 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                    <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
                         <FaPhone className="text-purple-500" /> Contact Information
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

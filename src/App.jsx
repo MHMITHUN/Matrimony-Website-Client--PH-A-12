@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Toaster } from 'react-hot-toast';
 import { HelmetProvider } from 'react-helmet-async';
 import { AuthProvider } from './contexts/AuthContext';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 // Layouts
 import MainLayout from './layouts/MainLayout';
@@ -159,33 +160,35 @@ const router = createBrowserRouter([
 function App() {
   return (
     <HelmetProvider>
-      <QueryClientProvider client={queryClient}>
-        <AuthProvider>
-          <RouterProvider router={router} />
-          <Toaster
-            position="top-center"
-            toastOptions={{
-              duration: 3000,
-              style: {
-                background: '#333',
-                color: '#fff',
-              },
-              success: {
-                iconTheme: {
-                  primary: '#2E7D32',
-                  secondary: '#fff'
+      <ThemeProvider>
+        <QueryClientProvider client={queryClient}>
+          <AuthProvider>
+            <RouterProvider router={router} />
+            <Toaster
+              position="top-center"
+              toastOptions={{
+                duration: 3000,
+                style: {
+                  background: '#333',
+                  color: '#fff',
+                },
+                success: {
+                  iconTheme: {
+                    primary: '#2E7D32',
+                    secondary: '#fff'
+                  }
+                },
+                error: {
+                  iconTheme: {
+                    primary: '#C62828',
+                    secondary: '#fff'
+                  }
                 }
-              },
-              error: {
-                iconTheme: {
-                  primary: '#C62828',
-                  secondary: '#fff'
-                }
-              }
-            }}
-          />
-        </AuthProvider>
-      </QueryClientProvider>
+              }}
+            />
+          </AuthProvider>
+        </QueryClientProvider>
+      </ThemeProvider>
     </HelmetProvider>
   );
 }

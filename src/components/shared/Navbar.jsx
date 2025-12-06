@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { FaBars, FaTimes, FaMosque, FaUser, FaSignOutAlt, FaChevronDown, FaCrown } from 'react-icons/fa';
 import { useAuth } from '../../contexts/AuthContext';
+import DarkModeToggle from '../DarkModeToggle';
 import toast from 'react-hot-toast';
 
 const Navbar = () => {
@@ -60,8 +61,8 @@ const Navbar = () => {
 
     return (
         <nav className={`fixed w-full top-0 z-50 transition-all duration-500 ${scrolled
-                ? 'bg-white/90 backdrop-blur-xl shadow-lg shadow-black/5'
-                : 'bg-white/70 backdrop-blur-md'
+            ? 'bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl shadow-lg shadow-black/5 dark:shadow-black/20'
+            : 'bg-white/70 dark:bg-slate-900/70 backdrop-blur-md'
             }`}>
             <div className="container-custom">
                 <div className="flex items-center justify-between h-16 md:h-20">
@@ -105,8 +106,9 @@ const Navbar = () => {
                         )}
                     </div>
 
-                    {/* Auth Section */}
-                    <div className="hidden lg:flex items-center gap-4">
+                    {/* Dark Mode Toggle & Auth Section */}
+                    <div className="hidden lg:flex items-center gap-3">
+                        <DarkModeToggle />
                         {user ? (
                             <div className="relative">
                                 <button
@@ -241,7 +243,11 @@ const Navbar = () => {
                             )}
                         </div>
 
-                        <div className="mt-6 pt-6 border-t border-gray-100">
+                        <div className="mt-6 pt-6 border-t border-gray-100 dark:border-gray-700">
+                            {/* Dark Mode Toggle */}
+                            <div className="mb-4 flex justify-center">
+                                <DarkModeToggle className="w-full" />
+                            </div>
                             {user ? (
                                 <div className="space-y-4">
                                     <div className="flex items-center gap-4 px-4">

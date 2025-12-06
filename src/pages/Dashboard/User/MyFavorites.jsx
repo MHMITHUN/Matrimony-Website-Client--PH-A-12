@@ -60,17 +60,17 @@ const MyFavorites = () => {
                     <FaStar className="text-xs" />
                     <span>My Favorites</span>
                 </div>
-                <h1 className="text-2xl md:text-3xl font-bold text-slate-800">Favourites Biodata</h1>
-                <p className="text-slate-500 mt-1">View all your favourite biodatas</p>
+                <h1 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-white">Favourites Biodata</h1>
+                <p className="text-slate-500 dark:text-slate-400 mt-1">View all your favourite biodatas</p>
             </div>
 
             {favorites.length === 0 ? (
-                <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 p-12 text-center">
-                    <div className="w-20 h-20 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <FaHeart className="text-4xl text-pink-300" />
+                <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 p-12 text-center">
+                    <div className="w-20 h-20 bg-pink-100 dark:bg-pink-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <FaHeart className="text-4xl text-pink-300 dark:text-pink-400" />
                     </div>
-                    <h2 className="text-xl font-bold text-slate-700 mb-2">No Favorites Yet</h2>
-                    <p className="text-slate-500 mb-6">You haven't added any biodata to your favorites.</p>
+                    <h2 className="text-xl font-bold text-slate-700 dark:text-slate-200 mb-2">No Favorites Yet</h2>
+                    <p className="text-slate-500 dark:text-slate-400 mb-6">You haven't added any biodata to your favorites.</p>
                     <Link
                         to="/biodatas"
                         className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-emerald-500/25 transition-all"
@@ -83,7 +83,7 @@ const MyFavorites = () => {
                     {favorites.map((favorite, index) => (
                         <div
                             key={favorite._id}
-                            className="group bg-white rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all animate-fade-in-up"
+                            className="group bg-white dark:bg-slate-800 rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all animate-fade-in-up"
                             style={{ animationDelay: `${index * 100}ms` }}
                         >
                             {/* Header */}
@@ -105,14 +105,14 @@ const MyFavorites = () => {
 
                             {/* Content */}
                             <div className="p-5 space-y-4">
-                                <div className="flex items-center gap-3 text-slate-600">
-                                    <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center">
+                                <div className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                                    <div className="w-8 h-8 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center">
                                         <FaMapMarkerAlt className="text-emerald-500 text-sm" />
                                     </div>
                                     <span className="truncate">{favorite.permanentAddress || 'Not specified'}</span>
                                 </div>
-                                <div className="flex items-center gap-3 text-slate-600">
-                                    <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <div className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
+                                    <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
                                         <FaBriefcase className="text-blue-500 text-sm" />
                                     </div>
                                     <span className="truncate">{favorite.occupation || 'Not specified'}</span>
@@ -129,7 +129,7 @@ const MyFavorites = () => {
                                     <button
                                         onClick={() => handleDelete(favorite._id)}
                                         disabled={deleteMutation.isLoading}
-                                        className="px-4 py-3 border-2 border-red-200 text-red-500 rounded-xl hover:bg-red-50 hover:border-red-300 transition-all disabled:opacity-50"
+                                        className="px-4 py-3 border-2 border-red-200 dark:border-red-900/30 text-red-500 dark:text-red-400 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20 hover:border-red-300 dark:hover:border-red-800 transition-all disabled:opacity-50"
                                         title="Remove from favorites"
                                     >
                                         <FaTrash />

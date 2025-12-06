@@ -84,7 +84,7 @@ const FeaturedProfiles = ({ biodatas = [] }) => {
                         {visibleBiodatas.map((biodata) => (
                             <div
                                 key={biodata._id}
-                                className="group bg-white rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 overflow-hidden hover:shadow-2xl hover:shadow-emerald-500/10 hover:-translate-y-1 transition-all duration-300"
+                                className="group bg-white dark:bg-slate-800 rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 overflow-hidden hover:shadow-2xl hover:shadow-emerald-500/10 hover:-translate-y-1 transition-all duration-300"
                             >
                                 <div className="relative h-64 overflow-hidden">
                                     <img
@@ -122,12 +122,12 @@ const FeaturedProfiles = ({ biodatas = [] }) => {
                                 </div>
 
                                 <div className="p-5">
-                                    <div className="flex items-center gap-2 text-slate-600 mb-3">
+                                    <div className="flex items-center gap-2 text-slate-600 dark:text-slate-300 mb-3">
                                         <FaBriefcase className="text-emerald-500 text-sm" />
                                         <span className="font-semibold truncate">{biodata.occupation}</span>
                                     </div>
 
-                                    <div className="flex items-center gap-2 text-slate-500 text-sm mb-4">
+                                    <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-sm mb-4">
                                         <FaMapMarkerAlt className="text-emerald-500" />
                                         <span>{biodata.permanentDivision}</span>
                                     </div>
@@ -150,13 +150,13 @@ const FeaturedProfiles = ({ biodatas = [] }) => {
                 <>
                     <button
                         onClick={handlePrev}
-                        className="absolute -left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-xl border border-slate-100 flex items-center justify-center text-slate-600 hover:text-emerald-600 hover:border-emerald-500 hover:scale-110 transition-all z-10"
+                        className="absolute -left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white dark:bg-slate-800 rounded-full shadow-xl border border-slate-100 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:border-emerald-500 hover:scale-110 transition-all z-10"
                     >
                         <FaChevronLeft />
                     </button>
                     <button
                         onClick={handleNext}
-                        className="absolute -right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-xl border border-slate-100 flex items-center justify-center text-slate-600 hover:text-emerald-600 hover:border-emerald-500 hover:scale-110 transition-all z-10"
+                        className="absolute -right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white dark:bg-slate-800 rounded-full shadow-xl border border-slate-100 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:border-emerald-500 hover:scale-110 transition-all z-10"
                     >
                         <FaChevronRight />
                     </button>
@@ -171,8 +171,8 @@ const FeaturedProfiles = ({ biodatas = [] }) => {
                             key={i}
                             onClick={() => setCurrentIndex(i)}
                             className={`h-2 rounded-full transition-all ${i === currentIndex
-                                    ? 'w-8 bg-gradient-to-r from-emerald-500 to-teal-500'
-                                    : 'w-2 bg-slate-300 hover:bg-emerald-400'
+                                ? 'w-8 bg-gradient-to-r from-emerald-500 to-teal-500'
+                                : 'w-2 bg-slate-300 dark:bg-slate-600 hover:bg-emerald-400'
                                 }`}
                         />
                     ))}

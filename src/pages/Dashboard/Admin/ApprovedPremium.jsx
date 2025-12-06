@@ -74,19 +74,19 @@ const ApprovedPremium = () => {
                     <FaStar className="text-xs" />
                     <span>Premium Management</span>
                 </div>
-                <h1 className="text-2xl md:text-3xl font-bold text-slate-800">
+                <h1 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-white">
                     Premium Requests
                 </h1>
-                <p className="text-slate-500 mt-1">Manage premium membership requests and view history</p>
+                <p className="text-slate-500 dark:text-slate-400 mt-1">Manage premium membership requests and view history</p>
             </div>
 
             {/* Tabs */}
-            <div className="flex gap-2 border-b border-slate-200">
+            <div className="flex gap-2 border-b border-slate-200 dark:border-slate-700">
                 <button
                     onClick={() => setActiveTab('pending')}
                     className={`px-6 py-3 font-semibold transition-all relative ${activeTab === 'pending'
-                            ? 'text-amber-600'
-                            : 'text-slate-500 hover:text-slate-700'
+                        ? 'text-amber-600 dark:text-amber-500'
+                        : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
                         }`}
                 >
                     <span className="flex items-center gap-2">
@@ -105,8 +105,8 @@ const ApprovedPremium = () => {
                 <button
                     onClick={() => setActiveTab('history')}
                     className={`px-6 py-3 font-semibold transition-all relative ${activeTab === 'history'
-                            ? 'text-emerald-600'
-                            : 'text-slate-500 hover:text-slate-700'
+                        ? 'text-emerald-600 dark:text-emerald-500'
+                        : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
                         }`}
                 >
                     <span className="flex items-center gap-2">
@@ -127,14 +127,14 @@ const ApprovedPremium = () => {
                     <p className="mt-4 text-slate-500">Loading...</p>
                 </div>
             ) : data.length === 0 ? (
-                <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 p-12 text-center">
-                    <div className="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <FaCrown className="text-4xl text-amber-300" />
+                <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 p-12 text-center">
+                    <div className="w-20 h-20 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <FaCrown className="text-4xl text-amber-300 dark:text-amber-400" />
                     </div>
-                    <h2 className="text-xl font-bold text-slate-700 mb-2">
+                    <h2 className="text-xl font-bold text-slate-700 dark:text-slate-200 mb-2">
                         {activeTab === 'pending' ? 'No Pending Requests' : 'No Premium Members Yet'}
                     </h2>
-                    <p className="text-slate-500">
+                    <p className="text-slate-500 dark:text-slate-400">
                         {activeTab === 'pending'
                             ? 'There are no premium requests waiting for approval.'
                             : 'There are no approved premium members to display.'}
@@ -147,7 +147,7 @@ const ApprovedPremium = () => {
                         pendingRequests.map((request, index) => (
                             <div
                                 key={request._id}
-                                className="bg-white rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 p-6 hover:shadow-xl transition-all animate-fade-in-up"
+                                className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 p-6 hover:shadow-xl transition-all animate-fade-in-up"
                                 style={{ animationDelay: `${index * 50}ms` }}
                             >
                                 <div className="flex items-start justify-between mb-4">
@@ -156,7 +156,7 @@ const ApprovedPremium = () => {
                                             {request.name?.charAt(0)?.toUpperCase() || 'U'}
                                         </div>
                                         <div>
-                                            <h3 className="font-bold text-slate-800">{request.name}</h3>
+                                            <h3 className="font-bold text-slate-800 dark:text-white">{request.name}</h3>
                                             <span className="inline-flex items-center gap-1 text-xs text-amber-600 font-medium">
                                                 <FaCrown className="text-[10px]" /> Wants Premium
                                             </span>
@@ -167,11 +167,11 @@ const ApprovedPremium = () => {
                                 <div className="space-y-3 mb-6">
                                     <div className="flex items-center gap-2 text-sm">
                                         <FaEnvelope className="text-slate-400" />
-                                        <span className="text-slate-600 truncate">{request.userEmail}</span>
+                                        <span className="text-slate-600 dark:text-slate-300 truncate">{request.userEmail}</span>
                                     </div>
                                     <div className="flex items-center gap-2 text-sm">
                                         <FaIdCard className="text-slate-400" />
-                                        <span className="text-slate-600">Biodata ID: #{request.biodataId}</span>
+                                        <span className="text-slate-600 dark:text-slate-300">Biodata ID: #{request.biodataId}</span>
                                     </div>
                                 </div>
 
@@ -189,7 +189,7 @@ const ApprovedPremium = () => {
                         approvedMembers.map((member, index) => (
                             <div
                                 key={member._id}
-                                className="bg-white rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 p-6 hover:shadow-xl transition-all animate-fade-in-up"
+                                className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 p-6 hover:shadow-xl transition-all animate-fade-in-up"
                                 style={{ animationDelay: `${index * 50}ms` }}
                             >
                                 <div className="flex items-start justify-between mb-4">
@@ -198,7 +198,7 @@ const ApprovedPremium = () => {
                                             {member.name?.charAt(0)?.toUpperCase() || 'U'}
                                         </div>
                                         <div>
-                                            <h3 className="font-bold text-slate-800">{member.name}</h3>
+                                            <h3 className="font-bold text-slate-800 dark:text-white">{member.name}</h3>
                                             <span className="inline-flex items-center gap-1 text-xs bg-gradient-to-r from-amber-500 to-orange-500 text-white px-2 py-0.5 rounded-full font-medium">
                                                 <FaCrown className="text-[8px]" /> Premium
                                             </span>
@@ -209,38 +209,38 @@ const ApprovedPremium = () => {
                                 <div className="space-y-2.5 mb-4">
                                     <div className="flex items-center gap-2 text-sm">
                                         <FaEnvelope className="text-slate-400 shrink-0" />
-                                        <span className="text-slate-600 truncate">{member.userEmail}</span>
+                                        <span className="text-slate-600 dark:text-slate-300 truncate">{member.userEmail}</span>
                                     </div>
                                     <div className="flex items-center gap-2 text-sm">
                                         <FaIdCard className="text-slate-400 shrink-0" />
-                                        <span className="text-slate-600">Biodata ID: #{member.biodataId}</span>
+                                        <span className="text-slate-600 dark:text-slate-300">Biodata ID: #{member.biodataId}</span>
                                     </div>
                                     {member.age && (
                                         <div className="flex items-center gap-2 text-sm">
                                             <FaUser className="text-slate-400 shrink-0" />
-                                            <span className="text-slate-600">{member.age} years old</span>
+                                            <span className="text-slate-600 dark:text-slate-300">{member.age} years old</span>
                                         </div>
                                     )}
                                     {member.occupation && (
                                         <div className="flex items-center gap-2 text-sm">
                                             <FaBriefcase className="text-slate-400 shrink-0" />
-                                            <span className="text-slate-600">{member.occupation}</span>
+                                            <span className="text-slate-600 dark:text-slate-300">{member.occupation}</span>
                                         </div>
                                     )}
                                     {member.permanentDivision && (
                                         <div className="flex items-center gap-2 text-sm">
                                             <FaMapMarkerAlt className="text-slate-400 shrink-0" />
-                                            <span className="text-slate-600">{member.permanentDivision}</span>
+                                            <span className="text-slate-600 dark:text-slate-300">{member.permanentDivision}</span>
                                         </div>
                                     )}
-                                    <div className="flex items-center gap-2 text-sm pt-2 border-t border-slate-100">
+                                    <div className="flex items-center gap-2 text-sm pt-2 border-t border-slate-100 dark:border-slate-700">
                                         <FaClock className="text-emerald-500 shrink-0" />
-                                        <span className="text-slate-500 text-xs">Approved: {formatDate(member.updatedAt || member.createdAt)}</span>
+                                        <span className="text-slate-500 dark:text-slate-400 text-xs">Approved: {formatDate(member.updatedAt || member.createdAt)}</span>
                                     </div>
                                 </div>
 
-                                <div className="pt-4 border-t border-slate-100">
-                                    <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 text-emerald-700 rounded-lg text-xs font-medium">
+                                <div className="pt-4 border-t border-slate-100 dark:border-slate-700">
+                                    <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 rounded-lg text-xs font-medium">
                                         <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
                                         Active Premium Member
                                     </div>

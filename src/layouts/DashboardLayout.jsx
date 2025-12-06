@@ -154,7 +154,7 @@ const DashboardLayout = () => {
     );
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
             {/* Desktop Sidebar */}
             <aside className="hidden lg:flex flex-col w-72 bg-gradient-to-b from-emerald-600 via-emerald-700 to-teal-800 fixed h-screen shadow-2xl shadow-emerald-900/30">
                 <SidebarContent />
@@ -182,27 +182,27 @@ const DashboardLayout = () => {
             {/* Main Content */}
             <div className="flex-1 lg:ml-72">
                 {/* Top Bar */}
-                <header className="bg-white/80 backdrop-blur-xl shadow-sm shadow-slate-200/50 sticky top-0 z-40 border-b border-slate-100">
+                <header className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl shadow-sm shadow-slate-200/50 dark:shadow-black/50 sticky top-0 z-40 border-b border-slate-100 dark:border-slate-700">
                     <div className="flex items-center justify-between px-4 md:px-8 h-16">
                         <div className="flex items-center gap-4">
                             <button
                                 onClick={() => setSidebarOpen(true)}
                                 className="lg:hidden p-2.5 hover:bg-slate-100 rounded-xl transition-colors"
                             >
-                                <FaBars className="text-xl text-slate-600" />
+                                <FaBars className="text-xl text-slate-600 dark:text-slate-300" />
                             </button>
                             <div>
-                                <h1 className="text-lg font-bold text-slate-800">
+                                <h1 className="text-lg font-bold text-slate-800 dark:text-white">
                                     {isAdmin ? 'Admin Dashboard' : 'My Dashboard'}
                                 </h1>
-                                <p className="text-sm text-slate-500 hidden sm:block">
+                                <p className="text-sm text-slate-500 dark:text-slate-400 hidden sm:block">
                                     Welcome back, {user?.displayName?.split(' ')[0] || 'User'}!
                                 </p>
                             </div>
                         </div>
                         <NavLink
                             to="/"
-                            className="flex items-center gap-2 px-4 py-2 text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 rounded-xl font-medium transition-all"
+                            className="flex items-center gap-2 px-4 py-2 text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 rounded-xl font-medium transition-all"
                         >
                             <FaArrowLeft className="text-sm" />
                             <span className="hidden sm:inline">Back to Home</span>

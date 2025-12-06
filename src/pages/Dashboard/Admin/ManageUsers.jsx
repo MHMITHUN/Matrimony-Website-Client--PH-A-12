@@ -107,8 +107,8 @@ const ManageUsers = () => {
                         <FaStar className="text-xs" />
                         <span>User Management</span>
                     </div>
-                    <h1 className="text-2xl md:text-3xl font-bold text-slate-800">Manage Users</h1>
-                    <p className="text-slate-500 mt-1">View and manage all registered users</p>
+                    <h1 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-white">Manage Users</h1>
+                    <p className="text-slate-500 dark:text-slate-400 mt-1">View and manage all registered users</p>
                 </div>
 
                 {/* Search */}
@@ -119,7 +119,7 @@ const ManageUsers = () => {
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         placeholder="Search by username..."
-                        className="w-full sm:w-72 pl-12 pr-4 py-3 bg-white border-2 border-slate-100 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400"
+                        className="w-full sm:w-72 pl-12 pr-4 py-3 bg-white dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400 dark:text-slate-200"
                     />
                 </div>
             </div>
@@ -130,31 +130,31 @@ const ManageUsers = () => {
                     <p className="mt-4 text-slate-500">Loading users...</p>
                 </div>
             ) : users.length === 0 ? (
-                <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 p-12 text-center">
-                    <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <FaUser className="text-4xl text-slate-300" />
+                <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 p-12 text-center">
+                    <div className="w-20 h-20 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <FaUser className="text-4xl text-slate-300 dark:text-slate-500" />
                     </div>
-                    <h2 className="text-xl font-bold text-slate-700 mb-2">No Users Found</h2>
-                    <p className="text-slate-500">No users match your search criteria.</p>
+                    <h2 className="text-xl font-bold text-slate-700 dark:text-slate-200 mb-2">No Users Found</h2>
+                    <p className="text-slate-500 dark:text-slate-400">No users match your search criteria.</p>
                 </div>
             ) : (
-                <div className="bg-white rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 overflow-hidden">
+                <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 overflow-hidden">
                     <div className="overflow-x-auto">
                         <table className="w-full">
                             <thead>
-                                <tr className="bg-gradient-to-r from-slate-50 to-slate-100">
-                                    <th className="text-left px-6 py-4 text-sm font-bold text-slate-600 uppercase tracking-wider">User</th>
-                                    <th className="text-left px-6 py-4 text-sm font-bold text-slate-600 uppercase tracking-wider">Email</th>
-                                    <th className="text-left px-6 py-4 text-sm font-bold text-slate-600 uppercase tracking-wider">Role</th>
-                                    <th className="text-left px-6 py-4 text-sm font-bold text-slate-600 uppercase tracking-wider">Status</th>
-                                    <th className="text-left px-6 py-4 text-sm font-bold text-slate-600 uppercase tracking-wider">Actions</th>
+                                <tr className="bg-gradient-to-r from-slate-50 to-slate-100 dark:from-slate-700 dark:to-slate-800">
+                                    <th className="text-left px-6 py-4 text-sm font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider">User</th>
+                                    <th className="text-left px-6 py-4 text-sm font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider">Email</th>
+                                    <th className="text-left px-6 py-4 text-sm font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider">Role</th>
+                                    <th className="text-left px-6 py-4 text-sm font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider">Status</th>
+                                    <th className="text-left px-6 py-4 text-sm font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-slate-100">
+                            <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
                                 {users.map((user, index) => (
                                     <tr
                                         key={user._id}
-                                        className="hover:bg-slate-50/50 transition-colors animate-fade-in-up"
+                                        className="hover:bg-slate-50/50 dark:hover:bg-slate-700/50 transition-colors animate-fade-in-up"
                                         style={{ animationDelay: `${index * 50}ms` }}
                                     >
                                         <td className="px-6 py-4">
@@ -162,17 +162,17 @@ const ManageUsers = () => {
                                                 <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center text-white font-bold">
                                                     {user.name?.charAt(0)?.toUpperCase() || 'U'}
                                                 </div>
-                                                <span className="font-semibold text-slate-800">{user.name || 'N/A'}</span>
+                                                <span className="font-semibold text-slate-800 dark:text-slate-200">{user.name || 'N/A'}</span>
                                             </div>
                                         </td>
-                                        <td className="px-6 py-4 text-slate-600">{user.email}</td>
+                                        <td className="px-6 py-4 text-slate-600 dark:text-slate-400">{user.email}</td>
                                         <td className="px-6 py-4">
                                             {user.role === 'admin' ? (
                                                 <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-bold rounded-full">
                                                     <FaUserShield className="text-[10px]" /> Admin
                                                 </span>
                                             ) : (
-                                                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-100 text-slate-600 text-xs font-medium rounded-full">
+                                                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-medium rounded-full">
                                                     <FaUser className="text-[10px]" /> User
                                                 </span>
                                             )}
@@ -192,7 +192,7 @@ const ManageUsers = () => {
                                                     <button
                                                         onClick={() => handleMakeAdmin(user)}
                                                         disabled={makeAdminMutation.isLoading}
-                                                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-100 text-emerald-700 rounded-lg hover:bg-emerald-200 transition-all text-sm font-medium hover:shadow-md disabled:opacity-50"
+                                                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 rounded-lg hover:bg-emerald-200 dark:hover:bg-emerald-900/50 transition-all text-sm font-medium hover:shadow-md disabled:opacity-50"
                                                     >
                                                         <FaUserShield className="text-xs" /> Make Admin
                                                     </button>
@@ -201,7 +201,7 @@ const ManageUsers = () => {
                                                     <button
                                                         onClick={() => handleMakePremium(user)}
                                                         disabled={makePremiumMutation.isLoading}
-                                                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-100 text-amber-700 rounded-lg hover:bg-amber-200 transition-all text-sm font-medium hover:shadow-md disabled:opacity-50"
+                                                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 rounded-lg hover:bg-amber-200 dark:hover:bg-amber-900/50 transition-all text-sm font-medium hover:shadow-md disabled:opacity-50"
                                                     >
                                                         <FaCrown className="text-xs" /> Make Premium
                                                     </button>
@@ -210,7 +210,7 @@ const ManageUsers = () => {
                                                     <button
                                                         onClick={() => handleRemovePremium(user)}
                                                         disabled={removePremiumMutation.isLoading}
-                                                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-all text-sm font-medium hover:shadow-md disabled:opacity-50"
+                                                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 rounded-lg hover:bg-red-200 dark:hover:bg-red-900/50 transition-all text-sm font-medium hover:shadow-md disabled:opacity-50"
                                                     >
                                                         <FaCrown className="text-xs" /> Remove Premium
                                                     </button>

@@ -69,8 +69,8 @@ const ContactMessages = () => {
                         <FaEnvelope className="text-xs" />
                         <span>Inbox</span>
                     </div>
-                    <h1 className="text-2xl md:text-3xl font-bold text-slate-800">Contact Messages</h1>
-                    <p className="text-slate-500 mt-1">View and manage messages from the contact form</p>
+                    <h1 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-white">Contact Messages</h1>
+                    <p className="text-slate-500 dark:text-slate-400 mt-1">View and manage messages from the contact form</p>
                 </div>
 
                 {/* Search */}
@@ -81,7 +81,7 @@ const ContactMessages = () => {
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         placeholder="Search messages..."
-                        className="w-full sm:w-72 pl-12 pr-4 py-3 bg-white border-2 border-slate-100 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400"
+                        className="w-full sm:w-72 pl-12 pr-4 py-3 bg-white dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400 dark:text-slate-200"
                     />
                 </div>
             </div>
@@ -92,19 +92,19 @@ const ContactMessages = () => {
                     <p className="mt-4 text-slate-500">Loading messages...</p>
                 </div>
             ) : filteredMessages.length === 0 ? (
-                <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 p-12 text-center">
-                    <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <FaEnvelope className="text-4xl text-slate-300" />
+                <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 p-12 text-center">
+                    <div className="w-20 h-20 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <FaEnvelope className="text-4xl text-slate-300 dark:text-slate-500" />
                     </div>
-                    <h2 className="text-xl font-bold text-slate-700 mb-2">No Messages Found</h2>
-                    <p className="text-slate-500">Your inbox is empty.</p>
+                    <h2 className="text-xl font-bold text-slate-700 dark:text-slate-200 mb-2">No Messages Found</h2>
+                    <p className="text-slate-500 dark:text-slate-400">Your inbox is empty.</p>
                 </div>
             ) : (
                 <div className="grid gap-4">
                     {filteredMessages.map((msg, index) => (
                         <div
                             key={msg._id}
-                            className="bg-white rounded-2xl shadow-sm hover:shadow-md border border-slate-100 p-6 transition-all duration-300 animate-fade-in-up"
+                            className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm hover:shadow-md border border-slate-100 dark:border-slate-700 p-6 transition-all duration-300 animate-fade-in-up"
                             style={{ animationDelay: `${index * 50}ms` }}
                         >
                             <div className="flex flex-col md:flex-row gap-6">
@@ -115,8 +115,8 @@ const ContactMessages = () => {
                                             {msg.name.charAt(0).toUpperCase()}
                                         </div>
                                         <div>
-                                            <h3 className="font-bold text-slate-800">{msg.name}</h3>
-                                            <p className="text-sm text-slate-500">{msg.email}</p>
+                                            <h3 className="font-bold text-slate-800 dark:text-white">{msg.name}</h3>
+                                            <p className="text-sm text-slate-500 dark:text-slate-400">{msg.email}</p>
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-2 text-xs text-slate-400 pl-13">
@@ -127,11 +127,11 @@ const ContactMessages = () => {
 
                                 {/* Message Content */}
                                 <div className="flex-1 space-y-2">
-                                    <h4 className="font-bold text-slate-700 flex items-center gap-2">
+                                    <h4 className="font-bold text-slate-700 dark:text-slate-200 flex items-center gap-2">
                                         <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
                                         {msg.subject}
                                     </h4>
-                                    <p className="text-slate-600 bg-slate-50 p-4 rounded-xl text-sm leading-relaxed whitespace-pre-wrap break-words">
+                                    <p className="text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-700/50 p-4 rounded-xl text-sm leading-relaxed whitespace-pre-wrap break-words">
                                         {msg.message}
                                     </p>
                                 </div>
@@ -140,7 +140,7 @@ const ContactMessages = () => {
                                 <div className="flex items-start justify-end">
                                     <button
                                         onClick={() => handleDelete(msg._id)}
-                                        className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                                        className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
                                         title="Delete Message"
                                     >
                                         <FaTrash />

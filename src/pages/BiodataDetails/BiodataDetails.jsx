@@ -57,10 +57,10 @@ const BiodataDetails = () => {
 
     if (isLoading) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-50 to-white">
+            <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
                 <div className="text-center">
                     <div className="spinner-lg"></div>
-                    <p className="mt-4 text-slate-500">Loading profile...</p>
+                    <p className="mt-4 text-slate-500 dark:text-slate-400">Loading profile...</p>
                 </div>
             </div>
         );
@@ -68,13 +68,13 @@ const BiodataDetails = () => {
 
     if (error || !biodata) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-50 to-white">
-                <div className="text-center bg-white rounded-3xl shadow-xl p-12 max-w-md mx-4">
-                    <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <FaUser className="text-4xl text-slate-300" />
+            <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
+                <div className="text-center bg-white dark:bg-slate-800 rounded-3xl shadow-xl p-12 max-w-md mx-4">
+                    <div className="w-20 h-20 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <FaUser className="text-4xl text-slate-300 dark:text-slate-500" />
                     </div>
-                    <h2 className="text-2xl font-bold text-slate-800 mb-4">Biodata Not Found</h2>
-                    <p className="text-slate-500 mb-6">The profile you're looking for doesn't exist or has been removed.</p>
+                    <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">Biodata Not Found</h2>
+                    <p className="text-slate-500 dark:text-slate-400 mb-6">The profile you're looking for doesn't exist or has been removed.</p>
                     <Link to="/biodatas" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-semibold rounded-xl hover:shadow-lg transition-all">
                         <FaArrowLeft /> Browse Biodatas
                     </Link>
@@ -87,24 +87,24 @@ const BiodataDetails = () => {
     const isOwnBiodata = biodata.userEmail === user?.email;
 
     const InfoCard = ({ icon, label, value }) => (
-        <div className="flex items-start gap-4 p-4 bg-gradient-to-br from-slate-50 to-slate-100/50 rounded-xl border border-slate-100 hover:shadow-md hover:border-emerald-200 transition-all group">
+        <div className="flex items-start gap-4 p-4 bg-gradient-to-br from-slate-50 to-slate-100/50 dark:from-slate-700/50 dark:to-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700 hover:shadow-md hover:border-emerald-200 dark:hover:border-emerald-500/30 transition-all group">
             <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center text-white flex-shrink-0 group-hover:scale-110 transition-transform">
                 {icon}
             </div>
             <div>
-                <p className="text-xs font-medium text-slate-400 uppercase tracking-wide">{label}</p>
-                <p className="font-semibold text-slate-800 mt-0.5">{value || 'Not specified'}</p>
+                <p className="text-xs font-medium text-slate-400 dark:text-slate-500 uppercase tracking-wide">{label}</p>
+                <p className="font-semibold text-slate-800 dark:text-slate-200 mt-0.5">{value || 'Not specified'}</p>
             </div>
         </div>
     );
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white py-8 pt-24">
+        <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 py-8 pt-24">
             <div className="container-custom">
                 {/* Back Button */}
                 <Link
                     to="/biodatas"
-                    className="inline-flex items-center gap-2 text-slate-600 hover:text-emerald-600 font-medium mb-6 transition-colors"
+                    className="inline-flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 font-medium mb-6 transition-colors"
                 >
                     <FaArrowLeft /> Back to Biodatas
                 </Link>
@@ -113,7 +113,7 @@ const BiodataDetails = () => {
                     {/* Main Content */}
                     <div className="lg:col-span-2 space-y-6">
                         {/* Profile Header Card */}
-                        <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
+                        <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 overflow-hidden">
                             <div className="relative h-48 bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600">
                                 <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.1%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-50"></div>
                             </div>
@@ -125,7 +125,7 @@ const BiodataDetails = () => {
                                             <img
                                                 src={biodata.profileImage || 'https://via.placeholder.com/200x200?text=No+Image'}
                                                 alt="Profile"
-                                                className="w-36 h-36 md:w-44 md:h-44 object-cover rounded-2xl border-4 border-white shadow-xl mx-auto md:mx-0"
+                                                className="w-36 h-36 md:w-44 md:h-44 object-cover rounded-2xl border-4 border-white dark:border-slate-700 shadow-xl mx-auto md:mx-0"
                                             />
                                             {biodata.isPremium && (
                                                 <span className="absolute -top-2 -right-2 px-3 py-1 bg-gradient-to-r from-amber-500 to-amber-400 text-white text-xs font-bold rounded-full flex items-center gap-1 shadow-lg">
@@ -139,18 +139,18 @@ const BiodataDetails = () => {
                                     <div className="flex-1 text-center md:text-left pt-2 md:pt-6">
                                         <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 mb-2">
                                             <span className={`px-3 py-1 rounded-full text-xs font-bold ${biodata.biodataType === 'Male'
-                                                    ? 'bg-blue-100 text-blue-600'
-                                                    : 'bg-pink-100 text-pink-600'
+                                                ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
+                                                : 'bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400'
                                                 }`}>
                                                 {biodata.biodataType}
                                             </span>
                                             <span className="text-slate-400 text-sm">ID: #{biodata.biodataId}</span>
                                         </div>
-                                        <h1 className="text-2xl md:text-3xl font-bold text-slate-800 mb-2">{biodata.name}</h1>
-                                        <p className="text-slate-600 flex items-center justify-center md:justify-start gap-2 mb-1">
+                                        <h1 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-white mb-2">{biodata.name}</h1>
+                                        <p className="text-slate-600 dark:text-slate-300 flex items-center justify-center md:justify-start gap-2 mb-1">
                                             <FaBriefcase className="text-emerald-500" /> {biodata.occupation}
                                         </p>
-                                        <p className="text-slate-500 flex items-center justify-center md:justify-start gap-2">
+                                        <p className="text-slate-500 dark:text-slate-400 flex items-center justify-center md:justify-start gap-2">
                                             <FaMapMarkerAlt className="text-emerald-500" /> {biodata.permanentDivision}
                                         </p>
 
@@ -161,8 +161,8 @@ const BiodataDetails = () => {
                                                     onClick={() => addToFavorites.mutate()}
                                                     disabled={isFavorited || addToFavorites.isLoading}
                                                     className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold transition-all ${isFavorited
-                                                            ? 'bg-red-100 text-red-500 cursor-default'
-                                                            : 'bg-gradient-to-r from-red-500 to-rose-500 text-white hover:shadow-lg hover:shadow-red-500/25'
+                                                        ? 'bg-red-100 dark:bg-red-900/30 text-red-500 dark:text-red-400 cursor-default'
+                                                        : 'bg-gradient-to-r from-red-500 to-rose-500 text-white hover:shadow-lg hover:shadow-red-500/25'
                                                         }`}
                                                 >
                                                     <FaHeart /> {isFavorited ? 'Favorited' : 'Add to Favorites'}
@@ -184,8 +184,8 @@ const BiodataDetails = () => {
                         </div>
 
                         {/* Basic Information */}
-                        <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 p-6 md:p-8">
-                            <h2 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+                        <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 p-6 md:p-8">
+                            <h2 className="text-xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                                 <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center">
                                     <FaUser className="text-white" />
                                 </div>
@@ -202,8 +202,8 @@ const BiodataDetails = () => {
                         </div>
 
                         {/* Family Information */}
-                        <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 p-6 md:p-8">
-                            <h2 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+                        <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 p-6 md:p-8">
+                            <h2 className="text-xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                                 <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-rose-500 rounded-xl flex items-center justify-center">
                                     <FaHeart className="text-white" />
                                 </div>
@@ -216,8 +216,8 @@ const BiodataDetails = () => {
                         </div>
 
                         {/* Location Information */}
-                        <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 p-6 md:p-8">
-                            <h2 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+                        <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 p-6 md:p-8">
+                            <h2 className="text-xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                                 <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center">
                                     <FaMapMarkerAlt className="text-white" />
                                 </div>
@@ -230,8 +230,8 @@ const BiodataDetails = () => {
                         </div>
 
                         {/* Partner Expectations */}
-                        <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 p-6 md:p-8">
-                            <h2 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+                        <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 p-6 md:p-8">
+                            <h2 className="text-xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                                 <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-500 rounded-xl flex items-center justify-center">
                                     <FaStar className="text-white" />
                                 </div>
@@ -245,8 +245,8 @@ const BiodataDetails = () => {
                         </div>
 
                         {/* Contact Information */}
-                        <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 p-6 md:p-8">
-                            <h2 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+                        <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 p-6 md:p-8">
+                            <h2 className="text-xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                                 <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-violet-500 rounded-xl flex items-center justify-center">
                                     <FaPhone className="text-white" />
                                 </div>
@@ -259,12 +259,12 @@ const BiodataDetails = () => {
                                     <InfoCard icon={<FaPhone />} label="Mobile" value={biodata.mobileNumber} />
                                 </div>
                             ) : (
-                                <div className="text-center py-10 bg-gradient-to-br from-slate-50 to-slate-100/50 rounded-2xl border border-slate-200">
-                                    <div className="w-16 h-16 bg-slate-200 rounded-full flex items-center justify-center mx-auto mb-4">
-                                        <FaLock className="text-3xl text-slate-400" />
+                                <div className="text-center py-10 bg-gradient-to-br from-slate-50 to-slate-100/50 dark:from-slate-700/50 dark:to-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700">
+                                    <div className="w-16 h-16 bg-slate-200 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <FaLock className="text-3xl text-slate-400 dark:text-slate-500" />
                                     </div>
-                                    <h3 className="text-lg font-bold text-slate-700 mb-2">Contact Information is Hidden</h3>
-                                    <p className="text-slate-500 mb-6 max-w-sm mx-auto">Only premium members can view contact information directly</p>
+                                    <h3 className="text-lg font-bold text-slate-700 dark:text-slate-200 mb-2">Contact Information is Hidden</h3>
+                                    <p className="text-slate-500 dark:text-slate-400 mb-6 max-w-sm mx-auto">Only premium members can view contact information directly</p>
                                     <Link
                                         to={`/checkout/${biodata.biodataId}`}
                                         className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-emerald-500/25 transition-all"
@@ -278,8 +278,8 @@ const BiodataDetails = () => {
 
                     {/* Sidebar - Similar Biodatas */}
                     <div className="lg:col-span-1">
-                        <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 p-6 sticky top-24">
-                            <h2 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+                        <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 p-6 sticky top-24">
+                            <h2 className="text-xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-3">
                                 <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center">
                                     <FaHeart className="text-white" />
                                 </div>
@@ -288,10 +288,10 @@ const BiodataDetails = () => {
 
                             {similarBiodatas.length === 0 ? (
                                 <div className="text-center py-8">
-                                    <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                        <FaUser className="text-2xl text-slate-300" />
+                                    <div className="w-16 h-16 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <FaUser className="text-2xl text-slate-300 dark:text-slate-500" />
                                     </div>
-                                    <p className="text-slate-500">No similar profiles found</p>
+                                    <p className="text-slate-500 dark:text-slate-400">No similar profiles found</p>
                                 </div>
                             ) : (
                                 <div className="space-y-4">
@@ -299,7 +299,7 @@ const BiodataDetails = () => {
                                         <Link
                                             key={similar._id}
                                             to={`/biodata/${similar.biodataId}`}
-                                            className="block p-4 bg-gradient-to-br from-slate-50 to-slate-100/50 rounded-xl border border-slate-100 hover:border-emerald-200 hover:shadow-md transition-all group"
+                                            className="block p-4 bg-gradient-to-br from-slate-50 to-slate-100/50 dark:from-slate-700/50 dark:to-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-700 hover:border-emerald-200 dark:hover:border-emerald-500/30 hover:shadow-md transition-all group"
                                         >
                                             <div className="flex items-center gap-4">
                                                 <img
@@ -308,9 +308,9 @@ const BiodataDetails = () => {
                                                     className="w-14 h-14 rounded-xl object-cover group-hover:scale-105 transition-transform"
                                                 />
                                                 <div className="flex-1 min-w-0">
-                                                    <p className="text-xs text-slate-400">ID: {similar.biodataId}</p>
-                                                    <p className="font-semibold text-slate-800 truncate">{similar.occupation}</p>
-                                                    <p className="text-sm text-slate-500">{similar.permanentDivision} • {similar.age} yrs</p>
+                                                    <p className="text-xs text-slate-400 dark:text-slate-500">ID: {similar.biodataId}</p>
+                                                    <p className="font-semibold text-slate-800 dark:text-slate-200 truncate">{similar.occupation}</p>
+                                                    <p className="text-sm text-slate-500 dark:text-slate-400">{similar.permanentDivision} • {similar.age} yrs</p>
                                                 </div>
                                             </div>
                                         </Link>

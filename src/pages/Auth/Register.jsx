@@ -86,7 +86,7 @@ const Register = () => {
     ];
 
     return (
-        <div className="min-h-screen flex items-center justify-center py-12 px-4 pt-20 md:pt-24 relative overflow-hidden bg-gradient-to-br from-slate-50 via-emerald-50/30 to-teal-50/50">
+        <div className="min-h-screen flex items-center justify-center py-12 px-4 pt-20 md:pt-24 relative overflow-hidden bg-gradient-to-br from-slate-50 via-emerald-50/30 to-teal-50/50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
             {/* Decorative Background Elements */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2"></div>
@@ -128,16 +128,16 @@ const Register = () => {
                         <FaStar className="text-xs" />
                         <span>Join Our Community</span>
                     </div>
-                    <h2 className="text-2xl font-bold text-slate-800">Create Your Account</h2>
-                    <p className="text-slate-500 mt-2">Start your journey to find your blessed partner</p>
+                    <h2 className="text-2xl font-bold text-slate-800 dark:text-white">Create Your Account</h2>
+                    <p className="text-slate-500 dark:text-slate-400 mt-2">Start your journey to find your blessed partner</p>
                 </div>
 
                 {/* Register Card */}
-                <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl shadow-slate-200/50 border border-white/50 p-8">
+                <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl shadow-2xl shadow-slate-200/50 dark:shadow-black/50 border border-white/50 dark:border-slate-700 p-8">
                     <form onSubmit={handleSubmit} className="space-y-5">
                         {/* Name Input */}
                         <div>
-                            <label className="block text-sm font-semibold text-slate-700 mb-2">
+                            <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
                                 Full Name <span className="text-red-500">*</span>
                             </label>
                             <div className="relative group">
@@ -150,7 +150,7 @@ const Register = () => {
                                     value={formData.name}
                                     onChange={handleChange}
                                     placeholder="Enter your full name"
-                                    className="w-full pl-12 pr-4 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400"
+                                    className="w-full pl-12 pr-4 py-3.5 bg-slate-50 dark:bg-slate-900 border-2 border-slate-100 dark:border-slate-700 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white dark:focus:bg-slate-800 focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400 dark:text-white"
                                     required
                                 />
                             </div>
@@ -158,7 +158,7 @@ const Register = () => {
 
                         {/* Email Input */}
                         <div>
-                            <label className="block text-sm font-semibold text-slate-700 mb-2">
+                            <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
                                 Email Address <span className="text-red-500">*</span>
                             </label>
                             <div className="relative group">
@@ -171,7 +171,7 @@ const Register = () => {
                                     value={formData.email}
                                     onChange={handleChange}
                                     placeholder="Enter your email"
-                                    className="w-full pl-12 pr-4 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400"
+                                    className="w-full pl-12 pr-4 py-3.5 bg-slate-50 dark:bg-slate-900 border-2 border-slate-100 dark:border-slate-700 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white dark:focus:bg-slate-800 focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400 dark:text-white"
                                     required
                                 />
                             </div>
@@ -179,7 +179,7 @@ const Register = () => {
 
                         {/* Password Input */}
                         <div>
-                            <label className="block text-sm font-semibold text-slate-700 mb-2">
+                            <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
                                 Password <span className="text-red-500">*</span>
                             </label>
                             <div className="relative group">
@@ -192,7 +192,7 @@ const Register = () => {
                                     value={formData.password}
                                     onChange={handleChange}
                                     placeholder="Create a password"
-                                    className="w-full pl-12 pr-12 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400"
+                                    className="w-full pl-12 pr-12 py-3.5 bg-slate-50 dark:bg-slate-900 border-2 border-slate-100 dark:border-slate-700 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white dark:focus:bg-slate-800 focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400 dark:text-white"
                                     required
                                 />
                                 <button
@@ -221,8 +221,8 @@ const Register = () => {
 
                         {/* Photo URL Input */}
                         <div>
-                            <label className="block text-sm font-semibold text-slate-700 mb-2">
-                                Photo URL <span className="text-slate-400 font-normal">(Optional)</span>
+                            <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
+                                Photo URL <span className="text-slate-400 dark:text-slate-500 font-normal">(Optional)</span>
                             </label>
                             <div className="relative group">
                                 <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-500 transition-colors">
@@ -234,7 +234,7 @@ const Register = () => {
                                     value={formData.photoURL}
                                     onChange={handleChange}
                                     placeholder="Enter your photo URL"
-                                    className="w-full pl-12 pr-4 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400"
+                                    className="w-full pl-12 pr-4 py-3.5 bg-slate-50 dark:bg-slate-900 border-2 border-slate-100 dark:border-slate-700 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white dark:focus:bg-slate-800 focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400 dark:text-white"
                                 />
                             </div>
                         </div>
@@ -257,7 +257,7 @@ const Register = () => {
                     </form>
 
                     {/* Login Link */}
-                    <p className="text-center mt-6 text-slate-500">
+                    <p className="text-center mt-6 text-slate-500 dark:text-slate-400">
                         Already have an account?{' '}
                         <Link to="/login" className="text-emerald-600 font-semibold hover:text-emerald-700 hover:underline transition-colors">
                             Sign In

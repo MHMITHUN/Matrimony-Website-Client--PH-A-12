@@ -50,12 +50,12 @@ const AdminDashboard = () => {
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg shadow-slate-200/50 border border-white/50 p-6 hover:shadow-xl transition-all"
+            className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-black/30 border border-white/50 dark:border-slate-700 p-6 hover:shadow-xl transition-all"
         >
             <div className="flex items-start justify-between">
                 <div className="flex-1">
-                    <p className="text-slate-500 text-sm font-medium mb-2">{label}</p>
-                    <h3 className="text-3xl font-bold text-slate-800 mb-1">{value?.toLocaleString() || 0}</h3>
+                    <p className="text-slate-500 dark:text-slate-400 text-sm font-medium mb-2">{label}</p>
+                    <h3 className="text-3xl font-bold text-slate-800 dark:text-white mb-1">{value?.toLocaleString() || 0}</h3>
                     {trend && (
                         <p className="text-xs text-emerald-600 flex items-center gap-1">
                             <FaChartLine className="text-[10px]" />
@@ -72,10 +72,10 @@ const AdminDashboard = () => {
 
     if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-emerald-50/30 to-teal-50/50">
+            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-emerald-50/30 to-teal-50/50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
                 <div className="text-center">
                     <div className="w-16 h-16 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                    <p className="text-slate-600 font-medium">Loading analytics...</p>
+                    <p className="text-slate-600 dark:text-slate-400 font-medium">Loading analytics...</p>
                 </div>
             </div>
         );
@@ -92,14 +92,14 @@ const AdminDashboard = () => {
                 <title>Admin Dashboard - Analytics & Insights</title>
             </Helmet>
 
-            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50/30 to-teal-50/50 p-6">
+            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50/30 to-teal-50/50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 p-6">
                 <div className="max-w-7xl mx-auto">
                     {/* Header */}
                     <div className="mb-8">
-                        <h1 className="text-3xl md:text-4xl font-bold text-slate-800 mb-2">
+                        <h1 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-2">
                             Analytics Dashboard
                         </h1>
-                        <p className="text-slate-600">
+                        <p className="text-slate-600 dark:text-slate-400">
                             Real-time insights and comprehensive analytics
                         </p>
                     </div>
@@ -143,9 +143,9 @@ const AdminDashboard = () => {
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
-                            className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg shadow-slate-200/50 border border-white/50 p-6"
+                            className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-black/30 border border-white/50 dark:border-slate-700 p-6"
                         >
-                            <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                            <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-2">
                                 <span className="w-1 h-6 bg-gradient-to-b from-emerald-500 to-teal-500 rounded-full"></span>
                                 User Growth Trend
                             </h3>
@@ -199,9 +199,9 @@ const AdminDashboard = () => {
                         <motion.div
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
-                            className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg shadow-slate-200/50 border border-white/50 p-6"
+                            className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-black/30 border border-white/50 dark:border-slate-700 p-6"
                         >
-                            <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                            <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-2">
                                 <span className="w-1 h-6 bg-gradient-to-b from-emerald-500 to-teal-500 rounded-full"></span>
                                 Gender Distribution
                             </h3>
@@ -229,11 +229,11 @@ const AdminDashboard = () => {
                             <div className="flex items-center justify-center gap-6 mt-4">
                                 <div className="flex items-center gap-2">
                                     <FaMars className="text-blue-500 text-xl" />
-                                    <span className="text-slate-600">{stats?.maleCount} Males</span>
+                                    <span className="text-slate-600 dark:text-slate-300">{stats?.maleCount} Males</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <FaVenus className="text-pink-500 text-xl" />
-                                    <span className="text-slate-600">{stats?.femaleCount} Females</span>
+                                    <span className="text-slate-600 dark:text-slate-300">{stats?.femaleCount} Females</span>
                                 </div>
                             </div>
                         </motion.div>
@@ -245,9 +245,9 @@ const AdminDashboard = () => {
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg shadow-slate-200/50 border border-white/50 p-6"
+                            className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-black/30 border border-white/50 dark:border-slate-700 p-6"
                         >
-                            <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                            <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-2">
                                 <span className="w-1 h-6 bg-gradient-to-b from-emerald-500 to-teal-500 rounded-full"></span>
                                 Top Locations
                             </h3>
@@ -273,9 +273,9 @@ const AdminDashboard = () => {
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg shadow-slate-200/50 border border-white/50 p-6"
+                            className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-black/30 border border-white/50 dark:border-slate-700 p-6"
                         >
-                            <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                            <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-2">
                                 <span className="w-1 h-6 bg-gradient-to-b from-emerald-500 to-teal-500 rounded-full"></span>
                                 Age Distribution
                             </h3>
@@ -306,9 +306,9 @@ const AdminDashboard = () => {
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg shadow-slate-200/50 border border-white/50 p-6"
+                        className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-black/30 border border-white/50 dark:border-slate-700 p-6"
                     >
-                        <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
+                        <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-2">
                             <span className="w-1 h-6 bg-gradient-to-b from-emerald-500 to-teal-500 rounded-full"></span>
                             Recent Activity
                         </h3>
@@ -316,14 +316,14 @@ const AdminDashboard = () => {
                             {recentActivity.map((activity, index) => (
                                 <div
                                     key={index}
-                                    className="flex items-start gap-4 p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors"
+                                    className="flex items-start gap-4 p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
                                 >
                                     <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${activity.type === 'user' ? 'bg-emerald-500' :
                                         activity.type === 'biodata' ? 'bg-blue-500' :
                                             'bg-pink-500'
                                         }`}></div>
                                     <div className="flex-1">
-                                        <p className="text-slate-700 text-sm">{activity.message}</p>
+                                        <p className="text-slate-700 dark:text-slate-200 text-sm">{activity.message}</p>
                                         <p className="text-slate-400 text-xs mt-1">
                                             {new Date(activity.time).toLocaleString()}
                                         </p>

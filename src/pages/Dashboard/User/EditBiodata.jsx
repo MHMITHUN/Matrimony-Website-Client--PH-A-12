@@ -131,9 +131,9 @@ const EditBiodata = () => {
         );
     }
 
-    const inputClass = "w-full px-5 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400";
-    const selectClass = "w-full px-5 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white focus:shadow-lg focus:shadow-emerald-500/10 cursor-pointer appearance-none";
-    const labelClass = "flex items-center gap-2 text-sm font-semibold text-slate-700 mb-2";
+    const inputClass = "w-full px-5 py-3.5 bg-slate-50 dark:bg-slate-900 border-2 border-slate-100 dark:border-slate-700 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white dark:focus:bg-slate-800 focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400 dark:text-slate-200";
+    const selectClass = "w-full px-5 py-3.5 bg-slate-50 dark:bg-slate-900 border-2 border-slate-100 dark:border-slate-700 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white dark:focus:bg-slate-800 focus:shadow-lg focus:shadow-emerald-500/10 cursor-pointer appearance-none dark:text-slate-200";
+    const labelClass = "flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2";
 
     return (
         <div className="space-y-6">
@@ -143,16 +143,16 @@ const EditBiodata = () => {
                     <FaStar className="text-xs" />
                     <span>{existingBiodata ? 'Edit Profile' : 'Create Profile'}</span>
                 </div>
-                <h1 className="text-2xl md:text-3xl font-bold text-slate-800">
+                <h1 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-white">
                     {existingBiodata ? 'Edit Your Biodata' : 'Create Your Biodata'}
                 </h1>
-                <p className="text-slate-500 mt-1">Fill in your details to create or update your biodata</p>
+                <p className="text-slate-500 dark:text-slate-400 mt-1">Fill in your details to create or update your biodata</p>
             </div>
 
-            <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 overflow-hidden">
+            <form onSubmit={handleSubmit} className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 overflow-hidden">
                 {/* Section: Basic Information */}
-                <div className="p-6 md:p-8 border-b border-slate-100">
-                    <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2 mb-6">
+                <div className="p-6 md:p-8 border-b border-slate-100 dark:border-slate-700">
+                    <h2 className="text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2 mb-6">
                         <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-lg flex items-center justify-center text-white text-sm">
                             <FaUser />
                         </div>
@@ -278,7 +278,7 @@ const EditBiodata = () => {
                                 type="number"
                                 name="age"
                                 value={formData.age}
-                                className="w-full px-5 py-3.5 bg-slate-100 border-2 border-slate-100 rounded-xl text-slate-700 cursor-not-allowed"
+                                className="w-full px-5 py-3.5 bg-slate-100 dark:bg-slate-700 border-2 border-slate-100 dark:border-slate-600 rounded-xl text-slate-700 dark:text-slate-300 cursor-not-allowed"
                                 readOnly
                             />
                         </div>
@@ -326,8 +326,8 @@ const EditBiodata = () => {
                 </div>
 
                 {/* Section: Family Information */}
-                <div className="p-6 md:p-8 border-b border-slate-100">
-                    <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2 mb-6">
+                <div className="p-6 md:p-8 border-b border-slate-100 dark:border-slate-700">
+                    <h2 className="text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2 mb-6">
                         <div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-rose-500 rounded-lg flex items-center justify-center text-white text-sm">
                             <FaHeart />
                         </div>
@@ -371,8 +371,8 @@ const EditBiodata = () => {
                 </div>
 
                 {/* Section: Location */}
-                <div className="p-6 md:p-8 border-b border-slate-100">
-                    <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2 mb-6">
+                <div className="p-6 md:p-8 border-b border-slate-100 dark:border-slate-700">
+                    <h2 className="text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2 mb-6">
                         <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-lg flex items-center justify-center text-white text-sm">
                             <FaMapMarkerAlt />
                         </div>
@@ -422,8 +422,8 @@ const EditBiodata = () => {
                 </div>
 
                 {/* Section: Partner Expectations */}
-                <div className="p-6 md:p-8 border-b border-slate-100">
-                    <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2 mb-6">
+                <div className="p-6 md:p-8 border-b border-slate-100 dark:border-slate-700">
+                    <h2 className="text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2 mb-6">
                         <div className="w-8 h-8 bg-gradient-to-br from-amber-500 to-orange-500 rounded-lg flex items-center justify-center text-white text-sm">
                             <FaHeart />
                         </div>
@@ -490,8 +490,8 @@ const EditBiodata = () => {
                 </div>
 
                 {/* Section: Contact Information */}
-                <div className="p-6 md:p-8 border-b border-slate-100">
-                    <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2 mb-6">
+                <div className="p-6 md:p-8 border-b border-slate-100 dark:border-slate-700">
+                    <h2 className="text-lg font-bold text-slate-800 dark:text-white flex items-center gap-2 mb-6">
                         <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-violet-500 rounded-lg flex items-center justify-center text-white text-sm">
                             <FaPhone />
                         </div>
@@ -507,7 +507,7 @@ const EditBiodata = () => {
                             <input
                                 type="email"
                                 value={user?.email || ''}
-                                className="w-full px-5 py-3.5 bg-slate-100 border-2 border-slate-100 rounded-xl text-slate-700 cursor-not-allowed"
+                                className="w-full px-5 py-3.5 bg-slate-100 dark:bg-slate-700 border-2 border-slate-100 dark:border-slate-600 rounded-xl text-slate-700 dark:text-slate-300 cursor-not-allowed"
                                 readOnly
                             />
                         </div>
@@ -532,7 +532,7 @@ const EditBiodata = () => {
                 </div>
 
                 {/* Submit Button */}
-                <div className="p-6 md:p-8 bg-gradient-to-r from-slate-50 to-slate-100/50">
+                <div className="p-6 md:p-8 bg-gradient-to-r from-slate-50 to-slate-100/50 dark:from-slate-800 dark:to-slate-900/50">
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                         <p className="text-slate-500 text-sm">
                             <span className="text-red-500">*</span> All fields marked with asterisk are required

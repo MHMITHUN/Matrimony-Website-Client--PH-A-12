@@ -77,7 +77,7 @@ const Privacy = () => {
                 <meta name="description" content="Learn how Nikah Matrimony protects your privacy and handles your personal information securely." />
             </Helmet>
 
-            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50/30 to-teal-50/50 py-12 px-4">
+            <div className="min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50/30 to-teal-50/50 dark:from-slate-900 dark:via-emerald-900/10 dark:to-teal-900/10 py-12 px-4">
                 <div className="container-custom max-w-5xl">
                     {/* Header */}
                     <div className="text-center mb-12">
@@ -85,13 +85,13 @@ const Privacy = () => {
                             <FaShieldAlt className="text-xs" />
                             <span>Privacy & Security</span>
                         </div>
-                        <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
+                        <h1 className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-white mb-4">
                             Privacy Policy
                         </h1>
-                        <p className="text-slate-600 max-w-2xl mx-auto">
+                        <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
                             At Nikah Matrimony, we are committed to protecting your privacy and ensuring your personal information is handled securely and responsibly.
                         </p>
-                        <p className="text-sm text-slate-500 mt-4">
+                        <p className="text-sm text-slate-500 dark:text-slate-400 mt-4">
                             Last Updated: December 6, 2025
                         </p>
                     </div>
@@ -101,19 +101,19 @@ const Privacy = () => {
                         {sections.map((section, index) => (
                             <div
                                 key={index}
-                                className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg shadow-slate-200/50 border border-white/50 p-8 hover:shadow-xl transition-shadow"
+                                className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-black/30 border border-white/50 dark:border-slate-700 p-8 hover:shadow-xl transition-shadow"
                             >
                                 <div className="flex items-start gap-4 mb-4">
                                     <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xl flex-shrink-0">
                                         {section.icon}
                                     </div>
-                                    <h2 className="text-2xl font-bold text-slate-800 mt-1">
+                                    <h2 className="text-2xl font-bold text-slate-800 dark:text-white mt-1">
                                         {section.title}
                                     </h2>
                                 </div>
                                 <ul className="space-y-3 ml-16">
                                     {section.content.map((item, idx) => (
-                                        <li key={idx} className="flex items-start gap-3 text-slate-600">
+                                        <li key={idx} className="flex items-start gap-3 text-slate-600 dark:text-slate-300">
                                             <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></span>
                                             <span>{item}</span>
                                         </li>
@@ -125,7 +125,7 @@ const Privacy = () => {
 
                     {/* Footer Note */}
                     <div className="mt-12 p-6 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 rounded-2xl border border-emerald-500/20">
-                        <p className="text-slate-700 text-center">
+                        <p className="text-slate-700 dark:text-slate-300 text-center">
                             <strong>Note:</strong> This privacy policy may be updated periodically. We will notify you of any significant changes via email or through our platform.
                         </p>
                     </div>

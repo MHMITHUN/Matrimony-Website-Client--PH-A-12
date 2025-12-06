@@ -64,7 +64,7 @@ const Login = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center py-12 px-4 pt-20 md:pt-24 relative overflow-hidden bg-gradient-to-br from-slate-50 via-emerald-50/30 to-teal-50/50">
+        <div className="min-h-screen flex items-center justify-center py-12 px-4 pt-20 md:pt-24 relative overflow-hidden bg-gradient-to-br from-slate-50 via-emerald-50/30 to-teal-50/50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
             {/* Decorative Background Elements */}
             <div className="absolute top-0 left-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
             <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
@@ -106,16 +106,16 @@ const Login = () => {
                         <FaStar className="text-xs" />
                         <span>Welcome Back</span>
                     </div>
-                    <h2 className="text-2xl font-bold text-slate-800">Sign In to Your Account</h2>
-                    <p className="text-slate-500 mt-2">Continue your journey to finding your life partner</p>
+                    <h2 className="text-2xl font-bold text-slate-800 dark:text-white">Sign In to Your Account</h2>
+                    <p className="text-slate-500 dark:text-slate-400 mt-2">Continue your journey to finding your life partner</p>
                 </div>
 
                 {/* Login Card */}
-                <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl shadow-slate-200/50 border border-white/50 p-8">
+                <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl shadow-2xl shadow-slate-200/50 dark:shadow-black/50 border border-white/50 dark:border-slate-700 p-8">
                     <form onSubmit={handleSubmit} className="space-y-6">
                         {/* Email Input */}
                         <div>
-                            <label className="block text-sm font-semibold text-slate-700 mb-2">
+                            <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
                                 Email Address
                             </label>
                             <div className="relative group">
@@ -127,7 +127,7 @@ const Login = () => {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     placeholder="Enter your email"
-                                    className="w-full pl-12 pr-4 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400"
+                                    className="w-full pl-12 pr-4 py-3.5 bg-slate-50 dark:bg-slate-900 border-2 border-slate-100 dark:border-slate-700 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white dark:focus:bg-slate-800 focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400 dark:text-white"
                                     required
                                 />
                             </div>
@@ -135,7 +135,7 @@ const Login = () => {
 
                         {/* Password Input */}
                         <div>
-                            <label className="block text-sm font-semibold text-slate-700 mb-2">
+                            <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
                                 Password
                             </label>
                             <div className="relative group">
@@ -147,7 +147,7 @@ const Login = () => {
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     placeholder="Enter your password"
-                                    className="w-full pl-12 pr-12 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400"
+                                    className="w-full pl-12 pr-12 py-3.5 bg-slate-50 dark:bg-slate-900 border-2 border-slate-100 dark:border-slate-700 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white dark:focus:bg-slate-800 focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400 dark:text-white"
                                     required
                                 />
                                 <button
@@ -179,23 +179,23 @@ const Login = () => {
 
                     {/* Divider */}
                     <div className="my-6 flex items-center gap-4">
-                        <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+                        <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-700 to-transparent"></div>
                         <span className="text-sm text-slate-400 font-medium">Or continue with</span>
-                        <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+                        <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-slate-700 to-transparent"></div>
                     </div>
 
                     {/* Google Login */}
                     <button
                         onClick={handleGoogleLogin}
                         disabled={loading}
-                        className="w-full flex items-center justify-center gap-3 px-4 py-3.5 bg-white border-2 border-slate-100 rounded-xl hover:border-slate-200 hover:bg-slate-50 transition-all duration-300 disabled:opacity-50 group shadow-sm hover:shadow-md"
+                        className="w-full flex items-center justify-center gap-3 px-4 py-3.5 bg-white dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700 rounded-xl hover:border-slate-200 dark:hover:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all duration-300 disabled:opacity-50 group shadow-sm hover:shadow-md"
                     >
                         <FaGoogle className="text-red-500 text-xl group-hover:scale-110 transition-transform" />
-                        <span className="font-semibold text-slate-700">Continue with Google</span>
+                        <span className="font-semibold text-slate-700 dark:text-slate-200">Continue with Google</span>
                     </button>
 
                     {/* Register Link */}
-                    <p className="text-center mt-6 text-slate-500">
+                    <p className="text-center mt-6 text-slate-500 dark:text-slate-400">
                         Don't have an account?{' '}
                         <Link to="/register" className="text-emerald-600 font-semibold hover:text-emerald-700 hover:underline transition-colors">
                             Register Now

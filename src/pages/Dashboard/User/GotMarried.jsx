@@ -71,13 +71,13 @@ const GotMarried = () => {
                     <FaStar className="text-xs" />
                     <span>Share Your Joy</span>
                 </div>
-                <h1 className="text-2xl md:text-3xl font-bold text-slate-800 flex items-center gap-3">
+                <h1 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-white flex items-center gap-3">
                     <FaRing className="text-amber-500" /> Got Married
                 </h1>
-                <p className="text-slate-500 mt-1">Share your success story with the community</p>
+                <p className="text-slate-500 dark:text-slate-400 mt-1">Share your success story with the community</p>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 overflow-hidden max-w-2xl">
+            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 overflow-hidden max-w-2xl">
                 {/* Decorative Header */}
                 <div className="bg-gradient-to-r from-pink-500 via-rose-500 to-pink-600 p-6 relative overflow-hidden">
                     <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.1%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-30"></div>
@@ -97,7 +97,7 @@ const GotMarried = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {/* Self Biodata ID */}
                         <div>
-                            <label className="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-2">
+                            <label className="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
                                 <FaIdCard className="text-emerald-500" />
                                 Your Biodata ID <span className="text-red-500">*</span>
                             </label>
@@ -107,7 +107,7 @@ const GotMarried = () => {
                                 value={formData.selfBiodataId}
                                 readOnly={!!myBiodata?.biodataId}
                                 onChange={handleChange}
-                                className="w-full px-5 py-3.5 bg-slate-100 border-2 border-slate-100 rounded-xl text-slate-700 cursor-not-allowed outline-none"
+                                className="w-full px-5 py-3.5 bg-slate-100 dark:bg-slate-700 border-2 border-slate-100 dark:border-slate-600 rounded-xl text-slate-700 dark:text-slate-300 cursor-not-allowed outline-none"
                                 placeholder="Your biodata ID"
                                 required
                             />
@@ -115,7 +115,7 @@ const GotMarried = () => {
 
                         {/* Partner Biodata ID */}
                         <div>
-                            <label className="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-2">
+                            <label className="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
                                 <FaUser className="text-pink-500" />
                                 Partner Biodata ID <span className="text-red-500">*</span>
                             </label>
@@ -124,7 +124,7 @@ const GotMarried = () => {
                                 name="partnerBiodataId"
                                 value={formData.partnerBiodataId}
                                 onChange={handleChange}
-                                className="w-full px-5 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none transition-all duration-300 focus:border-pink-500 focus:bg-white focus:shadow-lg focus:shadow-pink-500/10 placeholder:text-slate-400"
+                                className="w-full px-5 py-3.5 bg-slate-50 dark:bg-slate-900 border-2 border-slate-100 dark:border-slate-700 rounded-xl outline-none transition-all duration-300 focus:border-pink-500 focus:bg-white dark:focus:bg-slate-800 focus:shadow-lg focus:shadow-pink-500/10 placeholder:text-slate-400 dark:text-slate-200"
                                 placeholder="Enter partner's biodata ID"
                                 required
                             />
@@ -133,7 +133,7 @@ const GotMarried = () => {
 
                     {/* Couple Image */}
                     <div>
-                        <label className="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-2">
+                        <label className="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
                             <FaImage className="text-purple-500" />
                             Couple Image URL <span className="text-red-500">*</span>
                         </label>
@@ -143,7 +143,7 @@ const GotMarried = () => {
                                 name="coupleImage"
                                 value={formData.coupleImage}
                                 onChange={handleChange}
-                                className="w-full pl-5 pr-12 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none transition-all duration-300 focus:border-pink-500 focus:bg-white focus:shadow-lg focus:shadow-pink-500/10 placeholder:text-slate-400"
+                                className="w-full pl-5 pr-12 py-3.5 bg-slate-50 dark:bg-slate-900 border-2 border-slate-100 dark:border-slate-700 rounded-xl outline-none transition-all duration-300 focus:border-pink-500 focus:bg-white dark:focus:bg-slate-800 focus:shadow-lg focus:shadow-pink-500/10 placeholder:text-slate-400 dark:text-slate-200"
                                 placeholder="https://example.com/couple-image.jpg"
                                 required
                             />
@@ -153,7 +153,7 @@ const GotMarried = () => {
 
                     {/* Marriage Date */}
                     <div>
-                        <label className="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-2">
+                        <label className="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
                             <FaCalendar className="text-amber-500" />
                             Marriage Date <span className="text-red-500">*</span>
                         </label>
@@ -162,18 +162,18 @@ const GotMarried = () => {
                             name="marriageDate"
                             value={formData.marriageDate}
                             onChange={handleChange}
-                            className="w-full px-5 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none transition-all duration-300 focus:border-pink-500 focus:bg-white focus:shadow-lg focus:shadow-pink-500/10"
+                            className="w-full px-5 py-3.5 bg-slate-50 dark:bg-slate-900 border-2 border-slate-100 dark:border-slate-700 rounded-xl outline-none transition-all duration-300 focus:border-pink-500 focus:bg-white dark:focus:bg-slate-800 focus:shadow-lg focus:shadow-pink-500/10 dark:text-slate-200"
                             required
                         />
                     </div>
 
                     {/* Review Stars */}
                     <div>
-                        <label className="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-3">
+                        <label className="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300 mb-3">
                             <FaStar className="text-amber-400" />
                             Rate Your Experience <span className="text-red-500">*</span>
                         </label>
-                        <div className="flex gap-2 p-4 bg-gradient-to-br from-amber-50 to-amber-100/50 rounded-2xl border border-amber-100">
+                        <div className="flex gap-2 p-4 bg-gradient-to-br from-amber-50 to-amber-100/50 dark:from-amber-900/20 dark:to-amber-800/20 rounded-2xl border border-amber-100 dark:border-amber-900/30">
                             {[1, 2, 3, 4, 5].map((star) => (
                                 <button
                                     key={star}
@@ -194,7 +194,7 @@ const GotMarried = () => {
 
                     {/* Success Story */}
                     <div>
-                        <label className="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-2">
+                        <label className="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
                             <FaHeart className="text-pink-500" />
                             Your Success Story <span className="text-red-500">*</span>
                         </label>
@@ -203,7 +203,7 @@ const GotMarried = () => {
                             value={formData.successStoryText}
                             onChange={handleChange}
                             rows={6}
-                            className="w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none transition-all duration-300 focus:border-pink-500 focus:bg-white focus:shadow-lg focus:shadow-pink-500/10 placeholder:text-slate-400 resize-none"
+                            className="w-full px-5 py-4 bg-slate-50 dark:bg-slate-900 border-2 border-slate-100 dark:border-slate-700 rounded-xl outline-none transition-all duration-300 focus:border-pink-500 focus:bg-white dark:focus:bg-slate-800 focus:shadow-lg focus:shadow-pink-500/10 placeholder:text-slate-400 dark:text-slate-200 resize-none"
                             placeholder="Share your experience... How did you meet? What do you like about our platform? Any advice for others?"
                             required
                         ></textarea>

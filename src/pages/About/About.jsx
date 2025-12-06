@@ -64,7 +64,7 @@ const About = () => {
             </section>
 
             {/* Mission Section */}
-            <section className="py-20 bg-white relative overflow-hidden">
+            <section className="py-20 bg-white dark:bg-slate-900 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl -translate-y-1/2"></div>
 
                 <div className="container-custom">
@@ -74,16 +74,16 @@ const About = () => {
                                 <FaHeart className="text-xs" />
                                 <span>Our Mission</span>
                             </div>
-                            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-6">
+                            <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-6">
                                 Helping You Find Your <span className="text-gradient-islamic">Blessed Partner</span>
                             </h2>
-                            <p className="text-slate-600 mb-6 leading-relaxed text-lg">
+                            <p className="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed text-lg">
                                 At Nikah Matrimony, our mission is to help Muslim singles find their life partners
                                 in accordance with Islamic principles. We believe that marriage is a beautiful
                                 blessing from Allah, and we strive to make the process of finding a spouse easier,
                                 safer, and more accessible.
                             </p>
-                            <p className="text-slate-600 leading-relaxed text-lg">
+                            <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-lg">
                                 We are committed to providing a platform where individuals and families can
                                 connect with confidence, knowing that all profiles are verified and that their
                                 privacy is protected. Our goal is to facilitate meaningful connections that
@@ -111,15 +111,15 @@ const About = () => {
             </section>
 
             {/* Values Section */}
-            <section className="py-20 bg-gradient-to-b from-slate-50 to-white">
+            <section className="py-20 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
                 <div className="container-custom">
                     <div className="text-center mb-16">
                         <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 rounded-full text-emerald-600 text-sm font-medium mb-4">
                             <FaStar className="text-xs" />
                             <span>What We Stand For</span>
                         </div>
-                        <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Our Core Values</h2>
-                        <p className="text-slate-600 max-w-2xl mx-auto text-lg">
+                        <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">Our Core Values</h2>
+                        <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-lg">
                             The fundamental principles that guide everything we do
                         </p>
                     </div>
@@ -128,14 +128,14 @@ const About = () => {
                         {values.map((value, index) => (
                             <div
                                 key={index}
-                                className="group bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 p-8 text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 animate-fade-in-up"
+                                className="group bg-white dark:bg-slate-800 rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 p-8 text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 animate-fade-in-up"
                                 style={{ animationDelay: `${index * 100}ms` }}
                             >
                                 <div className={`w-16 h-16 bg-gradient-to-br ${value.color} rounded-2xl flex items-center justify-center mx-auto mb-6 text-white text-2xl shadow-lg group-hover:scale-110 transition-transform`}>
                                     {value.icon}
                                 </div>
-                                <h3 className="text-xl font-bold text-slate-800 mb-3">{value.title}</h3>
-                                <p className="text-slate-500 leading-relaxed">{value.description}</p>
+                                <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-3">{value.title}</h3>
+                                <p className="text-slate-500 dark:text-slate-400 leading-relaxed">{value.description}</p>
                             </div>
                         ))}
                     </div>
@@ -161,15 +161,15 @@ const About = () => {
             </section>
 
             {/* Stats Section */}
-            <section className="py-20 bg-white">
+            <section className="py-20 bg-white dark:bg-slate-900">
                 <div className="container-custom">
                     <div className="text-center mb-16">
                         <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 rounded-full text-emerald-600 text-sm font-medium mb-4">
                             <FaCheckCircle className="text-xs" />
                             <span>Our Impact</span>
                         </div>
-                        <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Why Choose Us?</h2>
-                        <p className="text-slate-600 max-w-2xl mx-auto text-lg">
+                        <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">Why Choose Us?</h2>
+                        <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-lg">
                             We are dedicated to helping you find your perfect match
                         </p>
                     </div>
@@ -178,13 +178,13 @@ const About = () => {
                         {stats.map((stat, index) => (
                             <div
                                 key={index}
-                                className="text-center bg-gradient-to-br from-slate-50 to-slate-100/50 rounded-3xl p-10 border border-slate-100 hover:border-emerald-200 transition-all animate-fade-in-up"
+                                className="text-center bg-gradient-to-br from-slate-50 to-slate-100/50 dark:from-slate-800 dark:to-slate-700/50 rounded-3xl p-10 border border-slate-100 dark:border-slate-700 hover:border-emerald-200 dark:hover:border-emerald-500/30 transition-all animate-fade-in-up"
                                 style={{ animationDelay: stat.delay }}
                             >
                                 <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-2">
                                     {stat.value}
                                 </div>
-                                <p className="text-slate-600 text-lg font-medium">{stat.label}</p>
+                                <p className="text-slate-600 dark:text-slate-300 text-lg font-medium">{stat.label}</p>
                             </div>
                         ))}
                     </div>

@@ -59,24 +59,24 @@ const MyContactRequests = () => {
                     <FaStar className="text-xs" />
                     <span>Contact Requests</span>
                 </div>
-                <h1 className="text-2xl md:text-3xl font-bold text-slate-800">My Contact Requests</h1>
-                <p className="text-slate-500 mt-1">View all your contact information requests</p>
+                <h1 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-white">My Contact Requests</h1>
+                <p className="text-slate-500 dark:text-slate-400 mt-1">View all your contact information requests</p>
             </div>
 
             {requests.length === 0 ? (
-                <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 p-12 text-center">
-                    <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <FaEnvelope className="text-4xl text-purple-300" />
+                <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 p-12 text-center">
+                    <div className="w-20 h-20 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <FaEnvelope className="text-4xl text-purple-300 dark:text-purple-400" />
                     </div>
-                    <h2 className="text-xl font-bold text-slate-700 mb-2">No Contact Requests</h2>
-                    <p className="text-slate-500">You haven't requested any contact information yet.</p>
+                    <h2 className="text-xl font-bold text-slate-700 dark:text-slate-200 mb-2">No Contact Requests</h2>
+                    <p className="text-slate-500 dark:text-slate-400">You haven't requested any contact information yet.</p>
                 </div>
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {requests.map((request, index) => (
                         <div
                             key={request._id}
-                            className="bg-white rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 overflow-hidden hover:shadow-xl transition-all animate-fade-in-up"
+                            className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 overflow-hidden hover:shadow-xl transition-all animate-fade-in-up"
                             style={{ animationDelay: `${index * 100}ms` }}
                         >
                             {/* Header */}
@@ -92,8 +92,8 @@ const MyContactRequests = () => {
                                         </div>
                                     </div>
                                     <span className={`px-2.5 py-1 rounded-full text-xs font-bold ${request.status === 'approved'
-                                            ? 'bg-white/20 text-white'
-                                            : 'bg-white/20 text-white'
+                                        ? 'bg-white/20 text-white'
+                                        : 'bg-white/20 text-white'
                                         } flex items-center gap-1`}>
                                         {request.status === 'approved' ? <FaCheckCircle /> : <FaClock />}
                                         {request.status === 'approved' ? 'Approved' : 'Pending'}
@@ -107,33 +107,33 @@ const MyContactRequests = () => {
                                     <>
                                         <a
                                             href={`tel:${request.mobileNumber}`}
-                                            className="flex items-center gap-3 p-3 bg-emerald-50 rounded-xl hover:bg-emerald-100 transition-colors group"
+                                            className="flex items-center gap-3 p-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl hover:bg-emerald-100 dark:hover:bg-emerald-900/30 transition-colors group"
                                         >
                                             <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center text-white group-hover:scale-110 transition-transform">
                                                 <FaPhone />
                                             </div>
                                             <div>
-                                                <p className="text-xs text-slate-500">Mobile Number</p>
-                                                <p className="font-semibold text-emerald-700">{request.mobileNumber}</p>
+                                                <p className="text-xs text-slate-500 dark:text-slate-400">Mobile Number</p>
+                                                <p className="font-semibold text-emerald-700 dark:text-emerald-400">{request.mobileNumber}</p>
                                             </div>
                                         </a>
                                         <a
                                             href={`mailto:${request.email}`}
-                                            className="flex items-center gap-3 p-3 bg-blue-50 rounded-xl hover:bg-blue-100 transition-colors group"
+                                            className="flex items-center gap-3 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors group"
                                         >
                                             <div className="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center text-white group-hover:scale-110 transition-transform">
                                                 <FaEnvelope />
                                             </div>
                                             <div>
-                                                <p className="text-xs text-slate-500">Email Address</p>
-                                                <p className="font-semibold text-blue-700">{request.email}</p>
+                                                <p className="text-xs text-slate-500 dark:text-slate-400">Email Address</p>
+                                                <p className="font-semibold text-blue-700 dark:text-blue-400">{request.email}</p>
                                             </div>
                                         </a>
                                     </>
                                 ) : (
-                                    <div className="flex items-center gap-3 p-4 bg-slate-50 rounded-xl">
+                                    <div className="flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-700/50 rounded-xl">
                                         <FaLock className="text-slate-400" />
-                                        <p className="text-slate-500 text-sm">Contact information will be visible once approved by admin.</p>
+                                        <p className="text-slate-500 dark:text-slate-400 text-sm">Contact information will be visible once approved by admin.</p>
                                     </div>
                                 )}
 
@@ -141,7 +141,7 @@ const MyContactRequests = () => {
                                 <button
                                     onClick={() => handleDelete(request._id)}
                                     disabled={deleteMutation.isLoading}
-                                    className="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-red-200 text-red-600 font-semibold rounded-xl hover:bg-red-50 hover:border-red-300 transition-all disabled:opacity-50"
+                                    className="w-full flex items-center justify-center gap-2 px-4 py-3 border-2 border-red-200 dark:border-red-900/30 text-red-600 dark:text-red-400 font-semibold rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20 hover:border-red-300 dark:hover:border-red-800 transition-all disabled:opacity-50"
                                 >
                                     <FaTrash /> Remove Request
                                 </button>

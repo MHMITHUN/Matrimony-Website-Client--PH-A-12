@@ -136,7 +136,7 @@ const HeroSection = () => {
                         ].map((stat, i) => (
                             <div
                                 key={i}
-                                className={`bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/10 hover:bg-white/15 transition-all hover:scale-105 animate-fade-in-up`}
+                                className={`bg-white/10 dark:bg-slate-800/50 backdrop-blur-xl rounded-2xl p-6 border border-white/10 dark:border-slate-700 hover:bg-white/15 dark:hover:bg-slate-800/70 transition-all hover:scale-105 animate-fade-in-up`}
                                 style={{ animationDelay: `${i * 100}ms` }}
                             >
                                 <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${stat.color} flex items-center justify-center text-white text-xl mb-4`}>
@@ -178,7 +178,7 @@ const PremiumMembersSection = () => {
     });
 
     return (
-        <section className="py-24 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden">
+        <section className="py-24 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800 relative overflow-hidden">
             {/* Decorative */}
             <div className="absolute -top-40 -right-40 w-80 h-80 bg-emerald-500/5 rounded-full blur-3xl"></div>
             <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-amber-500/5 rounded-full blur-3xl"></div>
@@ -188,13 +188,13 @@ const PremiumMembersSection = () => {
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/10 rounded-full text-amber-600 text-sm font-medium mb-4">
                         <FaCrown /> Premium Members
                     </div>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
                         Meet Our{' '}
                         <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
                             Verified Profiles
                         </span>
                     </h2>
-                    <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                    <p className="text-gray-600 dark:text-slate-300 text-lg max-w-2xl mx-auto">
                         Connect with genuine individuals who are seriously looking for their life partners
                     </p>
 
@@ -203,7 +203,7 @@ const PremiumMembersSection = () => {
                         <select
                             value={sortOrder}
                             onChange={(e) => setSortOrder(e.target.value)}
-                            className="px-6 py-3 bg-white border-2 border-gray-200 rounded-xl text-gray-700 font-medium focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition-all cursor-pointer"
+                            className="px-6 py-3 bg-white dark:bg-slate-800 border-2 border-gray-200 dark:border-slate-700 rounded-xl text-gray-700 dark:text-slate-200 font-medium focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition-all cursor-pointer"
                         >
                             <option value="asc">Sort by Age: Low to High</option>
                             <option value="desc">Sort by Age: High to Low</option>
@@ -239,7 +239,7 @@ const PremiumMembersSection = () => {
 // Biodata Card Component
 const BiodataCard = ({ biodata, index }) => (
     <div
-        className="group bg-white rounded-3xl overflow-hidden shadow-lg shadow-black/5 border border-gray-100 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-500 hover:-translate-y-2 animate-fade-in-up"
+        className="group bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-lg shadow-black/5 dark:shadow-black/30 border border-gray-100 dark:border-slate-700 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-500 hover:-translate-y-2 animate-fade-in-up"
         style={{ animationDelay: `${index * 100}ms` }}
     >
         <div className="relative h-72 overflow-hidden">
@@ -274,11 +274,11 @@ const BiodataCard = ({ biodata, index }) => (
 
         <div className="p-6">
             <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2 text-gray-600">
+                <div className="flex items-center gap-2 text-gray-600 dark:text-slate-300">
                     <span className="text-2xl font-bold text-emerald-600">{biodata.age}</span>
                     <span className="text-sm">years old</span>
                 </div>
-                <div className="flex items-center gap-1 text-gray-500 text-sm">
+                <div className="flex items-center gap-1 text-gray-500 dark:text-slate-400 text-sm">
                     📍 {biodata.permanentDivision}
                 </div>
             </div>
@@ -322,7 +322,7 @@ const HowItWorksSection = () => {
     ];
 
     return (
-        <section className="py-24 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 relative overflow-hidden">
+        <section className="py-24 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 dark:from-emerald-900 dark:via-emerald-800 dark:to-teal-900 relative overflow-hidden">
             {/* Decorative Pattern */}
             <div className="absolute inset-0 opacity-10">
                 <div className="absolute inset-0" style={{
@@ -389,7 +389,7 @@ const SuccessCounterSection = () => {
     ];
 
     return (
-        <section className="py-24 bg-gradient-to-b from-white to-slate-50 relative overflow-hidden">
+        <section className="py-24 bg-gradient-to-b from-white to-slate-50 dark:from-slate-900 dark:to-slate-800 relative overflow-hidden">
             {/* Decorative Elements */}
             <div className="absolute top-0 left-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl"></div>
             <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl"></div>
@@ -399,13 +399,13 @@ const SuccessCounterSection = () => {
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 rounded-full text-emerald-600 text-sm font-medium mb-4">
                         <FaStar /> Our Success
                     </div>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
                         <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
                             Success
                         </span>{' '}
                         in Numbers
                     </h2>
-                    <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                    <p className="text-gray-600 dark:text-slate-300 text-lg max-w-2xl mx-auto">
                         Alhamdulillah! We are proud to be part of so many beautiful marriages
                     </p>
                 </div>
@@ -414,19 +414,19 @@ const SuccessCounterSection = () => {
                     {counters.map((counter, index) => (
                         <div
                             key={index}
-                            className="bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-lg shadow-black/5 border border-gray-100 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-500 hover:-translate-y-2 text-center group"
+                            className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-3xl p-8 shadow-lg shadow-black/5 dark:shadow-black/30 border border-gray-100 dark:border-slate-700 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-500 hover:-translate-y-2 text-center group"
                         >
                             <div className={`w-16 h-16 mx-auto mb-6 bg-gradient-to-r ${counter.color} rounded-2xl flex items-center justify-center text-white text-2xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
                                 {counter.icon}
                             </div>
-                            <div className="text-4xl md:text-5xl font-bold text-gray-800 mb-2 tabular-nums">
+                            <div className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-2 tabular-nums">
                                 {isLoading ? (
-                                    <div className="h-12 bg-gray-200 rounded-lg animate-pulse mx-auto w-24"></div>
+                                    <div className="h-12 bg-gray-200 dark:bg-slate-700 rounded-lg animate-pulse mx-auto w-24"></div>
                                 ) : (
                                     <AnimatedCounter value={counter.value} suffix={counter.suffix || ''} />
                                 )}
                             </div>
-                            <div className="text-gray-600">{counter.label}</div>
+                            <div className="text-gray-600 dark:text-slate-400">{counter.label}</div>
                         </div>
                     ))}
                 </div>
@@ -437,7 +437,7 @@ const SuccessCounterSection = () => {
                         <div className="inline-flex items-center gap-3 px-6 py-4 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 rounded-2xl border border-emerald-500/20">
                             <FaStar className="text-amber-500 text-2xl" />
                             <div>
-                                <p className="text-sm text-slate-600 mb-1">Success Rate</p>
+                                <p className="text-sm text-slate-600 dark:text-slate-400 mb-1">Success Rate</p>
                                 <p className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
                                     <AnimatedCounter value={stats.successRate} suffix="%" duration={1.5} />
                                 </p>
@@ -470,19 +470,19 @@ const SuccessStoriesSection = () => {
     };
 
     return (
-        <section className="py-24 bg-slate-50">
+        <section className="py-24 bg-slate-50 dark:bg-slate-900">
             <div className="container-custom">
                 <div className="text-center mb-16">
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-pink-500/10 rounded-full text-pink-600 text-sm font-medium mb-4">
                         <FaHeart /> Success Stories
                     </div>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
                         Real Stories,{' '}
                         <span classNam="bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">
                             Real Happiness
                         </span>
                     </h2>
-                    <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                    <p className="text-gray-600 dark:text-slate-300 text-lg max-w-2xl mx-auto">
                         Hear from couples who found their life partners through our platform
                     </p>
                 </div>
@@ -492,17 +492,17 @@ const SuccessStoriesSection = () => {
                         <div className="spinner-lg"></div>
                     </div>
                 ) : stories.length === 0 ? (
-                    <div className="text-center py-16 bg-white rounded-3xl shadow-lg">
-                        <FaHeart className="text-6xl text-gray-200 mx-auto mb-4" />
-                        <h3 className="text-xl font-bold text-gray-700 mb-2">No Success Stories Yet</h3>
-                        <p className="text-gray-500">Be the first to share your beautiful story!</p>
+                    <div className="text-center py-16 bg-white dark:bg-slate-800 rounded-3xl shadow-lg">
+                        <FaHeart className="text-6xl text-gray-200 dark:text-slate-600 mx-auto mb-4" />
+                        <h3 className="text-xl font-bold text-gray-700 dark:text-slate-200 mb-2">No Success Stories Yet</h3>
+                        <p className="text-gray-500 dark:text-slate-400">Be the first to share your beautiful story!</p>
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {stories.slice(0, 6).map((story, index) => (
                             <div
                                 key={story._id}
-                                className="bg-white rounded-3xl p-8 shadow-lg shadow-black/5 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 relative group"
+                                className="bg-white dark:bg-slate-800 rounded-3xl p-8 shadow-lg shadow-black/5 dark:shadow-black/30 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 relative group"
                             >
                                 <FaQuoteLeft className="absolute top-6 right-6 text-4xl text-emerald-100" />
 
@@ -521,7 +521,7 @@ const SuccessStoriesSection = () => {
                                         <div className="flex items-center gap-1 mb-1">
                                             {renderStars(story.reviewStar)}
                                         </div>
-                                        <p className="text-sm text-gray-500">
+                                        <p className="text-sm text-gray-500 dark:text-slate-400">
                                             Married: {new Date(story.marriageDate).toLocaleDateString('en-US', {
                                                 year: 'numeric',
                                                 month: 'long'
@@ -530,7 +530,7 @@ const SuccessStoriesSection = () => {
                                     </div>
                                 </div>
 
-                                <p className="text-gray-600 italic leading-relaxed line-clamp-4">
+                                <p className="text-gray-600 dark:text-slate-300 italic leading-relaxed line-clamp-4">
                                     "{story.successStoryText}"
                                 </p>
                             </div>
@@ -544,7 +544,7 @@ const SuccessStoriesSection = () => {
 
 // CTA Section
 const CTASection = () => (
-    <section className="py-24 bg-gradient-to-r from-amber-500 via-amber-400 to-orange-500 relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-r from-amber-500 via-amber-400 to-orange-500 dark:from-amber-700 dark:via-amber-600 dark:to-orange-700 relative overflow-hidden">
         {/* Decorative Elements */}
         <div className="absolute inset-0">
             <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
@@ -565,7 +565,7 @@ const CTASection = () => (
             <div className="flex flex-wrap justify-center gap-4">
                 <Link
                     to="/register"
-                    className="group px-10 py-4 bg-slate-900 text-white font-bold rounded-2xl hover:bg-slate-800 transition-all hover:scale-105 flex items-center gap-2"
+                    className="group px-10 py-4 bg-slate-900 dark:bg-slate-950 text-white font-bold rounded-2xl hover:bg-slate-800 dark:hover:bg-slate-900 transition-all hover:scale-105 flex items-center gap-2"
                 >
                     Create Your Profile <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -593,7 +593,7 @@ const FeaturedProfilesSection = () => {
     if (!premiumBiodatas || premiumBiodatas.length === 0) return null;
 
     return (
-        <section className="py-24 bg-white relative overflow-hidden">
+        <section className="py-24 bg-white dark:bg-slate-900 relative overflow-hidden">
             {/* Decorative Elements */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl"></div>
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl"></div>
@@ -603,13 +603,13 @@ const FeaturedProfilesSection = () => {
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/10 rounded-full text-amber-600 text-sm font-medium mb-4">
                         <FaHeart /> Featured Profiles
                     </div>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-slate-900 dark:text-white">
                         Handpicked{' '}
                         <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
                             Special Matches
                         </span>
                     </h2>
-                    <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                    <p className="text-gray-600 dark:text-slate-300 text-lg max-w-2xl mx-auto">
                         Curated selection of verified premium profiles looking for their life partners
                     </p>
                 </div>

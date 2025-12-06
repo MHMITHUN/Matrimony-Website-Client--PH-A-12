@@ -110,15 +110,15 @@ const Contact = () => {
                         {contactInfo.map((info, index) => (
                             <div
                                 key={index}
-                                className="group bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 p-8 text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 animate-fade-in-up"
+                                className="group bg-white dark:bg-slate-800 rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 p-8 text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 animate-fade-in-up"
                                 style={{ animationDelay: `${index * 100}ms` }}
                             >
                                 <div className={`w-14 h-14 bg-gradient-to-br ${info.color} rounded-2xl flex items-center justify-center mx-auto mb-5 text-white text-xl shadow-lg group-hover:scale-110 transition-transform`}>
                                     {info.icon}
                                 </div>
-                                <h3 className="text-lg font-bold text-slate-800 mb-3">{info.title}</h3>
+                                <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-3">{info.title}</h3>
                                 {info.lines.map((line, i) => (
-                                    <p key={i} className="text-slate-500">{line}</p>
+                                    <p key={i} className="text-slate-500 dark:text-slate-400">{line}</p>
                                 ))}
                             </div>
                         ))}
@@ -127,23 +127,23 @@ const Contact = () => {
             </section>
 
             {/* Contact Form Section */}
-            <section className="py-16 bg-gradient-to-b from-slate-50 to-white">
+            <section className="py-16 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-800">
                 <div className="container-custom">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                         {/* Form */}
-                        <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 p-8 md:p-10 animate-fade-in-up">
+                        <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 p-8 md:p-10 animate-fade-in-up">
                             <div className="mb-8">
                                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 rounded-full text-emerald-600 text-sm font-medium mb-4">
                                     <FaEnvelope className="text-xs" />
                                     <span>Send Message</span>
                                 </div>
-                                <h2 className="text-2xl md:text-3xl font-bold text-slate-800">Get In Touch</h2>
-                                <p className="text-slate-500 mt-2">Fill out the form and we'll respond within 24 hours</p>
+                                <h2 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-white">Get In Touch</h2>
+                                <p className="text-slate-500 dark:text-slate-400 mt-2">Fill out the form and we'll respond within 24 hours</p>
                             </div>
                             <form onSubmit={handleSubmit} className="space-y-5">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                     <div>
-                                        <label className="block text-sm font-semibold text-slate-700 mb-2">
+                                        <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
                                             Your Name
                                         </label>
                                         <input
@@ -152,12 +152,12 @@ const Contact = () => {
                                             value={formData.name}
                                             onChange={handleChange}
                                             placeholder="Enter your name"
-                                            className="w-full px-5 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400"
+                                            className="w-full px-5 py-3.5 bg-slate-50 dark:bg-slate-700 border-2 border-slate-100 dark:border-slate-600 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white dark:focus:bg-slate-800 focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400 dark:text-white"
                                             required
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-semibold text-slate-700 mb-2">
+                                        <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
                                             Your Email
                                         </label>
                                         <input
@@ -166,13 +166,13 @@ const Contact = () => {
                                             value={formData.email}
                                             onChange={handleChange}
                                             placeholder="Enter your email"
-                                            className="w-full px-5 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400"
+                                            className="w-full px-5 py-3.5 bg-slate-50 dark:bg-slate-700 border-2 border-slate-100 dark:border-slate-600 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white dark:focus:bg-slate-800 focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400 dark:text-white"
                                             required
                                         />
                                     </div>
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-semibold text-slate-700 mb-2">
+                                    <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
                                         Subject
                                     </label>
                                     <input
@@ -181,12 +181,12 @@ const Contact = () => {
                                         value={formData.subject}
                                         onChange={handleChange}
                                         placeholder="What is this about?"
-                                        className="w-full px-5 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400"
+                                        className="w-full px-5 py-3.5 bg-slate-50 dark:bg-slate-700 border-2 border-slate-100 dark:border-slate-600 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white dark:focus:bg-slate-800 focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400 dark:text-white"
                                         required
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-semibold text-slate-700 mb-2">
+                                    <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
                                         Message
                                     </label>
                                     <textarea
@@ -195,7 +195,7 @@ const Contact = () => {
                                         onChange={handleChange}
                                         placeholder="Write your message here..."
                                         rows="5"
-                                        className="w-full px-5 py-3.5 bg-slate-50 border-2 border-slate-100 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400 resize-none"
+                                        className="w-full px-5 py-3.5 bg-slate-50 dark:bg-slate-700 border-2 border-slate-100 dark:border-slate-600 rounded-xl outline-none transition-all duration-300 focus:border-emerald-500 focus:bg-white dark:focus:bg-slate-800 focus:shadow-lg focus:shadow-emerald-500/10 placeholder:text-slate-400 dark:text-white resize-none"
                                         required
                                     ></textarea>
                                 </div>
@@ -219,7 +219,7 @@ const Contact = () => {
                         </div>
 
                         {/* Map */}
-                        <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden animate-fade-in-up delay-200">
+                        <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-xl shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 overflow-hidden animate-fade-in-up delay-200">
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.0!2d90.4125!3d23.7925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDQ3JzMzLjAiTiA5MMKwMjQnNDUuMCJF!5e0!3m2!1sen!2sbd!4v1234567890"
                                 width="100%"
@@ -235,15 +235,15 @@ const Contact = () => {
             </section>
 
             {/* FAQ Section */}
-            <section className="py-16 bg-white">
+            <section className="py-16 bg-white dark:bg-slate-900">
                 <div className="container-custom">
                     <div className="text-center mb-12">
                         <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500/10 rounded-full text-emerald-600 text-sm font-medium mb-4">
                             <FaQuestionCircle className="text-xs" />
                             <span>FAQs</span>
                         </div>
-                        <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">Frequently Asked Questions</h2>
-                        <p className="text-slate-500 max-w-2xl mx-auto text-lg">
+                        <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">Frequently Asked Questions</h2>
+                        <p className="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto text-lg">
                             Find answers to common questions about our platform
                         </p>
                     </div>
@@ -252,18 +252,18 @@ const Contact = () => {
                         {faqs.map((faq, index) => (
                             <div
                                 key={index}
-                                className="bg-white rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 overflow-hidden animate-fade-in-up"
+                                className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg shadow-slate-200/50 dark:shadow-black/30 border border-slate-100 dark:border-slate-700 overflow-hidden animate-fade-in-up"
                                 style={{ animationDelay: `${index * 100}ms` }}
                             >
                                 <button
                                     onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                                    className="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 transition-colors"
+                                    className="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
                                 >
-                                    <h3 className="font-bold text-slate-800 pr-4">{faq.question}</h3>
+                                    <h3 className="font-bold text-slate-800 dark:text-white pr-4">{faq.question}</h3>
                                     <FaChevronDown className={`text-emerald-500 flex-shrink-0 transition-transform duration-300 ${openFaq === index ? 'rotate-180' : ''}`} />
                                 </button>
                                 <div className={`overflow-hidden transition-all duration-300 ${openFaq === index ? 'max-h-48' : 'max-h-0'}`}>
-                                    <p className="px-6 pb-6 text-slate-600 leading-relaxed">
+                                    <p className="px-6 pb-6 text-slate-600 dark:text-slate-300 leading-relaxed">
                                         {faq.answer}
                                     </p>
                                 </div>
